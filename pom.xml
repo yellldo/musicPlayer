@@ -7,10 +7,9 @@
     <groupId>com.musicPlayer</groupId>
     <packaging>pom</packaging>
     <artifactId>musicPlayer</artifactId>
-    <version>${revision}</version>
+    <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>player-common</module>
         <module>player-common</module>
         <module>player-base</module>
     </modules>
@@ -24,6 +23,7 @@
         <spring-cloud-alibaba-dependencies.version>2022.x</spring-cloud-alibaba-dependencies.version>
         <spring-boot-dependencies.version>3.2.0</spring-boot-dependencies.version>
         <spring-cloud-dependencies.version>2023.0.0</spring-cloud-dependencies.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
     </properties>
 
     <dependencyManagement>
@@ -41,6 +41,11 @@
                 <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
