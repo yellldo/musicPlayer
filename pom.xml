@@ -23,13 +23,15 @@
         <main.basedir>${basedir}</main.basedir>
         <java.version>11</java.version>
         <compiler.version>3.8.0</compiler.version>
-        <spring-boot-dependencies.version>2.5.6</spring-boot-dependencies.version>
-        <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
-        <spring-cloud.version>2022.0.0</spring-cloud.version>
+        <spring-boot-dependencies.version>2.6.13</spring-boot-dependencies.version>
+        <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
+        <spring-cloud-dependencies.version>2021.0.5</spring-cloud-dependencies.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <hutools.version>5.8.25</hutools.version>
         <dynamic.datasource.version>2.5.7</dynamic.datasource.version>
         <mybatisplus.version>3.5.2</mybatisplus.version>
+        <p6spy.version>3.9.1</p6spy.version>
+        <mysql.version>8.0.30</mysql.version>
     </properties>
 
     <dependencyManagement>
@@ -44,7 +46,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
+                <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -63,6 +65,12 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatisplus.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -70,6 +78,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.6</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

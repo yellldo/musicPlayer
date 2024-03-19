@@ -2,6 +2,7 @@ package com.music.player.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * ClassName : MusicPlayerGatewayStartUp<br>
@@ -10,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author : sj
  * @date : 2024/3/18
  */
-
+@EnableDiscoveryClient
 @SpringBootApplication
 public class MusicPlayerGatewayStartUp {
 

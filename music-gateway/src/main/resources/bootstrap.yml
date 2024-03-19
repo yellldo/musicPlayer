@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: music
+      config:
+        namespace: music
+        username: nacos
+        password: nacos
+        file-extension: yml
