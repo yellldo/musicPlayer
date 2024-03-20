@@ -23,9 +23,9 @@
         <main.basedir>${basedir}</main.basedir>
         <java.version>11</java.version>
         <compiler.version>3.8.0</compiler.version>
-        <spring-boot-dependencies.version>2.6.13</spring-boot-dependencies.version>
-        <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
-        <spring-cloud-dependencies.version>2021.0.5</spring-cloud-dependencies.version>
+        <spring-cloud-alibaba-dependencies.version>2.2.5.RELEASE</spring-cloud-alibaba-dependencies.version>
+        <spring-boot-dependencies.version>2.3.2.RELEASE</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>Hoxton.SR8</spring-cloud-dependencies.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <hutools.version>5.8.25</hutools.version>
         <dynamic.datasource.version>2.5.7</dynamic.datasource.version>
@@ -68,7 +68,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
+                <!--                <version>${spring-cloud-alibaba-dependencies.version}</version>-->
                 <type>pom</type>
             </dependency>
         </dependencies>

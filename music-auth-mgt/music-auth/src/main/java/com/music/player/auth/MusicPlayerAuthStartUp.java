@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
  * ClassName : MusicPlayerAuthStartUp<br>
@@ -12,6 +13,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @author : sj
  * @date : 2024/3/18
  */
+@EnableAspectJAutoProxy
+@EnableHystrix
 @MapperScan(basePackages = "com.music.player.auth.mapper")
 @EnableDiscoveryClient
 @SpringBootApplication
