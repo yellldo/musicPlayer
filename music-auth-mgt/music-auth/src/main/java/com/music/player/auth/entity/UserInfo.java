@@ -10,17 +10,18 @@ import lombok.ToString;
 import java.util.Date;
 
 /**
- * ClassName : SysUser<br>
- * Description : SysUser<br>
+ * ClassName : UserInfo<br>
+ * Description : UserInfo<br>
  *
  * @author : sj
- * @date : 2024/3/20
+ * @date : 2024/3/21
  */
 @Setter
 @Getter
 @ToString
-@TableName("sys_user")
-public class SysUser {
+@TableName("user_info")
+public class UserInfo {
+
 
     @TableId("user_id")
     private Long userId;
@@ -31,8 +32,17 @@ public class SysUser {
     @TableField("login_type")
     private String loginType;
 
+    @TableField("login_name")
+    private String loginName;
+
     @TableField("password")
     private String password;
+
+    @TableField("phone")
+    private String phone;
+
+    @TableField("email")
+    private String email;
 
     @TableField("user_status")
     private String userStatus;
@@ -40,7 +50,9 @@ public class SysUser {
     @TableField("is_delete")
     private String isDelete;
 
+    @TableField("is_vip")
+    private String isVip;
+
     @TableField("create_time")
     private Date createTime;
-
 }
