@@ -11,6 +11,9 @@ public enum UserErrorEnum implements IErrorCode {
 
     PHONE_EXIST("-2"),
     EMAIL_EXIST("-3"),
+    USER_NOT_EXISTS("-4"),
+    PASSWORD_NOT_MATCH("-5"),
+
     ;
     private String code;
 

@@ -31,7 +31,20 @@ public class UserBiz {
      */
     public void login(UserLoginDto userLoginDto) {
 
-
+        LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
+        if ("1".equals(userLoginDto.getLoginType())) {
+            queryWrapper.eq(UserInfo::getPhone, userLoginDto.getLoginName());
+        } else {
+            queryWrapper.eq(UserInfo::getEmail, userLoginDto.getLoginName());
+        }
+        UserInfo userInfo = userInfoService.getOne(queryWrapper);
+        if (userInfo == null) {
+            throw new BusinessException(UserErrorEnum.USER_NOT_EXISTS);
+        }
+        if (!userLoginDto.getPassword().equals(userInfo.getPassword())) {
+            throw new BusinessException(UserErrorEnum.PASSWORD_NOT_MATCH);
+        }
+        // TODO 生成token
     }
 
 
