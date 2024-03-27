@@ -15,4 +15,14 @@ import lombok.ToString;
 @Getter
 @ToString
 public class UserRegisterDto {
+
+    private String phone;
+
+    private String email;
+
+    private String password;
+
+    private String loginType;
+
+    private String userName;
 }

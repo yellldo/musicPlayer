@@ -1,4 +1,4 @@
-package exceptions;
+package com.music.player.common.exceptions;
 
 /**
  * ClassName : IErrorCode<br>

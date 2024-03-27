@@ -1,7 +1,14 @@
 package com.music.player.auth.biz;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.music.player.auth.api.dto.UserLoginDto;
+import com.music.player.auth.api.dto.UserRegisterDto;
+import com.music.player.auth.convert.UserConvert;
+import com.music.player.auth.entity.UserInfo;
 import com.music.player.auth.service.UserInfoService;
+import com.music.player.common.exceptions.BusinessException;
+import com.music.player.common.exceptions.UserErrorEnum;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +33,28 @@ public class UserBiz {
 
 
     }
+
+
+    public void register(UserRegisterDto userRegisterDto) {
+        if (StringUtils.isNotBlank(userRegisterDto.getPhone())) {
+            LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
+            queryWrapper.eq(UserInfo::getPhone, userRegisterDto.getPhone());
+            long count = userInfoService.count(queryWrapper);
+            if (count > 0) {
+                throw new BusinessException(UserErrorEnum.PHONE_EXIST);
+            }
+        }
+        if (StringUtils.isNotBlank(userRegisterDto.getEmail())) {
+            LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
+            queryWrapper.eq(UserInfo::getEmail, userRegisterDto.getEmail());
+            long count = userInfoService.count(queryWrapper);
+            if (count > 0) {
+                throw new BusinessException(UserErrorEnum.EMAIL_EXIST);
+            }
+        }
+        UserInfo userInfo = UserConvert.INSTANT.register(userRegisterDto);
+        userInfoService.save(userInfo);
+    }
+
 
 }

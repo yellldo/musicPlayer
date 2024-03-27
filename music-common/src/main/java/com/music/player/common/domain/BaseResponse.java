@@ -1,4 +1,4 @@
-package domain;
+package com.music.player.common.domain;
 
 import cn.hutool.http.HttpStatus;
 import lombok.Getter;

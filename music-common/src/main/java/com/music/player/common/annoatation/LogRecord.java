@@ -1,4 +1,4 @@
-package annoatation;
+package com.music.player.common.annoatation;
 
 import java.lang.annotation.*;
 

@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
@@ -17,7 +18,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableHystrix
 @MapperScan(basePackages = "com.music.player.auth.mapper")
 @EnableDiscoveryClient
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.music.player")
 public class MusicPlayerAuthStartUp {
 
     public static void main(String[] args) {

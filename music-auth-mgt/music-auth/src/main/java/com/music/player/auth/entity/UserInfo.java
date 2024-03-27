@@ -32,9 +32,6 @@ public class UserInfo {
     @TableField("login_type")
     private String loginType;
 
-    @TableField("login_name")
-    private String loginName;
-
     @TableField("password")
     private String password;
 

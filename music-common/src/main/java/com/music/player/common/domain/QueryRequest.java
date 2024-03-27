@@ -1,4 +1,4 @@
-package domain;
+package com.music.player.common.domain;
 
 import lombok.Getter;
 import lombok.Setter;

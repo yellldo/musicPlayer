@@ -8,7 +8,6 @@
         <id property="userId" column="user_id" jdbcType="BIGINT"/>
         <result property="userName" column="user_name" jdbcType="VARCHAR"/>
         <result property="loginType" column="login_type" jdbcType="VARCHAR"/>
-        <result property="loginName" column="login_name" jdbcType="VARCHAR"/>
         <result property="password" column="login_type" jdbcType="VARCHAR"/>
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>

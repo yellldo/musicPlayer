@@ -1,4 +1,4 @@
-package constants;
+package com.music.player.common.constants;
 
 /**
  * ClassName : CommonConstant<br>
