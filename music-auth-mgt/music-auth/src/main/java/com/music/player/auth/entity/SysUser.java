@@ -28,9 +28,6 @@ public class SysUser {
     @TableField("user_name")
     private String userName;
 
-    @TableField("login_type")
-    private String loginType;
-
     @TableField("password")
     private String password;
 

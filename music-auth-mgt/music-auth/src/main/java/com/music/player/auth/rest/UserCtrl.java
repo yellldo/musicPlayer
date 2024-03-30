@@ -1,5 +1,6 @@
 package com.music.player.auth.rest;
 
+import com.music.player.auth.api.dto.AuthInfo;
 import com.music.player.auth.api.dto.UserGetCodeDto;
 import com.music.player.auth.api.dto.UserLoginDto;
 import com.music.player.auth.api.dto.UserRegisterDto;
@@ -27,8 +28,8 @@ public class UserCtrl implements UserServiceFeign {
 
     @Override
     public R login(UserLoginDto userLoginDto) {
-        userBiz.login(userLoginDto);
-        return null;
+        AuthInfo authInfo = userBiz.login(userLoginDto);
+        return R.ok(authInfo);
     }
 
     @Override
@@ -39,6 +40,11 @@ public class UserCtrl implements UserServiceFeign {
 
     @Override
     public R getCode(UserGetCodeDto userGetCodeDto) {
+        return null;
+    }
+
+    @Override
+    public R userInfo() {
         return null;
     }
 }

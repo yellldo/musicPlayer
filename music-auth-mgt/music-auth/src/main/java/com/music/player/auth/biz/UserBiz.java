@@ -1,16 +1,23 @@
 package com.music.player.auth.biz;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.music.player.auth.api.dto.AuthInfo;
+import com.music.player.auth.api.dto.JwtUser;
 import com.music.player.auth.api.dto.UserLoginDto;
 import com.music.player.auth.api.dto.UserRegisterDto;
+import com.music.player.auth.config.JwtConfig;
 import com.music.player.auth.convert.UserConvert;
 import com.music.player.auth.entity.UserInfo;
 import com.music.player.auth.service.UserInfoService;
+import com.music.player.auth.utils.JwtTokenUtil;
 import com.music.player.common.exceptions.BusinessException;
 import com.music.player.common.exceptions.UserErrorEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * ClassName : UserBiz<br>
@@ -24,13 +31,17 @@ public class UserBiz {
 
     @Autowired
     private UserInfoService userInfoService;
-
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private RedisTemplate redisTemplate;
+    @Autowired
+    private JwtConfig jwtConfig;
 
     /**
-     * 登录
+     * 登录并生成token
      */
-    public void login(UserLoginDto userLoginDto) {
-
+    public AuthInfo login(UserLoginDto userLoginDto) {
         LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
         if ("1".equals(userLoginDto.getLoginType())) {
             queryWrapper.eq(UserInfo::getPhone, userLoginDto.getLoginName());
@@ -44,7 +55,10 @@ public class UserBiz {
         if (!userLoginDto.getPassword().equals(userInfo.getPassword())) {
             throw new BusinessException(UserErrorEnum.PASSWORD_NOT_MATCH);
         }
-        // TODO 生成token
+        JwtUser jwtUser = UserConvert.INSTANT.jwtUser(userInfo);
+        String token = jwtTokenUtil.generateToken(jwtUser);
+        redisTemplate.opsForValue().set(jwtConfig.getOnlineKey() + token, jwtUser, jwtConfig.getExpiration(), TimeUnit.MICROSECONDS);
+        return new AuthInfo(token, jwtUser);
     }
 
 

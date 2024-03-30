@@ -32,6 +32,7 @@
         <mybatisplus.version>3.5.2</mybatisplus.version>
         <p6spy.version>3.9.1</p6spy.version>
         <mysql.version>8.0.30</mysql.version>
+        <jjwt.version>0.9.1</jjwt.version>
     </properties>
 
     <dependencyManagement>
