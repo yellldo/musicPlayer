@@ -6,7 +6,7 @@ import com.music.player.auth.api.dto.UserLoginDto;
 import com.music.player.auth.api.dto.UserRegisterDto;
 import com.music.player.auth.api.service.UserServiceFeign;
 import com.music.player.auth.biz.UserBiz;
-import com.music.player.framework.common.domain.R;
+import com.music.player.framework.common.domain.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,24 +27,24 @@ public class UserCtrl implements UserServiceFeign {
     private UserBiz userBiz;
 
     @Override
-    public R login(UserLoginDto userLoginDto) {
+    public CommonResult<AuthInfo> login(UserLoginDto userLoginDto) {
         AuthInfo authInfo = userBiz.login(userLoginDto);
-        return R.ok(authInfo);
+        return CommonResult.success(authInfo);
     }
 
     @Override
-    public R regitsrer(UserRegisterDto userRegisterDto) {
+    public CommonResult<Boolean> regitsrer(UserRegisterDto userRegisterDto) {
         userBiz.register(userRegisterDto);
-        return R.ok();
+        return CommonResult.success(true);
     }
 
     @Override
-    public R getCode(UserGetCodeDto userGetCodeDto) {
-        return null;
+    public CommonResult<Boolean> getCode(UserGetCodeDto userGetCodeDto) {
+        return CommonResult.success(true);
     }
 
     @Override
-    public R userInfo() {
-        return null;
+    public CommonResult<Boolean> userInfo() {
+        return CommonResult.success(true);
     }
 }

@@ -1,9 +1,10 @@
 package com.music.player.auth.api.service;
 
+import com.music.player.auth.api.dto.AuthInfo;
 import com.music.player.auth.api.dto.UserGetCodeDto;
 import com.music.player.auth.api.dto.UserLoginDto;
 import com.music.player.auth.api.dto.UserRegisterDto;
-import com.music.player.framework.common.domain.R;
+import com.music.player.framework.common.domain.CommonResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,16 +22,16 @@ public interface UserServiceFeign {
 
 
     @PostMapping("/login")
-    R login(@RequestBody UserLoginDto userLoginDto);
+    CommonResult<AuthInfo> login(@RequestBody UserLoginDto userLoginDto);
 
 
     @PostMapping("/register")
-    R regitsrer(@RequestBody UserRegisterDto userRegisterDto);
+    CommonResult<Boolean> regitsrer(@RequestBody UserRegisterDto userRegisterDto);
 
     @PostMapping("/getCode")
-    R getCode(@RequestBody UserGetCodeDto userGetCodeDto);
+    CommonResult<Boolean> getCode(@RequestBody UserGetCodeDto userGetCodeDto);
 
 
     @GetMapping("userInfo")
-    R userInfo();
+    CommonResult<Boolean> userInfo();
 }

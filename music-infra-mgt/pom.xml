@@ -9,12 +9,12 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>music-framework</artifactId>
+    <artifactId>music-infra-mgt</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>music-common</module>
-        <module>music-spring-boot-starter-web</module>
+        <module>music-infra</module>
+        <module>music-infra-api</module>
     </modules>
 
     <properties>
