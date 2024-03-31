@@ -1,8 +1,9 @@
 package com.music.player.auth.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.music.player.auth.api.domain.UserDetails;
 import com.music.player.auth.entity.SysUser;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.cache.annotation.Cacheable;
 
 /**
  * ClassName : SysUserService<br>
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 public interface SysUserService extends IService<SysUser> {
 
+    @Cacheable(cacheNames = "sys:user:username", key = "#userName")
     public UserDetails loadUserByUserName(String userName);
 }
 

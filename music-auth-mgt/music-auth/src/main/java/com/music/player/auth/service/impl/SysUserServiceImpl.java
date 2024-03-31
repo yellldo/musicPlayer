@@ -2,14 +2,14 @@ package com.music.player.auth.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.music.player.auth.api.domain.UserDetails;
 import com.music.player.auth.api.dto.JwtUser;
 import com.music.player.auth.entity.SysUser;
 import com.music.player.auth.mapper.SysUserMapper;
 import com.music.player.auth.service.SysUserService;
-import com.music.player.common.exceptions.BusinessException;
-import com.music.player.common.exceptions.UserErrorEnum;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import static com.music.player.common.exceptions.utils.ServiceExceptionUtil.exception;
 
 /**
  * ClassName : SysUserServiceImpl<br>
@@ -27,14 +27,14 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         queryWrapper.eq(SysUser::getUserName, userName);
         SysUser sysUser = baseMapper.selectOne(queryWrapper);
         if (sysUser == null) {
-            throw new BusinessException(UserErrorEnum.USER_NOT_EXISTS);
+            throw exception();
         }
         return generateJwtUser(sysUser);
     }
 
     public UserDetails generateJwtUser(SysUser sysUser) {
         return new JwtUser()
-                .setUserName(sysUser.getUserName())
-                .setUserStatus(sysUser.getUserStatus());
+                .setUserStatus(sysUser.getUserStatus())
+                .setUserName(sysUser.getUserName());
     }
 }

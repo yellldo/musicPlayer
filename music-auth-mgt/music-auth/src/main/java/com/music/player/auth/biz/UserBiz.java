@@ -10,8 +10,6 @@ import com.music.player.auth.convert.UserConvert;
 import com.music.player.auth.entity.UserInfo;
 import com.music.player.auth.service.UserInfoService;
 import com.music.player.auth.utils.JwtTokenUtil;
-import com.music.player.common.exceptions.BusinessException;
-import com.music.player.common.exceptions.UserErrorEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -50,10 +48,10 @@ public class UserBiz {
         }
         UserInfo userInfo = userInfoService.getOne(queryWrapper);
         if (userInfo == null) {
-            throw new BusinessException(UserErrorEnum.USER_NOT_EXISTS);
+            throw new BusinessException(UserErrorEnum.USER_NOT_EXISTS, "用户不存在");
         }
         if (!userLoginDto.getPassword().equals(userInfo.getPassword())) {
-            throw new BusinessException(UserErrorEnum.PASSWORD_NOT_MATCH);
+            throw new BusinessException(UserErrorEnum.PASSWORD_NOT_MATCH, "密码错误");
         }
         JwtUser jwtUser = UserConvert.INSTANT.jwtUser(userInfo);
         String token = jwtTokenUtil.generateToken(jwtUser);
@@ -68,7 +66,7 @@ public class UserBiz {
             queryWrapper.eq(UserInfo::getPhone, userRegisterDto.getPhone());
             long count = userInfoService.count(queryWrapper);
             if (count > 0) {
-                throw new BusinessException(UserErrorEnum.PHONE_EXIST);
+                throw new BusinessException(UserErrorEnum.PHONE_EXIST, "账户不存在");
             }
         }
         if (StringUtils.isNotBlank(userRegisterDto.getEmail())) {
@@ -76,7 +74,7 @@ public class UserBiz {
             queryWrapper.eq(UserInfo::getEmail, userRegisterDto.getEmail());
             long count = userInfoService.count(queryWrapper);
             if (count > 0) {
-                throw new BusinessException(UserErrorEnum.EMAIL_EXIST);
+                throw new BusinessException(UserErrorEnum.EMAIL_EXIST, "账户不存在");
             }
         }
         UserInfo userInfo = UserConvert.INSTANT.register(userRegisterDto);

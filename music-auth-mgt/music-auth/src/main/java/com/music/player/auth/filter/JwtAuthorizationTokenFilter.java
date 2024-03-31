@@ -9,11 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -47,29 +42,22 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-        String token = jwtTokenUtil.getToken(request);
-        JwtUser jwtUser = null;
-        try {
-            jwtUser = (JwtUser) redisTemplate.opsForValue().get(jwtConfig.getOnlineKey() + token);
-            if ("1".equals(jwtUser.getLoginType())) {
-                jwtUser = (JwtUser) userInfoService.loadUserByPhone(jwtUser.getPhone());
-            }
-            if ("2".equals(jwtUser.getLoginType())) {
-                jwtUser = (JwtUser) userInfoService.loadUserByEmail(jwtUser.getEmail());
-            }
-            if (StringUtils.isBlank(jwtUser.getLoginType())) {
-                jwtUser = (JwtUser) sysUserService.loadUserByUserName(jwtUser.getUsername());
-            }
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-        if (jwtUser != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            if (jwtTokenUtil.validateToken(token)) {
-                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(jwtUser, null, jwtUser.getAuthorities());
-                authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-            }
-        }
+//        String token = jwtTokenUtil.getToken(request);
+//        JwtUser jwtUser = null;
+//        try {
+//            jwtUser = (JwtUser) redisTemplate.opsForValue().get(jwtConfig.getOnlineKey() + token);
+//            if (StringUtils.isBlank(jwtUser.getLoginType())) {
+//                jwtUser = (JwtUser) sysUserService.loadUserByUserName(jwtUser.getUserName());
+//            }
+//            if ("1".equals(jwtUser.getLoginType())) {
+//                jwtUser = (JwtUser) userInfoService.loadUserByPhone(jwtUser.getPhone());
+//            }
+//            if ("2".equals(jwtUser.getLoginType())) {
+//                jwtUser = (JwtUser) userInfoService.loadUserByEmail(jwtUser.getEmail());
+//            }
+//        } catch (Exception e) {
+//            log.error(e.getMessage());
+//        }
         chain.doFilter(request, response);
     }
 }

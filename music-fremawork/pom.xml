@@ -7,14 +7,13 @@
         <groupId>com.music.player</groupId>
         <artifactId>music-player</artifactId>
         <version>${revision}</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>music-auth-mgt</artifactId>
+    <artifactId>music-fremawork</artifactId>
     <packaging>pom</packaging>
+
     <modules>
-        <module>music-auth</module>
-        <module>music-auth-api</module>
+        <module>music-common</module>
     </modules>
 
     <properties>

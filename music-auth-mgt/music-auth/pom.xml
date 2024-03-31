@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.musicPlayer</groupId>
+        <groupId>com.music.player</groupId>
         <artifactId>music-auth-mgt</artifactId>
         <version>${revision}</version>
     </parent>
@@ -27,12 +27,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.musicPlayer</groupId>
+            <groupId>com.music.player</groupId>
             <artifactId>music-auth-api</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>com.musicPlayer</groupId>
+            <groupId>com.music.player</groupId>
             <artifactId>music-common</artifactId>
             <version>${revision}</version>
         </dependency>

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * ClassName : JwtConfig<br>
@@ -15,6 +16,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 @Getter
 @ToString
+@Configuration
 @ConfigurationProperties(prefix = "jwt")
 public class JwtConfig {
 
