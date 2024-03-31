@@ -9,12 +9,19 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>music-auth-mgt</artifactId>
+    <artifactId>music-framework</artifactId>
     <packaging>pom</packaging>
+
     <modules>
-        <module>music-auth</module>
-        <module>music-auth-api</module>
+        <module>music-common</module>
+        <module>music-crypto</module>
+
     </modules>
 
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
 </project>

@@ -6,7 +6,7 @@ import com.music.player.auth.api.dto.UserLoginDto;
 import com.music.player.auth.api.dto.UserRegisterDto;
 import com.music.player.auth.api.service.UserServiceFeign;
 import com.music.player.auth.biz.UserBiz;
-import com.music.player.common.domain.R;
+import com.music.player.framework.common.domain.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RestController;

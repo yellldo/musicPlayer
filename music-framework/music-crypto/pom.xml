@@ -5,35 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.music.player</groupId>
-        <artifactId>music-player</artifactId>
+        <artifactId>music-framework</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>music-gateway</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>music-crypto</artifactId>
+    <packaging>pom</packaging>
 
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 

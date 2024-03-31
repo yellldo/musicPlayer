@@ -10,98 +10,55 @@
     <version>${revision}</version>
 
     <modules>
-        <module>music-base</module>
         <module>music-gateway</module>
         <module>music-auth-mgt</module>
-        <module>music-fremawork</module>
+        <module>music-framework</module>
+        <module>music-dependencies</module>
     </modules>
 
     <properties>
         <revision>1.0-SNAPSHOT</revision>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <main.basedir>${basedir}</main.basedir>
         <java.version>11</java.version>
         <compiler.version>3.8.0</compiler.version>
-        <spring-cloud-alibaba-dependencies.version>2.2.5.RELEASE</spring-cloud-alibaba-dependencies.version>
-        <spring-boot-dependencies.version>2.3.2.RELEASE</spring-boot-dependencies.version>
-        <spring-cloud-dependencies.version>Hoxton.SR8</spring-cloud-dependencies.version>
-        <mapstruct.version>1.4.2.Final</mapstruct.version>
-        <hutools.version>5.8.25</hutools.version>
-        <dynamic.datasource.version>2.5.7</dynamic.datasource.version>
-        <mybatisplus.version>3.5.2</mybatisplus.version>
-        <p6spy.version>3.9.1</p6spy.version>
-        <mysql.version>8.0.30</mysql.version>
-        <jjwt.version>0.9.1</jjwt.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <spring.boot.version>2.7.18</spring.boot.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot-dependencies.version}</version>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-dependencies</artifactId>
+                <version>${revision}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud-dependencies.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct</artifactId>
-                <version>${mapstruct.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct-processor</artifactId>
-                <version>${mapstruct.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-                <version>${dynamic.datasource.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatisplus.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <!--                <version>${spring-cloud-alibaba-dependencies.version}</version>-->
-                <type>pom</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.6</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 
     <build>
+        <!-- 设置构建的 jar 包名 -->
+        <finalName>${project.artifactId}</finalName>
         <plugins>
+            <!-- 打包 -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                </configuration>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal> <!-- 将引入的 jar 打入其中 -->
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
