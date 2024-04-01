@@ -1,5 +1,6 @@
 package com.music.player.infra.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class ApiAccessLog {
      * <p>
      * 一般来说，通过链路追踪编号，可以将访问日志，错误日志，链路追踪日志，logger 打印日志等，结合在一起，从而进行排错。
      */
+    @TableField("trace_id")
     private String traceId;
     /**
      * 用户编号
@@ -41,7 +43,7 @@ public class ApiAccessLog {
      * <p>
      * 枚举 {@link com.music.player.framework.common.enmus.UserTypeEnum}
      */
-    private Integer userType;
+    private String userType;
     /**
      * 应用名
      * <p>

@@ -4,6 +4,7 @@ import cn.hutool.core.util.NumberUtil;
 import com.music.player.framework.common.domain.CommonResult;
 import com.music.player.framework.common.enmus.UserTypeEnum;
 import com.music.player.framework.web.config.WebProperties;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -81,13 +82,13 @@ public class WebFrameworkUtils {
      * @param request 请求
      * @return 用户编号
      */
-    public static Integer getLoginUserType(HttpServletRequest request) {
+    public static String getLoginUserType(HttpServletRequest request) {
         if (request == null) {
             return null;
         }
         // 1. 优先，从 Attribute 中获取
-        Integer userType = (Integer) request.getAttribute(REQUEST_ATTRIBUTE_LOGIN_USER_TYPE);
-        if (userType != null) {
+        String userType = (String) request.getAttribute(REQUEST_ATTRIBUTE_LOGIN_USER_TYPE);
+        if (StringUtils.isNotBlank(userType)) {
             return userType;
         }
         // 2. 其次，基于 URL 前缀的约定
@@ -100,7 +101,7 @@ public class WebFrameworkUtils {
         return null;
     }
 
-    public static Integer getLoginUserType() {
+    public static String getLoginUserType() {
         HttpServletRequest request = getRequest();
         return getLoginUserType(request);
     }

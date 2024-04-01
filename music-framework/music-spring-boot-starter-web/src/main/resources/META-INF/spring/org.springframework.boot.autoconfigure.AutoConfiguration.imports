@@ -1,0 +1,2 @@
+com.music.player.framework.xss.config.MusicXssAutoConfiguration
+com.music.player.framework.web.config.MusicWebAutoConfiguration

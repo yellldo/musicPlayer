@@ -15,7 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <main.basedir>${basedir}</main.basedir>
-        <spring-cloud-alibaba-dependencies.version>2021.0.4.0</spring-cloud-alibaba-dependencies.version>
+        <spring-cloud-alibaba-dependencies.version>2.2.5.RELEASE</spring-cloud-alibaba-dependencies.version>
         <spring-boot-dependencies.version>2.3.2.RELEASE</spring-boot-dependencies.version>
         <spring-cloud-dependencies.version>Hoxton.SR8</spring-cloud-dependencies.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
@@ -31,14 +31,13 @@
         <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <druid.version>1.2.8</druid.version>
-        <spring-cloud-starter-bootstrap.version>3.1.8</spring-cloud-starter-bootstrap.version>
+        <!--        <spring-cloud-starter-bootstrap.version>3.1.8</spring-cloud-starter-bootstrap.version>-->
         <guava.version>33.0.0-jre</guava.version>
         <lombok.version>1.18.30</lombok.version>
-        <spring.boot.version>2.7.18</spring.boot.version>
+        <!--        <spring.boot.version>2.7.18</spring.boot.version>-->
         <!-- Web 相关 -->
         <knife4j.version>4.3.0</knife4j.version>
         <springdoc.version>1.6.15</springdoc.version>
-
         <jsoup.version>1.17.2</jsoup.version>
     </properties>
 
@@ -175,7 +174,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.version}</version>
+                <version>${spring-boot-dependencies.version}</version>
                 <executions>
                     <execution>
                         <goals>

@@ -1,7 +1,6 @@
 package com.music.player.framework.common.enmus;
 
-import cn.hutool.core.util.ArrayUtil;
-import com.music.player.framework.common.core.IntArrayValuable;
+import com.music.player.framework.common.core.StringArrayValuable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -16,28 +15,24 @@ import java.util.Arrays;
  */
 @AllArgsConstructor
 @Getter
-public enum UserTypeEnum implements IntArrayValuable {
+public enum UserTypeEnum implements StringArrayValuable {
 
-    MEMBER(1, "会员"), // 面向 c 端，普通用户
-    ADMIN(2, "管理员"); // 面向 b 端，管理后台
+    MEMBER("1", "会员"), // 面向 c 端，普通用户
+    ADMIN("2", "管理员"); // 面向 b 端，管理后台
 
-    public static final int[] ARRAYS = Arrays.stream(values()).mapToInt(UserTypeEnum::getValue).toArray();
+    public static final String[] ARRAYS = (String[]) Arrays.stream(values()).map(UserTypeEnum::getValue).toArray();
 
     /**
      * 类型
      */
-    private final Integer value;
+    private final String value;
     /**
      * 类型名
      */
     private final String name;
 
-    public static UserTypeEnum valueOf(Integer value) {
-        return ArrayUtil.firstMatch(userType -> userType.getValue().equals(value), UserTypeEnum.values());
-    }
-
     @Override
-    public int[] array() {
+    public String[] array() {
         return ARRAYS;
     }
 }

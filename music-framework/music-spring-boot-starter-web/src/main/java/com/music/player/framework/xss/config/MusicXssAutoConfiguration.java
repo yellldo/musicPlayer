@@ -1,6 +1,7 @@
 package com.music.player.framework.xss.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.music.player.framework.common.enmus.WebFilterOrderEnum;
 import com.music.player.framework.xss.core.clean.JsoupXssCleaner;
 import com.music.player.framework.xss.core.clean.XssCleaner;
 import com.music.player.framework.xss.core.filter.XssFilter;
@@ -13,6 +14,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.PathMatcher;
+
+import static com.music.player.framework.web.config.MusicWebAutoConfiguration.createFilterBean;
 
 /**
  * ClassName : MusicXssAutoConfiguration<br>
