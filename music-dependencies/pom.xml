@@ -28,13 +28,10 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <druid.version>1.2.8</druid.version>
-        <!--        <spring-cloud-starter-bootstrap.version>3.1.8</spring-cloud-starter-bootstrap.version>-->
         <guava.version>33.0.0-jre</guava.version>
         <lombok.version>1.18.30</lombok.version>
-        <!--        <spring.boot.version>2.7.18</spring.boot.version>-->
         <!-- Web 相关 -->
         <knife4j.version>4.3.0</knife4j.version>
         <springdoc.version>1.6.15</springdoc.version>
@@ -119,11 +116,6 @@
                 <version>${jjwt.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-bootstrap</artifactId>
-                <version>${spring-cloud-starter-bootstrap.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
@@ -152,6 +144,11 @@
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
                 <version>${jsoup.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-spring-boot-starter-rpc</artifactId>
+                <version>${revision}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -15,6 +15,7 @@
     <modules>
         <module>music-common</module>
         <module>music-spring-boot-starter-web</module>
+        <module>music-spring-boot-starter-rpc</module>
     </modules>
 
     <properties>
