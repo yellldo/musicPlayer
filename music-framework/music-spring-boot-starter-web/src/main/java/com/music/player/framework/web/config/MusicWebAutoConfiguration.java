@@ -6,6 +6,7 @@ import com.music.player.framework.web.core.handler.GlobalResponseBodyHandler;
 import com.music.player.framework.web.core.utils.WebFrameworkUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.client.RestTemplateAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -29,6 +30,7 @@ import javax.servlet.Filter;
  * @author : sj
  * @date : 2024/3/31
  */
+@EnableAutoConfiguration
 @EnableConfigurationProperties(WebProperties.class)
 public class MusicWebAutoConfiguration implements WebMvcConfigurer {
 

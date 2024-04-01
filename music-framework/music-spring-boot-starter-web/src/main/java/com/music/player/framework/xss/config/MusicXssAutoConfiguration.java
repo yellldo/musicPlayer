@@ -6,6 +6,7 @@ import com.music.player.framework.xss.core.clean.JsoupXssCleaner;
 import com.music.player.framework.xss.core.clean.XssCleaner;
 import com.music.player.framework.xss.core.filter.XssFilter;
 import com.music.player.framework.xss.json.XssStringJsonDeserializer;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -24,6 +25,7 @@ import static com.music.player.framework.web.config.MusicWebAutoConfiguration.cr
  * @author : sj
  * @date : 2024/3/31
  */
+@EnableAutoConfiguration
 @EnableConfigurationProperties(XssProperties.class)
 @ConditionalOnProperty(prefix = "music.xss", name = "enable", havingValue = "true", matchIfMissing = true)
 // 设置为 false 时，禁用
