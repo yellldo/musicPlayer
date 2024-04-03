@@ -20,8 +20,8 @@
         <spring-cloud-dependencies.version>Hoxton.SR8</spring-cloud-dependencies.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <hutools.version>5.8.25</hutools.version>
-        <dynamic.datasource.version>2.5.7</dynamic.datasource.version>
-        <mybatisplus.version>3.5.2</mybatisplus.version>
+        <dynamic.datasource.version>4.3.0</dynamic.datasource.version>
+        <mybatisplus.version>3.5.5</mybatisplus.version>
         <p6spy.version>3.9.1</p6spy.version>
         <mysql.version>8.0.30</mysql.version>
         <jjwt.version>0.9.1</jjwt.version>
@@ -36,6 +36,9 @@
         <knife4j.version>4.3.0</knife4j.version>
         <springdoc.version>1.6.15</springdoc.version>
         <jsoup.version>1.17.2</jsoup.version>
+
+        <mybatis-plus-join.version>1.4.10</mybatis-plus-join.version>
+        <druid.version>1.2.21</druid.version>
     </properties>
 
     <dependencyManagement>
@@ -146,9 +149,29 @@
                 <version>${jsoup.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.github.yulichang</groupId>
+                <artifactId>mybatis-plus-join-boot-starter</artifactId> <!-- MyBatis 联表查询 -->
+                <version>${mybatis-plus-join.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.music.player</groupId>
                 <artifactId>music-spring-boot-starter-rpc</artifactId>
                 <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-spring-boot-starter-web</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-spring-boot-starter-mybatis</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

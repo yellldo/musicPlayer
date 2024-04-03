@@ -12,7 +12,6 @@ import com.music.player.framework.jackson.core.databind.LocalDateTimeDeserialize
 import com.music.player.framework.jackson.core.databind.LocalDateTimeSerializer;
 import com.music.player.framework.jackson.core.databind.NumberSerializer;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,7 +28,7 @@ import java.util.List;
  * @date : 2024/4/1
  */
 @Slf4j
-@EnableAutoConfiguration
+@Configuration
 public class MusicJacksonAutoConfiguration {
 
     @Bean

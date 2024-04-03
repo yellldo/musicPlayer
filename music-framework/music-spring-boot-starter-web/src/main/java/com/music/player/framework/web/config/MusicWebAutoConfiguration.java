@@ -6,12 +6,12 @@ import com.music.player.framework.web.core.handler.GlobalResponseBodyHandler;
 import com.music.player.framework.web.core.utils.WebFrameworkUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.client.RestTemplateAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -30,7 +30,7 @@ import javax.servlet.Filter;
  * @author : sj
  * @date : 2024/3/31
  */
-@EnableAutoConfiguration
+@Configuration
 @EnableConfigurationProperties(WebProperties.class)
 public class MusicWebAutoConfiguration implements WebMvcConfigurer {
 
