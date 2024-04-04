@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+        namespace: music
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: music
+        username: nacos
+        password: nacos
+        file-extension: yml

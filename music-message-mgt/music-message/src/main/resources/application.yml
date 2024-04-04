@@ -1,11 +1,8 @@
 spring:
   application:
-    name: music-auth
+    name: music-message
   main:
     allow-bean-definition-overriding: true
-server:
-  servlet:
-    context-path: /music-auth
 mybatis-plus:
   # 实体类扫描路径
   type-aliases-package: com.music.player.auth.entity
@@ -16,4 +13,3 @@ mybatis-plus:
   global-config:
     # 关闭 mybatis-plus的 banner
     banner: false
-

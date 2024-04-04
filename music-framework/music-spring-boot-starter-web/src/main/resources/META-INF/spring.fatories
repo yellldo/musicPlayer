@@ -1,5 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.music.player.framework.jackson.config.MusicXssAutoConfiguration,\
 com.music.player.framework.swagger.config.MusicSwaggerAutoConfiguration,\
-com.music.player.framework.web.config.MusicWebAutoConfiguration,\
 com.music.player.framework.xss.config.MusicXssAutoConfiguration\

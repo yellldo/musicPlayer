@@ -15,7 +15,7 @@
         <module>music-framework</module>
         <module>music-dependencies</module>
         <module>music-infra-mgt</module>
-        <module>music-framework/music-spring-boot-starter-rpc</module>
+        <module>music-message-mgt</module>
     </modules>
 
     <properties>
@@ -31,7 +31,6 @@
         <spring.boot.version>2.3.2.RELEASE</spring.boot.version>
         <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
     </properties>
-
 
     <dependencyManagement>
         <dependencies>

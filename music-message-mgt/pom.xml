@@ -9,12 +9,11 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>music-infra-mgt</artifactId>
+    <artifactId>music-message-mgt</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>music-infra</module>
-        <module>music-infra-api</module>
+        <module>music-message-api</module>
+        <module>music-message</module>
     </modules>
-
 </project>

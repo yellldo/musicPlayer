@@ -173,6 +173,11 @@
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-auth-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

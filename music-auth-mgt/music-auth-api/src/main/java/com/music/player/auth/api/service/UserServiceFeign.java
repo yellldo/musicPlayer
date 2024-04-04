@@ -9,6 +9,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * ClassName : SysUserServiceFeign<br>
@@ -17,21 +18,18 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author : sj
  * @date : 2024/3/21
  */
-@FeignClient(value = "music-auth", path = "${server.servlet.context-path}")
+@FeignClient(value = "music-auth", path = "/music-auth")
 public interface UserServiceFeign {
 
-
-    @PostMapping("/login")
+    @PostMapping("/user/login")
     CommonResult<AuthInfo> login(@RequestBody UserLoginDto userLoginDto);
 
-
-    @PostMapping("/register")
+    @PostMapping("/user/register")
     CommonResult<Boolean> regitsrer(@RequestBody UserRegisterDto userRegisterDto);
 
-    @PostMapping("/getCode")
+    @PostMapping("/user/getCode")
     CommonResult<Boolean> getCode(@RequestBody UserGetCodeDto userGetCodeDto);
 
-
-    @GetMapping("userInfo")
+    @GetMapping("/user/userInfo")
     CommonResult<Boolean> userInfo();
 }

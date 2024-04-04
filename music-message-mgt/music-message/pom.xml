@@ -5,11 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.music.player</groupId>
-        <artifactId>music-infra-mgt</artifactId>
+        <artifactId>music-message-mgt</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>music-infra</artifactId>
+    <packaging>jar</packaging>
+    <artifactId>music-message</artifactId>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -17,8 +24,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.music.player</groupId>
-            <artifactId>music-common</artifactId>
+            <artifactId>music-message-api</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
@@ -54,6 +65,10 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
@@ -63,8 +78,7 @@
         </dependency>
         <dependency>
             <groupId>com.music.player</groupId>
-            <artifactId>music-infra-api</artifactId>
-            <version>${revision}</version>
+            <artifactId>music-auth-api</artifactId>
         </dependency>
     </dependencies>
 
@@ -87,5 +101,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>

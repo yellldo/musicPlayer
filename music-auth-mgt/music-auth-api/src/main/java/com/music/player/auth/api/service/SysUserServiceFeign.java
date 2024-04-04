@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @author : sj
  * @date : 2024/3/21
  */
-@FeignClient("music-auth")
+@FeignClient(value = "music-auth", path = "/music-auth")
 public interface SysUserServiceFeign {
 
 

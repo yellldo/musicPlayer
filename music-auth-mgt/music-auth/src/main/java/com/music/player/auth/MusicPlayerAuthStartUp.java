@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
@@ -20,6 +21,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableCaching
 @MapperScan(basePackages = "com.music.player.auth.mapper")
 @EnableDiscoveryClient
+@EnableFeignClients({"com.music.player.auth.api.service"})
 @SpringBootApplication(scanBasePackages = "com.music.player")
 public class MusicPlayerAuthStartUp {
 
