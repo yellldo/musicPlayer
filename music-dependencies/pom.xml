@@ -38,6 +38,7 @@
         <jsoup.version>1.17.2</jsoup.version>
 
         <mybatis-plus-join.version>1.4.10</mybatis-plus-join.version>
+        <redisson.version>3.18.0</redisson.version> <!-- Spring Boot 2.X 最多使用 3.18.0 版本，否则会报 Tuple NoClassDefFoundError -->
         <druid.version>1.2.21</druid.version>
     </properties>
 
@@ -154,6 +155,11 @@
                 <version>${mybatis-plus-join.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.music.player</groupId>
                 <artifactId>music-spring-boot-starter-rpc</artifactId>
                 <version>${revision}</version>
@@ -182,7 +188,6 @@
     </dependencyManagement>
 
     <dependencies>
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
