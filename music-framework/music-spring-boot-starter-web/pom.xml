@@ -13,12 +13,6 @@
     <packaging>jar</packaging>
     <description>Web 框架，全局异常、API 日志、脱敏、错误码等</description>
 
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.music.player</groupId>
@@ -54,6 +48,15 @@
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-infra-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
         </dependency>
     </dependencies>
 

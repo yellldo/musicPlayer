@@ -63,5 +63,32 @@ public class ApiAccessLogCreateReqDto {
     @Schema(description = "结果提示")
     private String resultMsg;
 
+    @Schema(description = "异常时间", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "异常时间不能为空")
+    private LocalDateTime exceptionTime;
+    @Schema(description = "异常名", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "异常名不能为空")
+    private String exceptionName;
+    @Schema(description = "异常发生的类全名", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "异常发生的类全名不能为空")
+    private String exceptionClassName;
+    @Schema(description = "异常发生的类文件", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "异常发生的类文件不能为空")
+    private String exceptionFileName;
+    @Schema(description = "异常发生的方法名", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "异常发生的方法名不能为空")
+    private String exceptionMethodName;
+    @Schema(description = "异常发生的方法所在行", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "异常发生的方法所在行不能为空")
+    private Integer exceptionLineNumber;
+    @Schema(description = "异常的栈轨迹异常的栈轨迹", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "异常的栈轨迹不能为空")
+    private String exceptionStackTrace;
+    @Schema(description = "异常导致的根消息", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "异常导致的根消息不能为空")
+    private String exceptionRootCauseMessage;
+    @Schema(description = "异常导致的消息", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "异常导致的消息不能为空")
+    private String exceptionMessage;
 
 }

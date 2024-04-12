@@ -16,7 +16,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.PathMatcher;
 
-import static com.music.player.framework.web.config.MusicWebAutoConfiguration.createFilterBean;
+import javax.servlet.Filter;
+
 
 /**
  * ClassName : MusicXssAutoConfiguration<br>
@@ -64,4 +65,11 @@ public class MusicXssAutoConfiguration {
     public FilterRegistrationBean<XssFilter> xssFilter(XssProperties properties, PathMatcher pathMatcher, XssCleaner xssCleaner) {
         return createFilterBean(new XssFilter(properties, pathMatcher, xssCleaner), WebFilterOrderEnum.XSS_FILTER);
     }
+
+    public static <T extends Filter> FilterRegistrationBean<T> createFilterBean(T filter, Integer order) {
+        FilterRegistrationBean<T> bean = new FilterRegistrationBean<>(filter);
+        bean.setOrder(order);
+        return bean;
+    }
+
 }

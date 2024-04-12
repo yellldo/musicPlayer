@@ -1,5 +1,6 @@
 package com.music.player.auth.api.service;
 
+import com.music.player.auth.api.enums.ApiConstants;
 import org.springframework.cloud.openfeign.FeignClient;
 
 /**
@@ -9,7 +10,7 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @author : sj
  * @date : 2024/3/21
  */
-@FeignClient(value = "music-auth", path = "/music-auth")
+@FeignClient(value = ApiConstants.NAME, path = "/music-auth")
 public interface SysUserServiceFeign {
 
 

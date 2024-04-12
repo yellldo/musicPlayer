@@ -38,8 +38,12 @@
         <jsoup.version>1.17.2</jsoup.version>
 
         <mybatis-plus-join.version>1.4.10</mybatis-plus-join.version>
-        <redisson.version>3.18.0</redisson.version> <!-- Spring Boot 2.X 最多使用 3.18.0 版本，否则会报 Tuple NoClassDefFoundError -->
+        <redisson.version>3.18.0
+        </redisson.version> <!-- Spring Boot 2.X 最多使用 3.18.0 版本，否则会报 Tuple NoClassDefFoundError -->
         <druid.version>1.2.21</druid.version>
+
+        <!-- 监控相关 -->
+        <skywalking.version>8.12.0</skywalking.version>
     </properties>
 
     <dependencyManagement>
@@ -160,6 +164,21 @@
                 <version>${redisson.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.apache.skywalking</groupId>
+                <artifactId>apm-toolkit-trace</artifactId>
+                <version>${skywalking.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.skywalking</groupId>
+                <artifactId>apm-toolkit-logback-1.x</artifactId>
+                <version>${skywalking.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.skywalking</groupId>
+                <artifactId>apm-toolkit-opentracing</artifactId>
+                <version>${skywalking.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.music.player</groupId>
                 <artifactId>music-spring-boot-starter-rpc</artifactId>
                 <version>${revision}</version>
@@ -175,6 +194,11 @@
                 <version>${revision}</version>
             </dependency>
             <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-spring-boot-starter-redis</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
@@ -182,6 +206,16 @@
             <dependency>
                 <groupId>com.music.player</groupId>
                 <artifactId>music-auth-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-infra-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-pay-api</artifactId>
                 <version>${revision}</version>
             </dependency>
         </dependencies>

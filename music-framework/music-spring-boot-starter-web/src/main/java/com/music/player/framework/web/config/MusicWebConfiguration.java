@@ -1,12 +1,14 @@
 package com.music.player.framework.web.config;
 
 import com.music.player.framework.common.utils.BaseContextHandler;
+import com.music.player.framework.web.core.handler.GlobalExceptionAdvice;
+import com.music.player.infra.api.service.ApiAccessLogFeign;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -24,6 +26,12 @@ import javax.servlet.http.HttpServletResponse;
 @Configuration
 public class MusicWebConfiguration extends WebMvcConfigurerAdapter {
 
+    /**
+     * 应用名
+     */
+    @Value("${spring.application.name}")
+    private String applicationName;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(traceFlowInterceptor()).addPathPatterns("/**");
@@ -34,6 +42,12 @@ public class MusicWebConfiguration extends WebMvcConfigurerAdapter {
     public TraceFlowInterceptor traceFlowInterceptor() {
         return new TraceFlowInterceptor();
     }
+
+    @Bean
+    public GlobalExceptionAdvice globalExceptionHandler(ApiAccessLogFeign apiAccessLogFeign) {
+        return new GlobalExceptionAdvice(applicationName, apiAccessLogFeign);
+    }
+
 
     /**
      * 传递系统跟踪号

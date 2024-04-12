@@ -43,6 +43,7 @@ public class UserCtrl implements UserServiceFeign {
 
     @Override
     public CommonResult<Boolean> getCode(UserGetCodeDto userGetCodeDto) {
+        int i = 1 / 0;
         return CommonResult.success(true);
     }
 

@@ -80,6 +80,18 @@
             <groupId>com.music.player</groupId>
             <artifactId>music-auth-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-spring-boot-starter-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

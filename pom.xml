@@ -16,6 +16,7 @@
         <module>music-dependencies</module>
         <module>music-infra-mgt</module>
         <module>music-message-mgt</module>
+        <module>music-pay-mgt</module>
     </modules>
 
     <properties>

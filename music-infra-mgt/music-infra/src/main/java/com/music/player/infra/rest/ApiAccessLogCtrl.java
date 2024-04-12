@@ -1,8 +1,9 @@
 package com.music.player.infra.rest;
 
-import com.music.player.framework.common.domain.CommonResult;
 import com.music.player.infra.api.dto.ApiAccessLogCreateReqDto;
 import com.music.player.infra.api.service.ApiAccessLogFeign;
+import com.music.player.infra.biz.ApiAccessLogBiz;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiAccessLogCtrl implements ApiAccessLogFeign {
 
+    @Autowired
+    private ApiAccessLogBiz apiAccessLogBiz;
 
     @Override
-    public CommonResult<Boolean> createApiAccessLog(ApiAccessLogCreateReqDto apiAccessLogCreateReqDto) {
-        return null;
+    public void createApiAccessLog(ApiAccessLogCreateReqDto apiAccessLogCreateReqDto) {
+        apiAccessLogBiz.createApiAccessLog(apiAccessLogCreateReqDto);
     }
 }
