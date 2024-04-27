@@ -11,7 +11,9 @@ import com.music.player.framework.common.utils.ServletUtils;
 import com.music.player.framework.web.core.util.WebFrameworkUtils;
 import com.music.player.infra.api.dto.ApiAccessLogCreateReqDto;
 import com.music.player.infra.api.service.ApiAccessLogFeign;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -34,17 +36,14 @@ import java.util.Map;
  */
 @Slf4j
 @RestControllerAdvice
+@AllArgsConstructor
 public class GlobalExceptionAdvice {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    private final String applicationName;
 
     private final ApiAccessLogFeign apiAccessLogFeign;
 
-    private final String applicationName;
-
-    public GlobalExceptionAdvice(String applicationName, ApiAccessLogFeign apiAccessLogFeign) {
-        this.applicationName = applicationName;
-        this.apiAccessLogFeign = apiAccessLogFeign;
-    }
 
     /**
      * 捕获业务异常

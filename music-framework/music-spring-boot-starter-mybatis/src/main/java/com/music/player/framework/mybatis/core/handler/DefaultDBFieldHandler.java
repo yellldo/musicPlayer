@@ -2,7 +2,7 @@ package com.music.player.framework.mybatis.core.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.music.player.framework.mybatis.core.dto.BaseDO;
-import com.music.player.framework.web.core.utils.WebFrameworkUtils;
+import com.music.player.framework.web.core.util.WebFrameworkUtils;
 import org.apache.ibatis.reflection.MetaObject;
 
 import java.time.LocalDateTime;

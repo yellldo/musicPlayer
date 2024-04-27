@@ -29,7 +29,7 @@
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.30</lombok.version>
-        <spring.boot.version>2.7.8</spring.boot.version>
+        <spring.boot.version>2.7.18</spring.boot.version>
         <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
     </properties>
 
