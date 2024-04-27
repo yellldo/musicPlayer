@@ -15,9 +15,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <main.basedir>${basedir}</main.basedir>
-        <spring-cloud-alibaba-dependencies.version>2.2.5.RELEASE</spring-cloud-alibaba-dependencies.version>
-        <spring-boot-dependencies.version>2.3.2.RELEASE</spring-boot-dependencies.version>
-        <spring-cloud-dependencies.version>Hoxton.SR8</spring-cloud-dependencies.version>
+        <spring-cloud-alibaba-dependencies.version>2021.0.6.0</spring-cloud-alibaba-dependencies.version>
+        <spring-boot-dependencies.version>2.7.8</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>2021.0.9</spring-cloud-dependencies.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <hutools.version>5.8.25</hutools.version>
         <dynamic.datasource.version>4.3.0</dynamic.datasource.version>
