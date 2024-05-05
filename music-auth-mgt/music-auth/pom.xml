@@ -85,10 +85,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.music.player</groupId>
-            <artifactId>music-spring-boot-starter-web</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

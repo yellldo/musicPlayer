@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.music.player.redis.config.MusicCacheAutoConfiguration,\
-com.music.player.redis.config.MusicRedisAutoConfiguration
