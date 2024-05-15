@@ -50,6 +50,7 @@
         <transmittable-thread-local.version>2.12.1</transmittable-thread-local.version>
         <easy-excel.version>3.1.4</easy-excel.version>
         <fastjson.version>1.2.83</fastjson.version>
+        <swagger-models.version>1.5.22</swagger-models.version>
     </properties>
 
     <dependencyManagement>
@@ -114,6 +115,11 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-models.version}</version>
             </dependency>
             <dependency>
                 <groupId>p6spy</groupId>

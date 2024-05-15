@@ -1,0 +1,2 @@
+com.music.player.framework.mybatis.MyBatisAutoConfiguration
+com.music.player.framework.mybatis.EchoAutoConfiguration
