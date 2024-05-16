@@ -17,6 +17,7 @@
         <module>music-infra-mgt</module>
         <module>music-message-mgt</module>
         <module>music-pay-mgt</module>
+        <module>music-framework/music-starter-mybatis</module>
     </modules>
 
     <properties>

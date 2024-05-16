@@ -9,35 +9,12 @@ package com.music.player.framework.common.constant;
  */
 public class BaseContextConstants {
 
-    public static final String REMOTE_CALL = "remote_call";
-
-    public static final String FALLBACK = "fallback";
-
-    public static final String RESPONSE_RESULT_ANN = "response_result_ann";
 
     /**
      * JWT存储的请求头
      */
     public static final String JWT_TOKEN_HEADER = "Authorization";
 
-    /**
-     * JWT负载中拿到开头
-     */
-    public static final String BEARER_TOKEN = "Bearer ";
-
-    public static final String BASIC_AUTH = "Basic";
-    /**
-     * resource 资源
-     */
-    public static final String AUTHORITY_PREFIX = "ROLE_";
-    /**
-     * token缓存前缀
-     */
-    public static final String CACHE_TOKEN_PREFIX = "TOKEN_";
-    /**
-     * 权限
-     */
-    public static final String AUTHORITY_NAME = "authorities";
     /**
      * JWT中封装的 用户id
      */

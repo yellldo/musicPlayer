@@ -14,10 +14,6 @@
 
     <modules>
         <module>music-common</module>
-        <module>music-spring-boot-starter-mybatis</module>
-        <module>music-spring-boot-starter-cache</module>
-        <module>music-spring-boot-starter-uid</module>
-        <module>music-spi</module>
     </modules>
 
     <description>
