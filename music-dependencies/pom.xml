@@ -151,6 +151,11 @@
                 <version>${druid.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.music.player</groupId>
                 <artifactId>music-common</artifactId>
                 <version>${revision}</version>
@@ -171,9 +176,9 @@
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-starter-mybatis</artifactId>
+                <version>${revision}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

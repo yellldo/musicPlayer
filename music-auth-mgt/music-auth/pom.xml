@@ -28,16 +28,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.music.player</groupId>
-            <artifactId>music-auth-api</artifactId>
-            <version>${revision}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.music.player</groupId>
-            <artifactId>music-common</artifactId>
-            <version>${revision}</version>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
@@ -80,6 +70,20 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-starter-mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-auth-api</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-common</artifactId>
+            <version>${revision}</version>
         </dependency>
     </dependencies>
 
