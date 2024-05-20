@@ -19,7 +19,7 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
-@TableName("user_info")
+@TableName("sys_user")
 public class UserInfo {
 
 
