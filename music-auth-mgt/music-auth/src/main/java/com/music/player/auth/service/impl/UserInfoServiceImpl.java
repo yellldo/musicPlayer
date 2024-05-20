@@ -7,11 +7,11 @@ import com.music.player.auth.api.dto.JwtUser;
 import com.music.player.auth.entity.UserInfo;
 import com.music.player.auth.mapper.UserInfoMapper;
 import com.music.player.auth.service.UserInfoService;
+import com.music.player.framework.common.support.BizException;
 import org.springframework.stereotype.Service;
 
 import static com.music.player.auth.api.enums.ErrorCodeConstants.EMAIL_NOT_EXISTS;
 import static com.music.player.auth.api.enums.ErrorCodeConstants.PHONE_NOT_EXISTS;
-import static com.music.player.framework.common.exceptions.utils.ServiceExceptionUtil.exception;
 
 /**
  * ClassName : UserInfoServiceImpl<br>
@@ -31,7 +31,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo>
         queryWrapper.eq(UserInfo::getPhone, phone);
         UserInfo userInfo = baseMapper.selectOne(queryWrapper);
         if (userInfo == null) {
-            throw exception(PHONE_NOT_EXISTS);
+            throw new BizException(PHONE_NOT_EXISTS);
         }
         return generateJwtUser(userInfo);
     }
@@ -42,7 +42,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo>
         queryWrapper.eq(UserInfo::getEmail, email);
         UserInfo userInfo = baseMapper.selectOne(queryWrapper);
         if (userInfo == null) {
-            throw exception(EMAIL_NOT_EXISTS);
+            throw new BizException(EMAIL_NOT_EXISTS);
         }
         return generateJwtUser(userInfo);
     }

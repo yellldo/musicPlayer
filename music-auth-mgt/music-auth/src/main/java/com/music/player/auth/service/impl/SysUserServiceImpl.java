@@ -7,10 +7,10 @@ import com.music.player.auth.api.dto.JwtUser;
 import com.music.player.auth.entity.SysUser;
 import com.music.player.auth.mapper.SysUserMapper;
 import com.music.player.auth.service.SysUserService;
+import com.music.player.framework.common.support.BizException;
 import org.springframework.stereotype.Service;
 
 import static com.music.player.auth.api.enums.ErrorCodeConstants.SYS_USER_NOT_EXISTS;
-import static com.music.player.framework.common.exceptions.utils.ServiceExceptionUtil.exception;
 
 /**
  * ClassName : SysUserServiceImpl<br>
@@ -28,7 +28,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         queryWrapper.eq(SysUser::getUserName, userName);
         SysUser sysUser = baseMapper.selectOne(queryWrapper);
         if (sysUser == null) {
-            throw exception(SYS_USER_NOT_EXISTS);
+            throw new BizException(SYS_USER_NOT_EXISTS);
         }
         return generateJwtUser(sysUser);
     }
