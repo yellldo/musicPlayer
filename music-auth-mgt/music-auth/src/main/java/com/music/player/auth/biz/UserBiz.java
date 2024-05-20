@@ -11,7 +11,7 @@ import com.music.player.auth.convert.UserConvert;
 import com.music.player.auth.entity.UserInfo;
 import com.music.player.auth.service.UserInfoService;
 import com.music.player.auth.utils.JwtTokenUtil;
-import com.music.player.framework.common.exceptions.utils.ServiceExceptionUtil;
+import com.music.player.framework.common.support.BizException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -52,10 +52,10 @@ public class UserBiz {
         }
         UserInfo userInfo = userInfoService.getOne(queryWrapper);
         if (userInfo == null) {
-            throw ServiceExceptionUtil.exception(ErrorCodeConstants.USER_NOT_EXISTS);
+            throw new BizException(ErrorCodeConstants.USER_NOT_EXISTS);
         }
         if (!userLoginDto.getPassword().equals(userInfo.getPassword())) {
-            throw ServiceExceptionUtil.exception(ErrorCodeConstants.PASSWORD_NOT_MATCH);
+            throw new BizException(ErrorCodeConstants.PASSWORD_NOT_MATCH);
         }
         JwtUser jwtUser = UserConvert.INSTANT.jwtUser(userInfo);
         String token = jwtTokenUtil.generateToken(jwtUser);
@@ -70,7 +70,7 @@ public class UserBiz {
             queryWrapper.eq(UserInfo::getPhone, userRegisterDto.getPhone());
             long count = userInfoService.count(queryWrapper);
             if (count > 0) {
-                throw ServiceExceptionUtil.exception(ErrorCodeConstants.PHONE_NOT_EXISTS);
+                throw new BizException(ErrorCodeConstants.PHONE_NOT_EXISTS);
             }
         }
         if (StringUtils.isNotBlank(userRegisterDto.getEmail())) {
@@ -78,7 +78,7 @@ public class UserBiz {
             queryWrapper.eq(UserInfo::getEmail, userRegisterDto.getEmail());
             long count = userInfoService.count(queryWrapper);
             if (count > 0) {
-                throw ServiceExceptionUtil.exception(ErrorCodeConstants.EMAIL_NOT_EXISTS);
+                throw new BizException(ErrorCodeConstants.EMAIL_NOT_EXISTS);
             }
         }
         UserInfo userInfo = UserConvert.INSTANT.register(userRegisterDto);

@@ -6,12 +6,9 @@ import com.music.player.auth.api.dto.UserLoginDto;
 import com.music.player.auth.api.dto.UserRegisterDto;
 import com.music.player.auth.api.service.UserServiceFeign;
 import com.music.player.auth.biz.UserBiz;
-import com.music.player.framework.common.domain.CommonResult;
+import com.music.player.framework.common.base.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -30,25 +27,24 @@ public class UserCtrl implements UserServiceFeign {
     private UserBiz userBiz;
 
     @Override
-    public CommonResult<AuthInfo> login(UserLoginDto userLoginDto) {
+    public R<AuthInfo> login(UserLoginDto userLoginDto) {
         AuthInfo authInfo = userBiz.login(userLoginDto);
-        return CommonResult.success(authInfo);
+        return R.ok(authInfo);
     }
 
     @Override
-    public CommonResult<Boolean> regitsrer(UserRegisterDto userRegisterDto) {
+    public R<Boolean> regitsrer(UserRegisterDto userRegisterDto) {
         userBiz.register(userRegisterDto);
-        return CommonResult.success(true);
+        return R.ok(true);
     }
 
     @Override
-    public CommonResult<Boolean> getCode(UserGetCodeDto userGetCodeDto) {
-        int i = 1 / 0;
-        return CommonResult.success(true);
+    public R<Boolean> getCode(UserGetCodeDto userGetCodeDto) {
+        return R.ok(true);
     }
 
     @Override
-    public CommonResult<Boolean> userInfo() {
-        return CommonResult.success(true);
+    public R<Boolean> userInfo() {
+        return R.ok(true);
     }
 }

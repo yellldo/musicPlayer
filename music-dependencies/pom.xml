@@ -19,7 +19,6 @@
         <spring-boot-dependencies.version>2.7.8</spring-boot-dependencies.version>
         <spring-cloud-dependencies.version>2021.0.9</spring-cloud-dependencies.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
-        <hutools.version>5.8.25</hutools.version>
         <dynamic.datasource.version>4.3.0</dynamic.datasource.version>
         <mybatisplus.version>3.5.5</mybatisplus.version>
         <p6spy.version>3.9.1</p6spy.version>
@@ -133,6 +132,11 @@
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-core</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-http</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
             <dependency>

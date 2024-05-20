@@ -5,12 +5,11 @@ import com.music.player.auth.api.dto.UserGetCodeDto;
 import com.music.player.auth.api.dto.UserLoginDto;
 import com.music.player.auth.api.dto.UserRegisterDto;
 import com.music.player.auth.api.enums.ApiConstants;
-import com.music.player.framework.common.domain.CommonResult;
+import com.music.player.framework.common.base.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * ClassName : SysUserServiceFeign<br>
@@ -23,14 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 public interface UserServiceFeign {
 
     @PostMapping("/user/login")
-    CommonResult<AuthInfo> login(@RequestBody UserLoginDto userLoginDto);
+    R<AuthInfo> login(@RequestBody UserLoginDto userLoginDto);
 
     @PostMapping("/user/register")
-    CommonResult<Boolean> regitsrer(@RequestBody UserRegisterDto userRegisterDto);
+    R<Boolean> regitsrer(@RequestBody UserRegisterDto userRegisterDto);
 
     @PostMapping("/user/getCode")
-    CommonResult<Boolean> getCode(@RequestBody UserGetCodeDto userGetCodeDto);
+    R<Boolean> getCode(@RequestBody UserGetCodeDto userGetCodeDto);
 
     @GetMapping("/user/userInfo")
-    CommonResult<Boolean> userInfo();
+    R<Boolean> userInfo();
 }

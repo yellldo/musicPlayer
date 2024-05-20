@@ -1,22 +1,32 @@
 package com.music.player.auth.api.enums;
 
 
-import com.music.player.framework.common.exceptions.ErrorCode;
+import com.music.player.framework.common.support.code.IErrorCode;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * ClassName : ErrorCodeConstants<br>
  * Description : 错误码枚举类<br>
  * <p>
- * auth，使用 1-001-000-000 段
  *
  * @author : sj
  * @date : 2024/3/31
  */
-public interface ErrorCodeConstants {
+@Getter
+@AllArgsConstructor
+public enum ErrorCodeConstants implements IErrorCode {
 
-    ErrorCode SYS_USER_NOT_EXISTS = new ErrorCode(1_001_000_001, "用户不存在");
-    ErrorCode PHONE_NOT_EXISTS = new ErrorCode(1_001_000_002, "手机不存在");
-    ErrorCode EMAIL_NOT_EXISTS = new ErrorCode(1_001_000_003, "邮箱不存在");
-    ErrorCode USER_NOT_EXISTS = new ErrorCode(1_001_000_004, "用户不存在");
-    ErrorCode PASSWORD_NOT_MATCH = new ErrorCode(1_001_000_005, "用户不存在");
+    SYS_USER_NOT_EXISTS("", "用户不存在"),
+    PHONE_NOT_EXISTS("", "手机不存在"),
+    EMAIL_NOT_EXISTS("", "邮箱不存在"),
+    PASSWORD_NOT_MATCH("", "密码错误"),
+    USER_NOT_EXISTS("", "用户不存在"),
+
+    ;
+
+    final String errorCode;
+
+    final String errorMsg;
 }
+
