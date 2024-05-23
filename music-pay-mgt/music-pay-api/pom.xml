@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>music-pay-api</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
