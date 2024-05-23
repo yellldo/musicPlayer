@@ -24,6 +24,6 @@ public class SysLogController implements SysLogServiceFeign {
 
     @Override
     public R<Boolean> saveLog(SaveLogDto saveLogDto) {
-        return R.ok();
+        return R.ok(sysLogBiz.saveLog(saveLogDto));
     }
 }
