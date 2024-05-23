@@ -1,6 +1,7 @@
 package com.music.player.infra.api.service;
 
 import com.music.player.framework.common.base.R;
+import com.music.player.infra.api.dto.QuerySysLogDto;
 import com.music.player.infra.api.dto.SaveLogDto;
 import com.music.player.infra.api.enmus.ApiConstants;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -25,4 +26,8 @@ public interface SysLogServiceFeign {
      */
     @PostMapping("/log/save")
     R<Boolean> saveLog(@RequestBody SaveLogDto saveLogDto);
+
+
+    @PostMapping("/log/querySysLog")
+    R querySysLog(@RequestBody QuerySysLogDto querySysLogDto);
 }
