@@ -10,13 +10,14 @@ import com.music.player.auth.config.JwtConfig;
 import com.music.player.auth.convert.UserConvert;
 import com.music.player.auth.entity.UserInfo;
 import com.music.player.auth.service.UserInfoService;
+import com.music.player.auth.utils.BCryptUtil;
 import com.music.player.auth.utils.JwtTokenUtil;
 import com.music.player.framework.common.support.BizException;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 
@@ -31,13 +32,13 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class UserBiz {
 
-    @Autowired
+    @Resource
     private UserInfoService userInfoService;
-    @Autowired
+    @Resource
     private JwtTokenUtil jwtTokenUtil;
-    @Autowired
+    @Resource
     private RedisTemplate redisTemplate;
-    @Autowired
+    @Resource
     private JwtConfig jwtConfig;
 
     /**
@@ -54,7 +55,7 @@ public class UserBiz {
         if (userInfo == null) {
             throw new BizException(ErrorCodeConstants.USER_NOT_EXISTS);
         }
-        if (!userLoginDto.getPassword().equals(userInfo.getPassword())) {
+        if(!BCryptUtil.checkPassword(userLoginDto.getPassword(),userInfo.getPassword())){
             throw new BizException(ErrorCodeConstants.PASSWORD_NOT_MATCH);
         }
         JwtUser jwtUser = UserConvert.INSTANT.jwtUser(userInfo);
@@ -70,7 +71,7 @@ public class UserBiz {
             queryWrapper.eq(UserInfo::getPhone, userRegisterDto.getPhone());
             long count = userInfoService.count(queryWrapper);
             if (count > 0) {
-                throw new BizException(ErrorCodeConstants.PHONE_NOT_EXISTS);
+                throw new BizException(ErrorCodeConstants.PHONE_EXISTS);
             }
         }
         if (StringUtils.isNotBlank(userRegisterDto.getEmail())) {
@@ -78,12 +79,24 @@ public class UserBiz {
             queryWrapper.eq(UserInfo::getEmail, userRegisterDto.getEmail());
             long count = userInfoService.count(queryWrapper);
             if (count > 0) {
-                throw new BizException(ErrorCodeConstants.EMAIL_NOT_EXISTS);
+                throw new BizException(ErrorCodeConstants.EMAIL_EXISTS);
             }
         }
+        if (StringUtils.isNotBlank(userRegisterDto.getUserName())) {
+            LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
+            queryWrapper.eq(UserInfo::getUserName, userRegisterDto.getUserName());
+            long count = userInfoService.count(queryWrapper);
+            if (count > 0) {
+                throw new BizException(ErrorCodeConstants.USER_EXISTS);
+            }
+        }else {
+            throw new BizException("用户名不能为空！");
+        }
+        if (!StringUtils.isNotBlank(userRegisterDto.getPassword())) {
+            throw new BizException("密码不能为空！");
+        }
+        userRegisterDto.setPassword(BCryptUtil.hashPassword(userRegisterDto.getPassword()));
         UserInfo userInfo = UserConvert.INSTANT.register(userRegisterDto);
         userInfoService.save(userInfo);
     }
-
-
 }

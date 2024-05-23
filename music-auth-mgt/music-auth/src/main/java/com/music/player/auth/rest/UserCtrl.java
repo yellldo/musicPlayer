@@ -32,19 +32,24 @@ public class UserCtrl implements UserServiceFeign {
         return R.ok(authInfo);
     }
 
+    /**
+     * 用户注册
+     * @param userRegisterDto -
+     * @return -
+     */
     @Override
     public R<Boolean> regitsrer(UserRegisterDto userRegisterDto) {
         userBiz.register(userRegisterDto);
-        return R.ok(true);
+        return R.success();
     }
 
     @Override
     public R<Boolean> getCode(UserGetCodeDto userGetCodeDto) {
-        return R.ok(true);
+        return R.success();
     }
 
     @Override
     public R<Boolean> userInfo() {
-        return R.ok(true);
+        return R.success();
     }
 }
