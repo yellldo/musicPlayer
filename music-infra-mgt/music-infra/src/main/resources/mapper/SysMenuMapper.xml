@@ -7,11 +7,11 @@
 
     <select id="querySysMenu" parameterType="com.music.player.infra.api.dto.QuerySysMenuDto"
             resultType="com.music.player.infra.api.vo.QuerySysMenuVo">
-        select id from sys_menu
+        select menu_id,menu_name,en_name,permission,path,parent_id,icon,visible,sort_order,menu_type from sys_menu
         <where>
             del_flag = '0'
-            <if test="">
-                and
+            <if test="querySysMenuDto.menuName != '' and querySysMenuDto.menuName != null">
+                and menu_name like #{querySysMenuDto.menuName}
             </if>
         </where>
     </select>

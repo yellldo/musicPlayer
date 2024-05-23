@@ -7,7 +7,7 @@
 
     <select id="querySysLog" parameterType="com.music.player.infra.api.dto.QuerySysLogDto"
             resultType="com.music.player.infra.api.vo.QuerySysLogVo">
-        select id, from sys_log
+        select id from sys_log
         <where>
             del_flag = '0'
             <if test="querySysLogDto">

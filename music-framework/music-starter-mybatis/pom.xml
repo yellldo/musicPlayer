@@ -39,6 +39,10 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.music.player</groupId>
             <artifactId>music-common</artifactId>
         </dependency>

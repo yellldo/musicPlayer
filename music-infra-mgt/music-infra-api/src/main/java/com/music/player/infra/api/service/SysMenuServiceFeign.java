@@ -2,10 +2,13 @@ package com.music.player.infra.api.service;
 
 import com.music.player.framework.common.base.R;
 import com.music.player.infra.api.dto.QuerySysMenuDto;
+import com.music.player.infra.api.dto.SaveMenuDto;
 import com.music.player.infra.api.enmus.ApiConstants;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import javax.validation.Valid;
 
 /**
  * ClassName : SysMenuServiceFeign<br>
@@ -19,4 +22,7 @@ public interface SysMenuServiceFeign {
 
     @PostMapping("menu/querySysMenu")
     R querySysMenu(@RequestBody QuerySysMenuDto querySysMenuDto);
+
+    @PostMapping("menu/saveMenu")
+    R<Boolean> saveMenu(@RequestBody @Valid SaveMenuDto saveMenuDto);
 }

@@ -1,7 +1,6 @@
 package com.music.player.framework.common.util;
 
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
  * @author : sj
  * @date : 2024/5/23
  */
-@Slf4j
 @Service
 @Lazy(false)
 public class SpringContextHolder implements ApplicationContextAware, DisposableBean {

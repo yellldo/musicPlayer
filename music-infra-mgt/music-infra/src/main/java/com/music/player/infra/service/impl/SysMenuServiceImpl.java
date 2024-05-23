@@ -8,6 +8,7 @@ import com.music.player.infra.api.vo.QuerySysMenuVo;
 import com.music.player.infra.entity.SysMenu;
 import com.music.player.infra.mapper.SysMenuMapper;
 import com.music.player.infra.service.SysMenuService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,6 +23,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
     @Override
     public IPage<QuerySysMenuVo> querySysMenu(QuerySysMenuDto querySysMenuDto) {
+        if (StringUtils.isNotBlank(querySysMenuDto.getMenuName())) {
+            querySysMenuDto.setMenuName("%" + querySysMenuDto.getMenuName() + "%");
+        }
         Page<QuerySysMenuVo> page = new Page<>(querySysMenuDto.getPageNum(), querySysMenuDto.getPageSize());
         return baseMapper.querySysMenu(page, querySysMenuDto);
     }

@@ -1,4 +1,4 @@
-package com.music.player.auth.config;
+package com.music.player.mybatis.config;
 
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateUtil;

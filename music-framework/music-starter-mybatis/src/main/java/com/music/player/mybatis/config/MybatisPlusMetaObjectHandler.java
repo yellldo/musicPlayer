@@ -31,8 +31,8 @@ public class MybatisPlusMetaObjectHandler implements MetaObjectHandler {
 
         fillValIfNullByName("createTime", now, metaObject, true);
         fillValIfNullByName("updateTime", now, metaObject, true);
-        fillValIfNullByName("createBy", getUserName(), metaObject, true);
-        fillValIfNullByName("updateBy", getUserName(), metaObject, true);
+//        fillValIfNullByName("createBy", getUserName(), metaObject, true);
+//        fillValIfNullByName("updateBy", getUserName(), metaObject, true);
 
         // 删除标记自动填充
         fillValIfNullByName("delFlag", CommonConstants.STATUS_NORMAL, metaObject, true);
@@ -42,7 +42,7 @@ public class MybatisPlusMetaObjectHandler implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         log.debug("mybatis plus start update fill ....");
         fillValIfNullByName("updateTime", LocalDateTime.now(), metaObject, true);
-        fillValIfNullByName("updateBy", getUserName(), metaObject, true);
+//        fillValIfNullByName("updateBy", getUserName(), metaObject, true);
     }
 
     /**

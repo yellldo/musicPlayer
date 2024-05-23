@@ -1,13 +1,10 @@
 package com.music.player.infra.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -30,108 +27,99 @@ public class SysMenu implements Serializable {
      * 菜单ID
      */
     @TableId(value = "menu_id", type = IdType.ASSIGN_ID)
-    @Schema(description = "菜单id")
     private Long menuId;
 
     /**
      * 菜单名称
      */
-    @NotBlank(message = "菜单名称不能为空")
-    @Schema(description = "菜单名称")
-    private String name;
+    @TableField("menu_name")
+    private String menuName;
 
     /**
      * 菜单名称
      */
-    @Schema(description = "菜单名称")
+    @TableField("en_name")
     private String enName;
 
     /**
      * 菜单权限标识
      */
-    @Schema(description = "菜单权限标识")
+    @TableField("permission")
     private String permission;
 
     /**
      * 父菜单ID
      */
-    @NotNull(message = "菜单父ID不能为空")
-    @Schema(description = "菜单父id")
+    @TableField("parent_id")
     private Long parentId;
 
     /**
      * 图标
      */
-    @Schema(description = "菜单图标")
+    @TableField("icon")
     private String icon;
 
     /**
      * 前端路由标识路径，默认和 comment 保持一致 过期
      */
-    @Schema(description = "前端路由标识路径")
+    @TableField("path")
     private String path;
 
     /**
      * 菜单显示隐藏控制
      */
-    @Schema(description = "菜单是否显示")
+    @TableField("visible")
     private String visible;
 
     /**
      * 排序值
      */
-    @Schema(description = "排序值")
+    @TableField("sort_order")
     private Integer sortOrder;
 
     /**
      * 菜单类型 （0菜单 1按钮）
      */
-    @NotNull(message = "菜单类型不能为空")
-    @Schema(description = "菜单类型,0:菜单 1:按钮")
+    @TableField("menu_type")
     private String menuType;
 
     /**
      * 路由缓冲
      */
-    @Schema(description = "路由缓冲")
+    @TableField("keep_alive")
     private String keepAlive;
 
-    @Schema(description = "菜单是否内嵌")
+    @TableField("embedded")
     private String embedded;
 
     /**
      * 创建人
      */
-    @TableField(fill = FieldFill.INSERT)
-    @Schema(description = "创建人")
+    @TableField(value = "create_by", fill = FieldFill.INSERT)
     private String createBy;
 
     /**
      * 修改人
      */
-    @TableField(fill = FieldFill.UPDATE)
-    @Schema(description = "修改人")
+    @TableField(value = "update_by", fill = FieldFill.UPDATE)
     private String updateBy;
 
     /**
      * 创建时间
      */
-    @TableField(fill = FieldFill.INSERT)
-    @Schema(description = "创建时间")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
-    @TableField(fill = FieldFill.UPDATE)
-    @Schema(description = "更新时间")
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
     /**
      * 0--正常 1--删除
      */
     @TableLogic
-    @TableField(fill = FieldFill.INSERT)
-    @Schema(description = "删除标记,1:已删除,0:正常")
+    @TableField(value = "del_flag", fill = FieldFill.INSERT)
     private String delFlag;
 }

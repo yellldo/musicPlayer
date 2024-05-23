@@ -1,7 +1,7 @@
 package com.music.player.message.config;
 
 import com.google.gson.Gson;
-import com.music.player.framework.common.exceptions.ServiceException;
+import com.google.protobuf.ServiceException;
 import feign.Response;
 import feign.Util;
 import feign.codec.ErrorDecoder;

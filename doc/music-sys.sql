@@ -32,7 +32,7 @@ create table sys_menu
 (
     menu_id     bigint                                                not null comment '菜单ID'
         primary key,
-    name        varchar(32)                                           null comment '菜单名称',
+    menu_name   varchar(32)                                           null comment '菜单名称',
     en_name     varchar(128)                                          null comment '英文名称',
     permission  varchar(32)                                           null comment '权限标识',
     path        varchar(128)                                          null comment '路由路径',
@@ -43,9 +43,9 @@ create table sys_menu
     keep_alive  char                        default '0'               null comment '是否缓存，0否，1是',
     embedded    char                                                  null comment '是否内嵌，0否，1是',
     menu_type   char                        default '0'               null comment '菜单类型，0目录，1菜单，2按钮',
-    create_by   varchar(64) charset utf8mb3 default ' '               not null comment '创建人',
+    create_by   varchar(64) charset utf8mb3 default ' '               null comment '创建人',
     create_time datetime                    default CURRENT_TIMESTAMP null comment '创建时间',
-    update_by   varchar(64) charset utf8mb3 default ' '               not null comment '修改人',
+    update_by   varchar(64) charset utf8mb3 default ' '               null comment '修改人',
     update_time datetime                                              null on update CURRENT_TIMESTAMP comment '更新时间',
     del_flag    char                        default '0'               null comment '删除标志，0未删除，1已删除'
 )
