@@ -18,8 +18,8 @@ public interface SysLogService extends IService<SysLog> {
     /**
      * 查询日志
      *
-     * @param sysLogDto
+     * @param querySysLogDto
      * @return
      */
-    IPage<QuerySysLogVo> querySysLog(QuerySysLogDto sysLogDto);
+    IPage<QuerySysLogVo> querySysLog(QuerySysLogDto querySysLogDto);
 }

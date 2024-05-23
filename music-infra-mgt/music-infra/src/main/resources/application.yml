@@ -1,6 +1,9 @@
 spring:
   application:
     name: music-infra
+server:
+  servlet:
+    context-path: /music-infra
 mybatis-plus:
   # 实体类扫描路径
   type-aliases-package: com.music.player.infra.entity

@@ -14,6 +14,8 @@
 
     <modules>
         <module>music-common</module>
+        <module>music-starter-log</module>
+        <module>music-starter-mybatis</module>
     </modules>
 
     <description>
@@ -25,13 +27,5 @@
         1. 框架组件：和我们熟悉的 MyBatis、Redis 等等的拓展
         2. 业务组件：和业务相关的组件的封装，例如说数据字典、操作日志等等。
     </description>
-
-
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>

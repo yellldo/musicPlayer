@@ -21,8 +21,8 @@ import org.springframework.stereotype.Service;
 public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> implements SysLogService {
 
     @Override
-    public IPage<QuerySysLogVo> querySysLog(QuerySysLogDto sysLogDto) {
-        Page<QuerySysLogVo> page = new Page<>(sysLogDto.getPageNum(), sysLogDto.getPageSize());
-        return baseMapper.querySysLog(page, sysLogDto);
+    public IPage<QuerySysLogVo> querySysLog(QuerySysLogDto querySysLogDto) {
+        Page<QuerySysLogVo> page = new Page<>(querySysLogDto.getPageNum(), querySysLogDto.getPageSize());
+        return baseMapper.querySysLog(page, querySysLogDto);
     }
 }
