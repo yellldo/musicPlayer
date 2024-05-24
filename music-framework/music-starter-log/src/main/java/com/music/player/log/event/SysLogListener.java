@@ -52,7 +52,7 @@ public class SysLogListener implements InitializingBean {
         // json 格式刷参数放在异步中处理，提升性能
         if (Objects.nonNull(source.getBody())) {
             String params = objectMapper.writeValueAsString(source.getBody());
-            saveLogDto.setParams(StrUtil.subPre(params, logProperties.get MaxLength()));
+            saveLogDto.setParams(StrUtil.subPre(params, logProperties.getMaxLength()));
         }
         sysLogServiceFeign.saveLog(saveLogDto);
     }
