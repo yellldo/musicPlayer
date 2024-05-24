@@ -1,6 +1,6 @@
 package com.music.player.log.event;
 
-import com.music.player.log.annotation.SysLog;
+import com.music.player.infra.api.dto.SysLogDto;
 import org.springframework.context.ApplicationEvent;
 
 /**
@@ -12,8 +12,7 @@ import org.springframework.context.ApplicationEvent;
  */
 public class SysLogEvent extends ApplicationEvent {
 
-    // TODO
-    public SysLogEvent(SysLog source) {
+    public SysLogEvent(SysLogDto source) {
         super(source);
     }
 }

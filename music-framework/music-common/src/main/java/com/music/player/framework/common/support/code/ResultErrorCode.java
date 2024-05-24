@@ -32,6 +32,9 @@ public enum ResultErrorCode implements IErrorCode {
 
     //系统相关 start
     FAILURE("B0001", "操作失败"),
+
+
+    COMMON_FAILURE("500", "操作失败"),
     //系统相关 end
 
     ;

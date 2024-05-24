@@ -30,6 +30,6 @@ public class BizException extends BaseUncheckedException {
     }
 
     public BizException(String message) {
-        super(ResultErrorCode.FAILURE.getErrorCode(), message);
+        super(ResultErrorCode.COMMON_FAILURE.getErrorCode(), message);
     }
 }

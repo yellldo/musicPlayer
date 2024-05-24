@@ -50,3 +50,21 @@ create table sys_menu
     del_flag    char                        default '0'               null comment '删除标志，0未删除，1已删除'
 )
     comment '菜单权限表' collate = utf8mb4_general_ci;
+
+drop table if exists sys_role;
+create table sys_role
+(
+    role_id     bigint                                                not null comment '角色ID'
+        primary key,
+    role_name   varchar(64)                                           null comment '角色名称',
+    role_code   varchar(64)                                           null comment '角色编码',
+    role_desc   varchar(255)                                          null comment '角色描述',
+    create_by   varchar(64) charset utf8mb3 default ' '               not null comment '创建人',
+    update_by   varchar(64) charset utf8mb3 default ' '               not null comment '修改人',
+    create_time datetime                    default CURRENT_TIMESTAMP not null comment '创建时间',
+    update_time datetime                                              null on update CURRENT_TIMESTAMP comment '更新时间',
+    del_flag    char                        default '0'               null comment '删除标记，0未删除，1已删除'
+)
+    comment '系统角色表' collate = utf8mb4_general_ci;
+
+create index role_idx_role_code on sys_role (role_code);

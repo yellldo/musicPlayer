@@ -14,6 +14,7 @@
                 and menu_name like #{querySysMenuDto.menuName}
             </if>
         </where>
+        order by sort_order
     </select>
 
 </mapper>

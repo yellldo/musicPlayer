@@ -1,6 +1,8 @@
 package com.music.player.log.event;
 
 import com.music.player.infra.api.dto.SysLogDto;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * ClassName : SysLogEventSource<br>
@@ -9,5 +11,12 @@ import com.music.player.infra.api.dto.SysLogDto;
  * @author : sj
  * @date : 2024/5/23
  */
+@Setter
+@Getter
 public class SysLogEventSource extends SysLogDto {
+
+    /**
+     * 参数重写成object
+     */
+    private Object body;
 }
