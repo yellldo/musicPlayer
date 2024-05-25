@@ -12,19 +12,15 @@
     <artifactId>music-gateway</artifactId>
     <packaging>jar</packaging>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2021.0.8</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
@@ -35,35 +31,15 @@
             <version>3.0.3</version>
         </dependency>
         <!--fegin组件 fhadmin.org-->
-         <dependency>
-             <groupId>org.springframework.cloud</groupId>
-             <artifactId>spring-cloud-starter-openfeign</artifactId>
-         </dependency>
-         <!-- Feign Client for loadBalancing -->
-         <dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!-- Feign Client for loadBalancing -->
+        <dependency>
              <groupId>org.springframework.cloud</groupId>
              <artifactId>spring-cloud-loadbalancer</artifactId>
          </dependency>
     </dependencies>
-
-    <build>
-        <!-- 设置构建的 jar 包名 -->
-        <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <!-- 打包 -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal> <!-- 将引入的 jar 打入其中 -->
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
