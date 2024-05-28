@@ -21,7 +21,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableCaching
 @MapperScan(basePackages = "com.music.player.auth.mapper")
 @EnableDiscoveryClient
-@EnableFeignClients({"com.music.player.message.api.service", "com.music.player.infra.api.service"})
+@EnableFeignClients({"com.music.player.auth", "com.music.player"})
 @SpringBootApplication(scanBasePackages = "com.music.player")
 public class MusicPlayerAuthStartUp {
 
