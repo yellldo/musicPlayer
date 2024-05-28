@@ -1,4 +1,4 @@
-package com.music.player.infra.api.dto;
+package com.music.player.infra.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,8 +8,8 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
- * ClassName : DeleteSysRoleDto<br>
- * Description : DeleteSysRoleDto<br>
+ * ClassName : UpdateSysRoleDto<br>
+ * Description : UpdateSysRoleDto<br>
  *
  * @author : sj
  * @date : 2024/5/24
@@ -17,10 +17,12 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString
-public class DeleteSysRoleDto implements Serializable {
+public class UpdateSysRoleDto implements Serializable {
 
     @NotNull(message = "参数异常")
     private Long roleId;
 
-    private String delFlag;
+    private String roleName;
+
+    private String roleDesc;
 }

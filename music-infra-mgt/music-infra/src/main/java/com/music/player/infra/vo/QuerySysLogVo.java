@@ -1,4 +1,4 @@
-package com.music.player.infra.api.vo;
+package com.music.player.infra.vo;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;

@@ -5,8 +5,8 @@
 <mapper namespace="com.music.player.infra.mapper.SysRoleMapper">
 
 
-    <select id="querySysRole" parameterType="com.music.player.infra.api.dto.QuerySysRoleDto"
-            resultType="com.music.player.infra.api.vo.QuerySysRoleVo">
+    <select id="querySysRole" parameterType="com.music.player.infra.dto.QuerySysRoleDto"
+            resultType="com.music.player.infra.vo.QuerySysRoleVo">
         select role_id,role_name,role_code,role_desc from sys_role
         <where>
             del_flag = '0'

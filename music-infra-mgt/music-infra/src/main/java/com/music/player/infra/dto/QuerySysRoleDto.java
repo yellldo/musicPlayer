@@ -1,4 +1,4 @@
-package com.music.player.infra.api.dto;
+package com.music.player.infra.dto;
 
 import com.music.player.framework.common.base.QueryRequest;
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -3,8 +3,6 @@ package com.music.player.infra.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.music.player.infra.api.dto.QuerySysMenuDto;
-import com.music.player.infra.api.vo.QuerySysMenuVo;
 import com.music.player.infra.entity.SysMenu;
 import com.music.player.infra.mapper.SysMenuMapper;
 import com.music.player.infra.service.SysMenuService;

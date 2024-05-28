@@ -2,15 +2,19 @@ package com.music.player.infra.rest;
 
 import com.music.player.framework.common.base.R;
 import com.music.player.framework.common.constant.CommonConstants;
-import com.music.player.infra.api.dto.DeleteSysRoleDto;
-import com.music.player.infra.api.dto.QuerySysRoleDto;
-import com.music.player.infra.api.dto.SaveSysRoleDto;
-import com.music.player.infra.api.dto.UpdateSysRoleDto;
-import com.music.player.infra.api.service.SysRoleServiceFeign;
 import com.music.player.infra.biz.SysRoleBiz;
+import com.music.player.infra.dto.DeleteSysRoleDto;
+import com.music.player.infra.dto.QuerySysRoleDto;
+import com.music.player.infra.dto.SaveSysRoleDto;
+import com.music.player.infra.dto.UpdateSysRoleDto;
 import com.music.player.infra.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 /**
  * ClassName : SysRoleController<br>
@@ -20,30 +24,31 @@ import org.springframework.web.bind.annotation.RestController;
  * @date : 2024/5/24
  */
 @RestController
-public class SysRoleController implements SysRoleServiceFeign {
+@RequestMapping("sysRole")
+public class SysRoleCtrl {
 
     @Autowired
     private SysRoleBiz sysRoleBiz;
     @Autowired
     private SysRoleService sysRoleService;
 
-    @Override
-    public R<Boolean> saveRole(SaveSysRoleDto saveSysRoleDto) {
+    @PostMapping("saveRole")
+    public R<Boolean> saveRole(@RequestBody @Valid SaveSysRoleDto saveSysRoleDto) {
         return R.ok(sysRoleBiz.saveRole(saveSysRoleDto));
     }
 
-    @Override
-    public R querySysRole(QuerySysRoleDto querySysRoleDto) {
+    @PostMapping("querySysRole")
+    public R querySysRole(@RequestBody QuerySysRoleDto querySysRoleDto) {
         return R.ok(sysRoleService.querySysRole(querySysRoleDto));
     }
 
-    @Override
-    public R<Boolean> updateSysRole(UpdateSysRoleDto updateSysRoleDto) {
+    @PostMapping("updateSysRole")
+    public R<Boolean> updateSysRole(@RequestBody @Valid UpdateSysRoleDto updateSysRoleDto) {
         return R.ok(sysRoleBiz.updateSysRole(updateSysRoleDto));
     }
 
-    @Override
-    public R<Boolean> deleteSysRole(DeleteSysRoleDto deleteSysRoleDto) {
+    @PostMapping("deleteSysRole")
+    public R<Boolean> deleteSysRole(@RequestBody @Valid DeleteSysRoleDto deleteSysRoleDto) {
         deleteSysRoleDto.setDelFlag(CommonConstants.STATUS_DEL);
         return R.ok(sysRoleBiz.deleteSysRole(deleteSysRoleDto));
     }

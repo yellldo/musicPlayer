@@ -1,8 +1,8 @@
 package com.music.player.infra.convert;
 
-import com.music.player.infra.api.dto.DeleteSysRoleDto;
-import com.music.player.infra.api.dto.SaveSysRoleDto;
-import com.music.player.infra.api.dto.UpdateSysRoleDto;
+import com.music.player.infra.dto.DeleteSysRoleDto;
+import com.music.player.infra.dto.SaveSysRoleDto;
+import com.music.player.infra.dto.UpdateSysRoleDto;
 import com.music.player.infra.entity.SysRole;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

@@ -2,9 +2,9 @@ package com.music.player.infra.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.music.player.infra.api.dto.QuerySysLogDto;
-import com.music.player.infra.api.vo.QuerySysLogVo;
+import com.music.player.infra.dto.QuerySysLogDto;
 import com.music.player.infra.entity.SysLog;
+import com.music.player.infra.vo.QuerySysLogVo;
 
 /**
  * ClassName : SysLogService<br>

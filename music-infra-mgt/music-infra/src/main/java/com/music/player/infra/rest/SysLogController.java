@@ -1,7 +1,6 @@
 package com.music.player.infra.rest;
 
 import com.music.player.framework.common.base.R;
-import com.music.player.infra.api.dto.QuerySysLogDto;
 import com.music.player.infra.api.dto.SaveLogDto;
 import com.music.player.infra.api.service.SysLogServiceFeign;
 import com.music.player.infra.biz.SysLogBiz;
@@ -31,8 +30,5 @@ public class SysLogController implements SysLogServiceFeign {
         return R.ok(sysLogBiz.saveLog(saveLogDto));
     }
 
-    @Override
-    public R querySysLog(QuerySysLogDto querySysLogDto) {
-        return R.ok(sysLogService.querySysLog(querySysLogDto));
-    }
+
 }

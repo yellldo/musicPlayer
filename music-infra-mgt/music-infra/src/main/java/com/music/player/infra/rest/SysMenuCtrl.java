@@ -1,36 +1,39 @@
 package com.music.player.infra.rest;
 
 import com.music.player.framework.common.base.R;
-import com.music.player.infra.api.dto.QuerySysMenuDto;
-import com.music.player.infra.api.dto.SaveMenuDto;
-import com.music.player.infra.api.service.SysMenuServiceFeign;
 import com.music.player.infra.biz.SysMenuBiz;
 import com.music.player.infra.service.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 /**
- * ClassName : SysMenuController<br>
- * Description : SysMenuController<br>
+ * ClassName : SysMenuCtrl<br>
+ * Description : SysMenuCtrl<br>
  *
  * @author : sj
  * @date : 2024/5/23
  */
 @RestController
-public class SysMenuController implements SysMenuServiceFeign {
+@RequestMapping("menu")
+public class SysMenuCtrl {
 
     @Autowired
     private SysMenuService sysMenuService;
     @Autowired
     private SysMenuBiz sysMenuBiz;
 
-    @Override
-    public R querySysMenu(QuerySysMenuDto querySysMenuDto) {
+    @PostMapping("querySysMenu")
+    public R querySysMenu(@RequestBody QuerySysMenuDto querySysMenuDto) {
         return R.ok(sysMenuService.querySysMenu(querySysMenuDto));
     }
 
-    @Override
-    public R<Boolean> saveMenu(SaveMenuDto saveMenuDto) {
+    @PostMapping("saveMenu")
+    public R<Boolean> saveMenu(@RequestBody @Valid SaveMenuDto saveMenuDto) {
         return R.ok(sysMenuBiz.saveMenu(saveMenuDto));
     }
 }

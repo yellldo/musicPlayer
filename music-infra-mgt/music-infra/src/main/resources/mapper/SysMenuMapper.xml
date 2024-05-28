@@ -5,8 +5,8 @@
 <mapper namespace="com.music.player.infra.mapper.SysMenuMapper">
 
 
-    <select id="querySysMenu" parameterType="com.music.player.infra.api.dto.QuerySysMenuDto"
-            resultType="com.music.player.infra.api.vo.QuerySysMenuVo">
+    <select id="querySysMenu" parameterType="com.music.player.infra.dto.QuerySysMenuDto"
+            resultType="com.music.player.infra.vo.QuerySysMenuVo">
         select menu_id,menu_name,en_name,permission,path,parent_id,icon,visible,sort_order,menu_type from sys_menu
         <where>
             del_flag = '0'

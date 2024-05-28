@@ -5,8 +5,8 @@
 <mapper namespace="com.music.player.infra.mapper.SysLogMapper">
 
 
-    <select id="querySysLog" parameterType="com.music.player.infra.api.dto.QuerySysLogDto"
-            resultType="com.music.player.infra.api.vo.QuerySysLogVo">
+    <select id="querySysLog" parameterType="com.music.player.infra.dto.QuerySysLogDto"
+            resultType="com.music.player.infra.vo.QuerySysLogVo">
         select id from sys_log
         <where>
             del_flag = '0'

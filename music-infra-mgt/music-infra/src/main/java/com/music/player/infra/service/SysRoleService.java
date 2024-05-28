@@ -2,9 +2,9 @@ package com.music.player.infra.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.music.player.infra.api.dto.QuerySysRoleDto;
-import com.music.player.infra.api.vo.QuerySysRoleVo;
+import com.music.player.infra.dto.QuerySysRoleDto;
 import com.music.player.infra.entity.SysRole;
+import com.music.player.infra.vo.QuerySysRoleVo;
 
 /**
  * ClassName : SysRoleService<br>

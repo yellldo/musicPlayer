@@ -1,4 +1,4 @@
-package com.music.player.infra.api.dto;
+package com.music.player.infra.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;

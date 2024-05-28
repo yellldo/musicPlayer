@@ -1,10 +1,9 @@
-package com.music.player.infra.api.dto;
+package com.music.player.infra.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.checkerframework.checker.units.qual.N;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
