@@ -1,7 +1,7 @@
 package com.music.player.auth.convert;
 
 import com.music.player.auth.api.dto.JwtUser;
-import com.music.player.auth.api.dto.UserRegisterDto;
+import com.music.player.auth.dto.UserRegisterDto;
 import com.music.player.auth.entity.UserInfo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

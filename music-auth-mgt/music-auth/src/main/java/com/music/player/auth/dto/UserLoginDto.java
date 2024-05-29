@@ -1,4 +1,4 @@
-package com.music.player.auth.api.dto;
+package com.music.player.auth.dto;
 
 import lombok.Getter;
 import lombok.Setter;
