@@ -9,7 +9,7 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>music-starter-mybatis</artifactId>
+    <artifactId>music-mybatis-starter</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>

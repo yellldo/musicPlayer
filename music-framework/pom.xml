@@ -14,8 +14,9 @@
 
     <modules>
         <module>music-common</module>
-        <module>music-starter-log</module>
-        <module>music-starter-mybatis</module>
+        <module>music-log-starter</module>
+        <module>music-mybatis-starter</module>
+        <module>music-cache-starter</module>
     </modules>
 
     <description>

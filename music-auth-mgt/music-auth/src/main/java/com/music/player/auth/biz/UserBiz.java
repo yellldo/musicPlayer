@@ -5,6 +5,7 @@ import com.music.player.auth.api.dto.AuthInfo;
 import com.music.player.auth.api.dto.JwtUser;
 import com.music.player.auth.api.enums.ErrorCodeConstants;
 import com.music.player.auth.config.JwtConfig;
+import com.music.player.auth.constants.AuthConstants;
 import com.music.player.auth.convert.UserConvert;
 import com.music.player.auth.dto.UserLoginDto;
 import com.music.player.auth.dto.UserRegisterDto;
@@ -12,14 +13,13 @@ import com.music.player.auth.entity.UserInfo;
 import com.music.player.auth.service.UserInfoService;
 import com.music.player.auth.utils.BCryptUtil;
 import com.music.player.auth.utils.JwtTokenUtil;
+import com.music.player.framework.cache.service.CacheService;
 import com.music.player.framework.common.support.BizException;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import java.util.concurrent.TimeUnit;
-
+import java.time.Duration;
 
 
 /**
@@ -32,13 +32,13 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class UserBiz {
 
-    @Resource
+    @Autowired
     private UserInfoService userInfoService;
-    @Resource
+    @Autowired
     private JwtTokenUtil jwtTokenUtil;
-    @Resource
-    private RedisTemplate redisTemplate;
-    @Resource
+    @Autowired
+    private CacheService cacheService;
+    @Autowired
     private JwtConfig jwtConfig;
 
     /**
@@ -55,12 +55,12 @@ public class UserBiz {
         if (userInfo == null) {
             throw new BizException(ErrorCodeConstants.USER_NOT_EXISTS);
         }
-        if(!BCryptUtil.checkPassword(userLoginDto.getPassword(),userInfo.getPassword())){
+        if (!BCryptUtil.checkPassword(userLoginDto.getPassword(), userInfo.getPassword())) {
             throw new BizException(ErrorCodeConstants.PASSWORD_NOT_MATCH);
         }
         JwtUser jwtUser = UserConvert.INSTANT.jwtUser(userInfo);
         String token = jwtTokenUtil.generateToken(jwtUser);
-        redisTemplate.opsForValue().set(jwtConfig.getOnlineKey() + token, jwtUser, jwtConfig.getExpiration(), TimeUnit.MICROSECONDS);
+        cacheService.set(jwtConfig.getOnlineKey() + token, jwtUser, Duration.ofHours(jwtConfig.getExpiration()));
         return new AuthInfo(token, jwtUser);
     }
 
@@ -73,6 +73,7 @@ public class UserBiz {
             if (count > 0) {
                 throw new BizException(ErrorCodeConstants.PHONE_EXISTS);
             }
+            userRegisterDto.setLoginType(AuthConstants.LOGIN_TYPE_PHONE);
         }
         if (StringUtils.isNotBlank(userRegisterDto.getEmail())) {
             LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
@@ -81,19 +82,13 @@ public class UserBiz {
             if (count > 0) {
                 throw new BizException(ErrorCodeConstants.EMAIL_EXISTS);
             }
+            userRegisterDto.setLoginType(AuthConstants.LOGIN_TYPE_EMAIL);
         }
-        if (StringUtils.isNotBlank(userRegisterDto.getUserName())) {
-            LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
-            queryWrapper.eq(UserInfo::getUserName, userRegisterDto.getUserName());
-            long count = userInfoService.count(queryWrapper);
-            if (count > 0) {
-                throw new BizException(ErrorCodeConstants.USER_EXISTS);
-            }
-        }else {
-            throw new BizException("用户名不能为空！");
-        }
-        if (!StringUtils.isNotBlank(userRegisterDto.getPassword())) {
-            throw new BizException("密码不能为空！");
+        LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(UserInfo::getUserName, userRegisterDto.getUserName());
+        long count = userInfoService.count(queryWrapper);
+        if (count > 0) {
+            throw new BizException(ErrorCodeConstants.USER_EXISTS);
         }
         userRegisterDto.setPassword(BCryptUtil.hashPassword(userRegisterDto.getPassword()));
         UserInfo userInfo = UserConvert.INSTANT.register(userRegisterDto);

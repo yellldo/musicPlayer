@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * ClassName : UserRegisterDto<br>
  * Description : 前台用户注册<br>
@@ -20,9 +22,11 @@ public class UserRegisterDto {
 
     private String email;
 
+    @NotEmpty(message = "密码不能为空")
     private String password;
 
     private String loginType;
 
+    @NotEmpty(message = "用户名不能为空")
     private String userName;
 }

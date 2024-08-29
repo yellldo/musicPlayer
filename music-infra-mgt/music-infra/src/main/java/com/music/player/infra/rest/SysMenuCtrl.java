@@ -38,4 +38,10 @@ public class SysMenuCtrl {
     public R<Boolean> saveMenu(@RequestBody @Valid SaveMenuDto saveMenuDto) {
         return R.ok(sysMenuBiz.saveMenu(saveMenuDto));
     }
+
+    @PostMapping("")
+    public R<Boolean> deleteMenu() {
+
+        return R.ok();
+    }
 }

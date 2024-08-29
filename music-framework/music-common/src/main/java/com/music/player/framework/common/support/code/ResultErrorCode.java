@@ -34,6 +34,14 @@ public enum ResultErrorCode implements IErrorCode {
     FAILURE("B0001", "操作失败"),
 
 
+    CLUSTER_REDIRECT_EXCEPTION("C0230", "Redis集群异常"),
+    CLUSTER_STATE_FAILURE_EXCEPTION("C0230", "Redis集群状态故障异常"),
+    REDIS_CONNECTION_FAILURE_EXCEPTION("C0230", "Redis连接失败异常"),
+    REDIS_SYSTEM_EXCEPTION("C0230", "Redis系统异常"),
+    TOO_MANY_CLUSTER_REDIRECTIONS_EXCEPTION("C0230", "Redis集群重定向过多异常"),
+    CLUSTER_COMMAND_EXECUTION_FAILURE_EXCEPTION("C0230", "Redis集群命令执行失败异常"),
+    REDIS_SUBSCRIBED_CONNECTION_EXCEPTION("C0230", "Redis订阅连接异常"),
+
     COMMON_FAILURE("500", "操作失败"),
     //系统相关 end
 
