@@ -30,6 +30,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
         </dependency>
@@ -81,6 +86,7 @@
             <groupId>com.music.player</groupId>
             <artifactId>music-cache-starter</artifactId>
         </dependency>
+
         <!--        <dependency>-->
         <!--            <groupId>org.mindrot</groupId>-->
         <!--            <artifactId>jbcrypt</artifactId>-->

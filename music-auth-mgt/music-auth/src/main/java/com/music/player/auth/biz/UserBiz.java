@@ -4,8 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.music.player.auth.api.dto.AuthInfo;
 import com.music.player.auth.api.dto.JwtUser;
 import com.music.player.auth.api.enums.ErrorCodeConstants;
+import com.music.player.auth.api.service.user.dto.GetUserInfoDto;
+import com.music.player.auth.api.service.user.vo.GetUserInfoVo;
 import com.music.player.auth.config.JwtConfig;
 import com.music.player.auth.constants.AuthConstants;
+import com.music.player.auth.constants.AuthRedisKey;
 import com.music.player.auth.convert.UserConvert;
 import com.music.player.auth.dto.UserLoginDto;
 import com.music.player.auth.dto.UserRegisterDto;
@@ -64,7 +67,11 @@ public class UserBiz {
         return new AuthInfo(token, jwtUser);
     }
 
-
+    /**
+     * 注册
+     *
+     * @param userRegisterDto
+     */
     public void register(UserRegisterDto userRegisterDto) {
         if (StringUtils.isNotBlank(userRegisterDto.getPhone())) {
             LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
@@ -84,14 +91,28 @@ public class UserBiz {
             }
             userRegisterDto.setLoginType(AuthConstants.LOGIN_TYPE_EMAIL);
         }
-        LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(UserInfo::getUserName, userRegisterDto.getUserName());
-        long count = userInfoService.count(queryWrapper);
-        if (count > 0) {
-            throw new BizException(ErrorCodeConstants.USER_EXISTS);
-        }
         userRegisterDto.setPassword(BCryptUtil.hashPassword(userRegisterDto.getPassword()));
         UserInfo userInfo = UserConvert.INSTANT.register(userRegisterDto);
         userInfoService.save(userInfo);
     }
+
+    /**
+     * 获取用户信息
+     *
+     * @param getUserInfoDto
+     * @return
+     */
+    public GetUserInfoVo getUserInfo(GetUserInfoDto getUserInfoDto) {
+        String cacheKey = AuthRedisKey.USER_KEY + getUserInfoDto.getUserId();
+        if (cacheService.exists(cacheKey)) {
+            return cacheService.get(cacheKey);
+        }
+        LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(UserInfo::getUserId, getUserInfoDto.getUserId());
+        UserInfo userInfo = userInfoService.getOne(queryWrapper);
+        GetUserInfoVo getUserInfoVo = UserConvert.INSTANT.getUserInfo(userInfo);
+        cacheService.set(cacheKey, getUserInfoVo);
+        return getUserInfoVo;
+    }
+
 }

@@ -32,7 +32,6 @@ public class MusicExceptionHandler {
      * 通用错误状态
      */
     public static final String ERROR_STATUS = "500";
-    public static final Integer ERROR_STATUS_1 = 500;
 
     @ExceptionHandler(value = Exception.class)
     public BaseResponse handleException(Exception e) {

@@ -52,7 +52,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo>
                 .setEmail(userInfo.getEmail())
                 .setPhone(userInfo.getPhone())
                 .setUserStatus(userInfo.getUserStatus())
-                .setUserName(userInfo.getUserName());
+                .setLoginName(userInfo.getUserName());
     }
 
 }

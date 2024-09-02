@@ -1,6 +1,7 @@
 package com.music.player.auth.convert;
 
 import com.music.player.auth.api.dto.JwtUser;
+import com.music.player.auth.api.service.user.vo.GetUserInfoVo;
 import com.music.player.auth.dto.UserRegisterDto;
 import com.music.player.auth.entity.UserInfo;
 import org.mapstruct.Mapper;
@@ -23,5 +24,8 @@ public interface UserConvert {
 
 
     JwtUser jwtUser(UserInfo userInfo);
+
+
+    GetUserInfoVo getUserInfo(UserInfo userInfo);
 
 }

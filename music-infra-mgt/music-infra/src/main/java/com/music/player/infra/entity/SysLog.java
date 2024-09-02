@@ -1,21 +1,23 @@
 package com.music.player.infra.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
-import io.swagger.v3.oas.annotations.media.Schema;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.music.player.infra.api.enmus.LogTypeEnums;
+import com.music.player.infra.api.enmus.UserTypeEnums;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * ClassName : SysLog<br>
  * Description : SysLog<br>
  *
  * @author : sj
- * @date : 2024/5/19
+ * @date : 2024/8/31
  */
 @Setter
 @Getter
@@ -23,104 +25,63 @@ import java.time.LocalDateTime;
 @TableName("sys_log")
 public class SysLog implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * 编号
-     */
-    @TableId(type = IdType.ASSIGN_ID)
-    @Schema(description = "日志编号")
+    @TableId("id")
     private Long id;
 
     /**
      * 日志类型
+     * 枚举 {@link LogTypeEnums}
      */
-    @NotBlank(message = "日志类型不能为空")
-    @Schema(description = "日志类型")
+    @TableField("log_type")
     private String logType;
 
     /**
-     * 日志标题
+     * 用户编号
      */
-    @NotBlank(message = "日志标题不能为空")
-    @Schema(description = "日志标题")
-    private String title;
+    @TableField("user_id")
+    private Long userId;
 
     /**
-     * 创建者
+     * 用户类型 {@link UserTypeEnums }
      */
-    @TableField(fill = FieldFill.INSERT)
-    @Schema(description = "创建人")
-    private String createBy;
+    @TableField("user_type")
+    private String userType;
+
+    /**
+     * 用户姓名
+     * 冗余 因为用户名可以改
+     */
+    @TableField("user_name")
+    private String userName;
+
+    /**
+     * 用户ip
+     */
+    @TableField("ip")
+    private String ip;
+
+    /**
+     * 请求地址
+     */
+    @TableField("request_url")
+    private String requestUrl;
+
+    /**
+     * 方法
+     */
+    @TableField("method")
+    private String method;
+
+    /**
+     * 入参
+     */
+    @TableField("params")
+    private String params;
 
     /**
      * 创建时间
      */
-    @TableField(fill = FieldFill.INSERT)
-    @Schema(description = "创建时间")
-    private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    @TableField(fill = FieldFill.UPDATE)
-    @Schema(description = "更新时间")
-    private LocalDateTime updateTime;
-
-    /**
-     * 操作IP地址
-     */
-    @Schema(description = "操作ip地址")
-    private String remoteAddr;
-
-    /**
-     * 用户代理
-     */
-    @Schema(description = "用户代理")
-    private String userAgent;
-
-    /**
-     * 请求URI
-     */
-    @Schema(description = "请求uri")
-    private String requestUri;
-
-    /**
-     * 操作方式
-     */
-    @Schema(description = "操作方式")
-    private String method;
-
-    /**
-     * 操作提交的数据
-     */
-    @Schema(description = "提交数据")
-    private String params;
-
-    /**
-     * 执行时间
-     */
-    @Schema(description = "方法执行时间")
-    private Long time;
-
-    /**
-     * 异常信息
-     */
-    @Schema(description = "异常信息")
-    private String exception;
-
-    /**
-     * 服务ID
-     */
-    @Schema(description = "应用标识")
-    private String serviceId;
-
-    /**
-     * 删除标记
-     */
-    @TableLogic
-    @TableField(fill = FieldFill.INSERT)
-    @Schema(description = "删除标记,1:已删除,0:正常")
-    private String delFlag;
+    @TableField("create_time")
+    private Date createTime;
 
 }

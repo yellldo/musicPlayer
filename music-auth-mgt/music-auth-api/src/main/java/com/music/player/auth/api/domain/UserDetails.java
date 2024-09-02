@@ -18,6 +18,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class UserDetails {
 
-    private String userName;
+    private String loginName;
 
 }

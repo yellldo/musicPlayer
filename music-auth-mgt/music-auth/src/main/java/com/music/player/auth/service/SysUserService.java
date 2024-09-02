@@ -14,7 +14,7 @@ import org.springframework.cache.annotation.Cacheable;
  */
 public interface SysUserService extends IService<SysUser> {
 
-    @Cacheable(cacheNames = "sys:user:username", key = "#userName")
-    public UserDetails loadUserByUserName(String userName);
+    @Cacheable(cacheNames = "sys:user:loginname", key = "#loginname")
+    public UserDetails loadUserByLoginName(String loginname);
 }
 

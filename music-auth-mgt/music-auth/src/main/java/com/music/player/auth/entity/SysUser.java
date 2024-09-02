@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -20,13 +21,16 @@ import java.util.Date;
 @Getter
 @ToString
 @TableName("sys_user")
-public class SysUser {
+public class SysUser implements Serializable {
 
     @TableId("user_id")
     private Long userId;
 
-    @TableField("user_name")
-    private String userName;
+    @TableField("login_name")
+    private String loginName;
+
+    @TableField("nick_name")
+    public String nickName;
 
     @TableField("password")
     private String password;

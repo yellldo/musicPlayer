@@ -17,16 +17,16 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ErrorCodeConstants implements IErrorCode {
 
-    SYS_USER_NOT_EXISTS("", "用户不存在"),
-    PHONE_NOT_EXISTS("", "手机号不存在"),
-    EMAIL_NOT_EXISTS("", "邮箱不存在"),
-    PASSWORD_NOT_MATCH("", "密码错误"),
-    USER_NOT_EXISTS("", "用户不存在"),
+    SYS_USER_NOT_EXISTS("1-001-000-000", "用户不存在"),
+    PHONE_NOT_EXISTS("1-001-000-001", "手机号不存在"),
+    EMAIL_NOT_EXISTS("1-001-000-002", "邮箱不存在"),
+    PASSWORD_NOT_MATCH("1-001-000-003", "密码错误"),
+    USER_NOT_EXISTS("1-001-000-004", "用户不存在"),
 
-    SYS_USER_EXISTS("", "用户已存在"),
-    PHONE_EXISTS("", "手机号已存在"),
-    EMAIL_EXISTS("", "邮箱已存在"),
-    USER_EXISTS("", "用户已存在"),
+    SYS_USER_EXISTS("1-001-000-005", "用户已存在"),
+    PHONE_EXISTS("1-001-000-006", "手机号已存在"),
+    EMAIL_EXISTS("1-001-000-007", "邮箱已存在"),
+    USER_EXISTS("1-001-000-008", "用户已存在"),
     ;
 
     final String errorCode;

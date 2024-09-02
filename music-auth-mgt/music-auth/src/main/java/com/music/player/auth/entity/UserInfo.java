@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -19,8 +20,8 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
-@TableName("sys_user")
-public class UserInfo {
+@TableName("user_info")
+public class UserInfo implements Serializable {
 
 
     @TableId("user_id")

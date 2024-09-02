@@ -22,10 +22,11 @@ import static com.music.player.auth.api.enums.ErrorCodeConstants.SYS_USER_NOT_EX
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         implements SysUserService {
+
     @Override
-    public UserDetails loadUserByUserName(String userName) {
+    public UserDetails loadUserByLoginName(String loginName) {
         LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(SysUser::getUserName, userName);
+        queryWrapper.eq(SysUser::getLoginName, loginName);
         SysUser sysUser = baseMapper.selectOne(queryWrapper);
         if (sysUser == null) {
             throw new BizException(SYS_USER_NOT_EXISTS);
@@ -36,6 +37,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     public UserDetails generateJwtUser(SysUser sysUser) {
         return new JwtUser()
                 .setUserStatus(sysUser.getUserStatus())
-                .setUserName(sysUser.getUserName());
+                .setLoginName(sysUser.getLoginName());
     }
 }

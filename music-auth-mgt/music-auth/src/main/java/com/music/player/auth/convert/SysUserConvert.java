@@ -1,5 +1,7 @@
 package com.music.player.auth.convert;
 
+import com.music.player.auth.dto.SysUserRegisterDto;
+import com.music.player.auth.entity.SysUser;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -14,5 +16,8 @@ import org.mapstruct.factory.Mappers;
 public interface SysUserConvert {
 
     SysUserConvert INSTANT = Mappers.getMapper(SysUserConvert.class);
+
+
+    SysUser register(SysUserRegisterDto sysUserRegisterDto);
 
 }

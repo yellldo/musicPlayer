@@ -1,45 +1,24 @@
-# musicPlayer
+## 🐯 项目介绍
 
-磊哥的音乐播放器
+> 磊哥的音乐播放器
 
-# dependencies
+* Java后端：`master`分支为 JDk11 + SpringBoot 2.7.18
+* 后端采用Spring Cloud Alibaba 微服务架构，注册中心 + 配置中心 Nacos，定时任务 XXL-job，服务保障 Sentinel，服务网关
+  Gateway，分布式事物 Seata
+* 数据库可使用 Mysql，基于 Mybatis plus 、 Redis + Redisson操作
+* 消息队列可使用 RocketMq、Redis
 
-> 基础的pom版本依赖管理
+## 🐼 内置功能
 
-# framework
+* 系统功能
+* 基础设施
+* 用户中心
 
-> 定制化开发的一些基础组件
+### 系统功能
 
-# common 基础工具类
+| 功能描述 | 描述                     |
+|------|------------------------|
+| 用户管理 | 用户是系统操作者，该功能主要完成系统用户配置 |
+| 在线用户 | 当前系统中活跃用户状态监控，支持手动踢下线  |
+| 角色管理 | 角色菜单权限分配、设置角色          |
 
-# auth 用户中心、鉴权
-
-- 菜单
-- 用户
-- 权限
-
-# message
-
-- 站内信
-- 短信
-- ...
-
-# pay
-
-- 支付
-
-# infra
-
-- 日志一些乱七八糟的
-
-# gateway 网关
-
-> 网关为什么用spring-cloud-gateway而不是zuul，
-> gateway支持响应式编程，适用一些高流量的场景
-> 提供了丰富的过滤器机制。
-> zuul不支持响应式编程，2.0版本后闭源，不适用高并发场景。
-> 社区完善
-
-#     
-
-后续再慢慢规划
