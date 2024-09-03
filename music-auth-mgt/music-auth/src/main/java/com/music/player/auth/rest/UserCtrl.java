@@ -6,6 +6,8 @@ import com.music.player.auth.dto.UserGetCodeDto;
 import com.music.player.auth.dto.UserLoginDto;
 import com.music.player.auth.dto.UserRegisterDto;
 import com.music.player.framework.common.base.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,7 @@ import javax.validation.Valid;
  * @author : sj
  * @date : 2024/3/21
  */
+@Api(tags = "用户模块")
 @RestController
 @RequestMapping("user")
 public class UserCtrl {
@@ -25,6 +28,7 @@ public class UserCtrl {
     @Autowired
     private UserBiz userBiz;
 
+    @ApiOperation(value = "用户登录")
     @PostMapping("login")
     public R<AuthInfo> login(@RequestBody UserLoginDto userLoginDto) {
         AuthInfo authInfo = userBiz.login(userLoginDto);

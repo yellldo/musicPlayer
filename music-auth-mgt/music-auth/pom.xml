@@ -86,11 +86,10 @@
             <groupId>com.music.player</groupId>
             <artifactId>music-cache-starter</artifactId>
         </dependency>
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.mindrot</groupId>-->
-        <!--            <artifactId>jbcrypt</artifactId>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-swagger-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

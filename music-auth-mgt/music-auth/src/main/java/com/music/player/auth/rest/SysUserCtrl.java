@@ -7,6 +7,8 @@ import com.music.player.framework.common.base.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * ClassName : SysUserCtrl<br>
  * Description : SysUserCtrl<br>
@@ -22,7 +24,7 @@ public class SysUserCtrl {
     private SysUserBiz sysUserBiz;
 
     @PostMapping("register")
-    public R register(@RequestBody SysUserRegisterDto sysUserRegisterDto) {
+    public R register(@RequestBody @Valid SysUserRegisterDto sysUserRegisterDto) {
         sysUserBiz.register(sysUserRegisterDto);
         return R.ok();
     }
@@ -33,4 +35,8 @@ public class SysUserCtrl {
         return R.ok(sysUserBiz.querySysUserList(querySysUserListDto));
     }
 
+    @PostMapping("updateSysUser")
+    public R updateSysUser() {
+        return R.ok();
+    }
 }

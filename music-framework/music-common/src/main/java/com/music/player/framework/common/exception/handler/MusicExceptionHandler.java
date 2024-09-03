@@ -6,6 +6,7 @@ import com.music.player.framework.common.base.HttpCode;
 import com.music.player.framework.common.base.R;
 import com.music.player.framework.common.support.BizException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 全局异常处理
@@ -72,7 +76,7 @@ public class MusicExceptionHandler {
      */
     @ExceptionHandler({MethodArgumentNotValidException.class, BindException.class})
     public BaseResponse methodArgumentNotValidException(Exception e) {
-        String message = "";
+        List<String> messageList = new ArrayList<>();
         BindingResult bindingResult;
         if (e instanceof MethodArgumentNotValidException) {
             MethodArgumentNotValidException methodArgumentNotValidException = (MethodArgumentNotValidException) e;
@@ -82,8 +86,9 @@ public class MusicExceptionHandler {
             bindingResult = bindException.getBindingResult();
         }
         for (FieldError fieldError : bindingResult.getFieldErrors()) {
-            message = fieldError.getDefaultMessage();
+            messageList.add(fieldError.getDefaultMessage());
         }
+        String message = StringUtils.join(messageList, ",");
         log.error(message, e);
         return new BaseResponse(HttpCode.FAILURE.getCode(), message);
     }

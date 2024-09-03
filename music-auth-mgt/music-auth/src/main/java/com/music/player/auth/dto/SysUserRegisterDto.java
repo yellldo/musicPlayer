@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 /**
@@ -19,10 +19,10 @@ import java.io.Serializable;
 @ToString
 public class SysUserRegisterDto implements Serializable {
 
-    @NotNull(message = "登录名不能为空")
+    @NotEmpty(message = "登录名不能为空")
     private String loginName;
 
-    @NotNull(message = "密码不能为空")
+    @NotEmpty(message = "密码不能为空")
     private String password;
 
     private String nickName;

@@ -43,7 +43,7 @@
         <caffeine.version>2.9.3</caffeine.version>
         <fastjson.version>1.2.83</fastjson.version>
         <hutool.version>5.8.27</hutool.version>
-        <swagger.core.version>2.2.0</swagger.core.version>
+        <knife4j.version>2.0.9</knife4j.version>
     </properties>
 
     <dependencyManagement>
@@ -98,11 +98,6 @@
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
                 <version>${spring-cloud-alibaba-dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.swagger.core.v3</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>${swagger.core.version}</version>
             </dependency>
             <dependency>
                 <groupId>mysql</groupId>
@@ -175,6 +170,11 @@
                 <version>${jjwt.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.music.player</groupId>
                 <artifactId>music-common</artifactId>
                 <version>${revision}</version>
@@ -207,6 +207,11 @@
             <dependency>
                 <groupId>com.music.player</groupId>
                 <artifactId>music-cache-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-swagger-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
         </dependencies>
