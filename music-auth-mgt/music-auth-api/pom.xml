@@ -17,10 +17,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.cloud</groupId>-->
-        <!--            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>com.music.player</groupId>
             <artifactId>music-common</artifactId>
@@ -30,10 +26,9 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-security</artifactId>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-swagger-starter</artifactId>
+        </dependency>
     </dependencies>
 </project>

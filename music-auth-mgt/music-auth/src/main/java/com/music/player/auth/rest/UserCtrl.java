@@ -30,7 +30,7 @@ public class UserCtrl {
 
     @ApiOperation(value = "用户登录")
     @PostMapping("login")
-    public R<AuthInfo> login(@RequestBody UserLoginDto userLoginDto) {
+    public R<AuthInfo> login(@RequestBody @Valid UserLoginDto userLoginDto) {
         AuthInfo authInfo = userBiz.login(userLoginDto);
         return R.ok(authInfo);
     }

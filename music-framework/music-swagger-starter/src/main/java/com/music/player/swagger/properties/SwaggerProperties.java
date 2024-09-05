@@ -15,15 +15,17 @@ import java.util.Map;
  * @author : sj
  * @date : 2024/9/3
  */
-@Data
+@Setter
+@Getter
+@ToString
 @ConfigurationProperties(prefix = "knife4j")
 public class SwaggerProperties {
-
 
     /*
      * 标题
      */
     private String title = "在线文档";
+
     private String group = "";
     /*
      * 描述
@@ -74,15 +76,6 @@ public class SwaggerProperties {
     private Map<String, DocketInfo> docket = new LinkedHashMap<>();
 
     /**
-     * SpringSecurity 全局统一鉴权配置
-     **/
-    private Authorization authorization;
-    /**
-     *
-     */
-    private List<ApiKey> apiKeys = new ArrayList<>();
-
-    /**
      * host信息
      **/
     private String host = "";
@@ -91,59 +84,6 @@ public class SwaggerProperties {
      * 排序
      */
     private Integer order = 1;
-
-
-    /**
-     * 全局参数配置
-     **/
-    private List<GlobalOperationParameter> globalOperationParameters;
-
-    @Setter
-    @Getter
-    public static class GlobalOperationParameter {
-
-        /**
-         * 参数名
-         **/
-        private String name;
-
-        /**
-         * 描述信息
-         **/
-        private String description = "全局参数";
-
-        /**
-         * 指定参数类型
-         **/
-        private String modelRef = "String";
-
-        /**
-         * 参数放在哪个地方:header,query,path,body.form
-         **/
-        private String parameterType = "header";
-
-        /**
-         * 参数是否必须传
-         **/
-        private Boolean required = false;
-        private Boolean allowMultiple = false;
-        private AllowableValues allowableValues;
-        private Boolean hidden = false;
-        private String pattern = "";
-        private String collectionFormat = "";
-        /**
-         * 默认值
-         */
-        private String defaultValue = "";
-        /**
-         * 允许为空
-         */
-        private Boolean allowEmptyValue = true;
-        /**
-         * 排序
-         */
-        private int order = 1;
-    }
 
 
     @Data
@@ -186,21 +126,8 @@ public class SwaggerProperties {
         private String basePackage = "";
 
         private String basePath = "/";
-        /**
-         * swagger会解析的url规则
-         **/
-        private List<String> includePath = new ArrayList<>();
-        /**
-         * 在includePath基础上需要排除的url规则
-         **/
-        private List<String> excludePath = new ArrayList<>();
 
-        private List<GlobalOperationParameter> globalOperationParameters;
 
-        /**
-         * 全局统一鉴权配置
-         **/
-        private Authorization authorization;
         /**
          *
          */
@@ -216,45 +143,6 @@ public class SwaggerProperties {
             }
             return group;
         }
-    }
-
-    @Data
-    @NoArgsConstructor
-    public static class Authorization {
-
-        /**
-         * 鉴权策略ID，需要和SecurityReferences ID保持一致
-         */
-        private String name = "";
-
-        /**
-         * 需要开启鉴权URL的正则
-         */
-        private String authRegex = "^.*$";
-
-        /**
-         * 鉴权作用域列表
-         */
-        private List<AuthorizationScope> authorizationScopeList = new ArrayList<>();
-
-        private List<String> tokenUrlList = new ArrayList<>();
-    }
-
-
-    @Data
-    @NoArgsConstructor
-    public static class AuthorizationScope {
-
-        /**
-         * 作用域名称
-         */
-        private String scope = "";
-
-        /**
-         * 作用域描述
-         */
-        private String description = "";
-
     }
 
 
