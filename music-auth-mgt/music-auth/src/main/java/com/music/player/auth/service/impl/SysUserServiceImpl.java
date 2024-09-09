@@ -1,12 +1,16 @@
 package com.music.player.auth.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.music.player.auth.api.domain.UserDetails;
 import com.music.player.auth.api.dto.JwtUser;
+import com.music.player.auth.dto.QuerySysUserListDto;
 import com.music.player.auth.entity.SysUser;
 import com.music.player.auth.mapper.SysUserMapper;
 import com.music.player.auth.service.SysUserService;
+import com.music.player.auth.vo.QuerySysUserListVo;
 import com.music.player.framework.common.support.BizException;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +36,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
             throw new BizException(SYS_USER_NOT_EXISTS);
         }
         return generateJwtUser(sysUser);
+    }
+
+    @Override
+    public IPage<QuerySysUserListVo> querySysUserList(QuerySysUserListDto querySysUserListDto) {
+        Page<QuerySysUserListVo> page = new Page<>(querySysUserListDto.getPageNum(), querySysUserListDto.getPageSize());
+        return baseMapper.querySysUserList(page, querySysUserListDto);
     }
 
     public UserDetails generateJwtUser(SysUser sysUser) {

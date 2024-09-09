@@ -23,13 +23,13 @@ import lombok.ToString;
 public class DictInfo extends BaseEntity {
 
     @TableId(value = "id", type = IdType.AUTO)
-    private int id;
+    private Integer id;
 
     /**
      * 父级id
      */
     @TableField("parent_id")
-    private int parentId;
+    private Integer parentId;
 
     /**
      * 字典类型

@@ -2,9 +2,11 @@ package com.music.player.swagger.config;
 
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
+import com.github.xiaoymin.knife4j.spring.extension.OpenApiExtensionResolver;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.music.player.swagger.properties.SwaggerProperties;
+import io.swagger.models.auth.In;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -22,6 +24,7 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.ResponseMessageBuilder;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 
 import java.util.*;
@@ -43,9 +46,14 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
 
     private static final String SEMICOLON = ";";
     private final SwaggerProperties swaggerProperties;
+    /**
+     * 引入Knife4j提供的扩展类
+     **/
+    private final OpenApiExtensionResolver openApiExtensionResolver;
     private BeanFactory beanFactory;
 
-    public SwaggerAutoConfiguration(SwaggerProperties swaggerProperties) {
+    public SwaggerAutoConfiguration(SwaggerProperties swaggerProperties, OpenApiExtensionResolver openApiExtensionResolver) {
+        this.openApiExtensionResolver = openApiExtensionResolver;
         this.swaggerProperties = swaggerProperties;
     }
 
@@ -64,7 +72,6 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
     private static Optional<? extends Class<?>> declaringClass(RequestHandler input) {
         return Optional.ofNullable(input.declaringClass());
     }
-
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
@@ -112,7 +119,7 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
                     .build();
 
 
-            Docket docket = new Docket(DocumentationType.SWAGGER_2)
+            Docket docket = new Docket(DocumentationType.OAS_30)
                     .host(swaggerProperties.getHost())
                     .apiInfo(apiInfo)
                     .groupName(docketInfo.getGroup())
@@ -122,7 +129,9 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
                     .globalResponseMessage(RequestMethod.GET, getResponseMessages())
                     .globalResponseMessage(RequestMethod.POST, getResponseMessages())
                     .globalResponseMessage(RequestMethod.PUT, getResponseMessages())
-                    .globalResponseMessage(RequestMethod.DELETE, getResponseMessages());
+                    .globalResponseMessage(RequestMethod.DELETE, getResponseMessages())
+                    // 赋予插件体系
+                    .extensions(openApiExtensionResolver.buildExtensions(groupName));
             if (ArrayUtil.isNotEmpty(swaggerProperties.getIgnoredClasses())) {
                 docket.ignoredParameterTypes(swaggerProperties.getIgnoredClasses());
             }
@@ -176,6 +185,8 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
                 .apis(basePackage(swaggerProperties.getBasePackage()))
                 .paths(Predicates.and(Predicates.not(Predicates.or(excludePath)), Predicates.or(basePath)))
                 .build()
+                .securityContexts(securityContexts())
+                .securitySchemes(securitySchemes())
                 .globalResponseMessage(RequestMethod.GET, getResponseMessages())
                 .globalResponseMessage(RequestMethod.POST, getResponseMessages())
                 .globalResponseMessage(RequestMethod.PUT, getResponseMessages())
@@ -197,5 +208,36 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
         );
     }
 
+    private List<SecurityScheme> securitySchemes() {
+        // 设置请求头信息
+        List<SecurityScheme> apiLeyList = new ArrayList<>();
+        apiLeyList.add(new ApiKey("Authorization", "Authorization", In.HEADER.toValue()));
+        return apiLeyList;
+    }
+
+
+    /**
+     * 安全上下文
+     *
+     * @return
+     */
+    private List<SecurityContext> securityContexts() {
+        // 设置需要登录的认证路径
+        List<SecurityContext> securityContexts = new ArrayList<>();
+        securityContexts.add(SecurityContext.builder().securityReferences(defaultAuth())
+                .operationSelector(o -> o.requestMappingPattern().matches("/*")).build());
+        return securityContexts;
+    }
+
+
+    private List<SecurityReference> defaultAuth() {
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+        authorizationScopes[0] = authorizationScope;
+        List<SecurityReference> securityReferences = new ArrayList<>();
+        securityReferences.add(new SecurityReference("Authorization", authorizationScopes));
+        return securityReferences;
+
+    }
 
 }

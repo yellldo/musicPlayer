@@ -6,14 +6,4 @@ spring:
 server:
   servlet:
     context-path: /music-auth
-mybatis-plus:
-  # 实体类扫描路径
-  type-aliases-package: com.music.player.auth.entity
-  # xml 扫描路径
-  mapper-locations: classpath:mapper/*.xml
-  configuration:
-    jdbc-type-for-null: null
-  global-config:
-    # 关闭 mybatis-plus的 banner
-    banner: false
 

@@ -1,1 +1,2 @@
 com.music.player.swagger.config.SwaggerAutoConfiguration
+com.github.xiaoymin.knife4j.spring.configuration.Knife4jAutoConfiguration

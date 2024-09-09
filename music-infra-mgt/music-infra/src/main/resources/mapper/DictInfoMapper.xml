@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.player.infra.mapper.DictInfoMapper">
+
+    <select id="queryDictInfoList" resultType="com.music.player.infra.vo.DictInfoVo"
+            parameterType="com.music.player.infra.dto.QueryDictInfoListDto">
+        select id,dict_type,dict_key,dict_value,dict_status,dict_remark from dict_info
+        <where>
+            is_delete = '0' and parent_id is not null
+            <if test="queryDictInfoListDto.dictType != null and queryDictInfoListDto.dictType !=''">
+                and dict_type = #{queryDictInfoListDto.dictType}
+            </if>
+            <if test="queryDictInfoListDto.dictKey != null and queryDictInfoListDto.dictKey !=''">
+                and dict_key = #{queryDictInfoListDto.dictKey}
+            </if>
+        </where>
+        order by create_time desc,id desc
+    </select>
+
+    <select id="queryParentDictList" resultType="com.music.player.infra.vo.DictInfoVo"
+            parameterType="com.music.player.infra.dto.QueryParentDictListDto">
+        select id,dict_type,dict_key,dict_value,dict_status,dict_remark from dict_info
+        <where>
+            is_delete = '0' and parent_id is null
+            <if test="queryParentDictListDto.dictType != null and queryParentDictListDto.dictType !=''">
+                and dict_type = #{queryParentDictListDto.dictType}
+            </if>
+        </where>
+        order by create_time desc,id desc
+    </select>
+</mapper>

@@ -7,66 +7,70 @@ package com.music.player.framework.common.constant;
  * @author : sj
  * @date : 2024/5/16
  */
-public interface CommonConstants {
+public class CommonConstants {
 
     /**
      * 删除
      */
-    String STATUS_DEL = "1";
+    public static final String STATUS_DEL = "1";
+    /**
+     * 未删除
+     */
+    public static final String STATUS_NOT_DEL = "0";
 
     /**
      * 正常
      */
-    String STATUS_NORMAL = "0";
+    public static final String STATUS_NORMAL = "0";
 
     /**
      * 锁定
      */
-    String STATUS_LOCK = "9";
+    public static final String STATUS_LOCK = "9";
 
     /**
      * 菜单树根节点
      */
-    Long MENU_TREE_ROOT_ID = -1L;
+    public static final Long MENU_TREE_ROOT_ID = -1L;
 
     /**
      * 菜单
      */
-    String MENU = "0";
+    public static final String MENU = "0";
 
     /**
      * 编码
      */
-    String UTF8 = "UTF-8";
+    public static final String UTF8 = "UTF-8";
 
     /**
      * JSON 资源
      */
-    String CONTENT_TYPE = "application/json; charset=utf-8";
+    public static final String CONTENT_TYPE = "application/json; charset=utf-8";
 
 
     /**
      * 成功标记
      */
-    Integer SUCCESS = 200;
+    public static final Integer SUCCESS = 200;
 
     /**
      * 失败标记
      */
-    Integer FAIL = 500;
+    public static final Integer FAIL = 500;
 
     /**
      * 当前页
      */
-    String CURRENT = "current";
+    public static final String CURRENT = "current";
 
     /**
      * size
      */
-    String SIZE = "size";
+    public static final String SIZE = "size";
 
     /**
      * 请求开始时间
      */
-    String REQUEST_START_TIME = "REQUEST-START-TIME";
+    public static final String REQUEST_START_TIME = "REQUEST-START-TIME";
 }

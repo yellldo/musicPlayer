@@ -5,7 +5,7 @@ import com.music.player.auth.api.dto.AuthInfo;
 import com.music.player.auth.api.dto.JwtUser;
 import com.music.player.auth.api.enums.ErrorCodeConstants;
 import com.music.player.auth.api.service.user.dto.GetUserInfoDto;
-import com.music.player.auth.api.service.user.vo.GetUserInfoVo;
+import com.music.player.auth.api.service.user.vo.UserInfoVo;
 import com.music.player.auth.config.JwtConfig;
 import com.music.player.auth.constants.AuthConstants;
 import com.music.player.auth.constants.AuthRedisKey;
@@ -49,7 +49,7 @@ public class UserBiz {
      */
     public AuthInfo login(UserLoginDto userLoginDto) {
         LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
-        if ("1".equals(userLoginDto.getLoginType())) {
+        if (AuthConstants.LOGIN_TYPE_PHONE.equals(userLoginDto.getLoginType())) {
             queryWrapper.eq(UserInfo::getPhone, userLoginDto.getLoginName());
         } else {
             queryWrapper.eq(UserInfo::getEmail, userLoginDto.getLoginName());
@@ -102,7 +102,7 @@ public class UserBiz {
      * @param getUserInfoDto
      * @return
      */
-    public GetUserInfoVo getUserInfo(GetUserInfoDto getUserInfoDto) {
+    public UserInfoVo getUserInfo(GetUserInfoDto getUserInfoDto) {
         String cacheKey = AuthRedisKey.USER_KEY + getUserInfoDto.getUserId();
         if (cacheService.exists(cacheKey)) {
             return cacheService.get(cacheKey);
@@ -110,7 +110,7 @@ public class UserBiz {
         LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(UserInfo::getUserId, getUserInfoDto.getUserId());
         UserInfo userInfo = userInfoService.getOne(queryWrapper);
-        GetUserInfoVo getUserInfoVo = UserConvert.INSTANT.getUserInfo(userInfo);
+        UserInfoVo getUserInfoVo = UserConvert.INSTANT.getUserInfo(userInfo);
         cacheService.set(cacheKey, getUserInfoVo);
         return getUserInfoVo;
     }

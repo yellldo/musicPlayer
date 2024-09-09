@@ -15,4 +15,6 @@ public class ApiConstants {
      * 注意，需要保证和 spring.application.name 保持一致
      */
     public static final String NAME = "music-infra";
+
+    public static final String PATH = "music-infra/";
 }

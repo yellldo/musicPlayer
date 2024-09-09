@@ -16,6 +16,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
+            <optional>true</optional>
         </dependency>
         <!--mybatis-->
         <dependency>
@@ -40,10 +41,16 @@
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-spring-boot-starter</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>com.music.player</groupId>
             <artifactId>music-common</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-uid-starter</artifactId>
         </dependency>
     </dependencies>
 

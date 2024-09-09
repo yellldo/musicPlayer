@@ -16,8 +16,9 @@
 
     <select id="querySysUserList" resultType="com.music.player.auth.vo.QuerySysUserListVo"
             parameterType="com.music.player.auth.dto.QuerySysUserListDto">
-        select * from sys_user
+        select user_id,login_name,nick_name,user_status,create_time from sys_user
         <where>
+            is_delete = '0'
             <if test="querySysUserListDto.nickName != null and querySysUserListDto.nickName != ''">
                 and nick_name like #{querySysUserListDto.nickName}
             </if>

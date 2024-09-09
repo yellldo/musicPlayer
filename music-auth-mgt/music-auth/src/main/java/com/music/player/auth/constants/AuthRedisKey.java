@@ -11,4 +11,5 @@ public class AuthRedisKey {
 
 
     public static String USER_KEY = "user:info:";
+    public static String SYS_USER_KEY = "sys:user:info:";
 }

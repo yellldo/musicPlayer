@@ -7,8 +7,8 @@ import lombok.ToString;
 import java.io.Serializable;
 
 /**
- * ClassName : GetUserInfoVo<br>
- * Description : GetUserInfoVo<br>
+ * ClassName : UserInfoVo<br>
+ * Description : UserInfoVo<br>
  *
  * @author : sj
  * @date : 2024/8/31
@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString
-public class GetUserInfoVo implements Serializable {
+public class UserInfoVo implements Serializable {
 
 
     private String userName;

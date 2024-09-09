@@ -1,5 +1,6 @@
 package com.music.player.auth.convert;
 
+import com.music.player.auth.api.service.user.vo.SysUserInfoVo;
 import com.music.player.auth.dto.SysUserRegisterDto;
 import com.music.player.auth.entity.SysUser;
 import org.mapstruct.Mapper;
@@ -19,5 +20,7 @@ public interface SysUserConvert {
 
 
     SysUser register(SysUserRegisterDto sysUserRegisterDto);
+
+    SysUserInfoVo login(SysUser sysUser);
 
 }

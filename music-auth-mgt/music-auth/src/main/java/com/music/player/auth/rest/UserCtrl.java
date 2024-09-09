@@ -41,6 +41,7 @@ public class UserCtrl {
      * @param userRegisterDto -
      * @return -
      */
+    @ApiOperation("用户注册")
     @PostMapping("register")
     public R<Boolean> regitsrer(@RequestBody @Valid UserRegisterDto userRegisterDto) {
         userBiz.register(userRegisterDto);
@@ -52,6 +53,7 @@ public class UserCtrl {
         return R.success();
     }
 
+    @ApiOperation("获取用户信息")
     @GetMapping("userInfo")
     public R<Boolean> userInfo() {
         return R.success();

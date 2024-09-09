@@ -1,16 +1,16 @@
-package com.music.player.infra.api.dto;
+package com.music.player.infra.api.service.log.dto;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 /**
- * ClassName : SaveLogDto<br>
- * Description : SaveLogDto<br>
+ * ClassName : SaveSysLogDto<br>
+ * Description : SaveSysLogDto<br>
  *
  * @author : sj
  * @date : 2024/5/19
@@ -18,7 +18,8 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString
-public class SaveLogDto implements Serializable {
+@ApiModel
+public class SaveSysLogDto implements Serializable {
 
     /**
      * 日志类型

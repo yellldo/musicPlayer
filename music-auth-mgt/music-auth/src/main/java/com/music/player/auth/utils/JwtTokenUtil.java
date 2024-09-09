@@ -10,7 +10,6 @@ import io.jsonwebtoken.impl.DefaultClock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
@@ -38,13 +37,6 @@ public class JwtTokenUtil implements Serializable {
         return doGenerateToken(claims, userDetails.getLoginName());
     }
 
-    public String getToken(HttpServletRequest request) {
-        final String requestHeader = request.getHeader(jwtConfig.getHeader());
-        if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
-            return requestHeader.substring(7);
-        }
-        return null;
-    }
 
     public boolean validateToken(String token) {
         return isTokenExpired(token);

@@ -1,5 +1,7 @@
 package com.music.player.auth.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,17 +18,23 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 @Getter
 @ToString
+@ApiModel("用户注册实体")
 public class UserRegisterDto {
 
+    @ApiModelProperty("手机号")
     private String phone;
 
+    @ApiModelProperty("邮箱")
     private String email;
 
+    @ApiModelProperty("密码")
     @NotEmpty(message = "密码不能为空")
     private String password;
 
+    @ApiModelProperty("登录类型")
     private String loginType;
 
-    @NotEmpty(message = "用户名不能为空")
+    @ApiModelProperty("登录账号")
+    @NotEmpty(message = "登录账号不能为空")
     private String userName;
 }

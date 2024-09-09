@@ -80,10 +80,6 @@
         </dependency>
         <dependency>
             <groupId>com.music.player</groupId>
-            <artifactId>music-mybatis-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.music.player</groupId>
             <artifactId>music-cache-starter</artifactId>
         </dependency>
         <dependency>

@@ -1,10 +1,9 @@
-package com.music.player.infra.api.dto;
+package com.music.player.infra.api.service.log.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 

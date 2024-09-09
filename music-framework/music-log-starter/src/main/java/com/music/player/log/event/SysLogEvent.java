@@ -1,6 +1,6 @@
 package com.music.player.log.event;
 
-import com.music.player.infra.api.dto.SysLogDto;
+import com.music.player.infra.api.service.log.dto.SysLogDto;
 import org.springframework.context.ApplicationEvent;
 
 /**

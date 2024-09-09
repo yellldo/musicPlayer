@@ -29,6 +29,8 @@ create table dict_info
     dict_remark varchar(30)                        null comment '备注',
     is_delete   char     default '0'               null comment '删除标志位0、未删除1、已删除',
     create_time datetime default CURRENT_TIMESTAMP null comment '创建时间',
-    update_time datetime default CURRENT_TIMESTAMP null comment '更新时间'
+    update_time datetime default CURRENT_TIMESTAMP null comment '更新时间',
+    create_by   bigint                             null comment '创建人',
+    update_by   bigint                             null comment '更新人'
 )
     comment '字典表' charset = utf8mb4;

@@ -7,8 +7,8 @@ import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.music.player.framework.common.jackson.MusicJavaTimeModule;
-import com.music.player.infra.api.dto.SaveLogDto;
-import com.music.player.infra.api.service.SysLogServiceFeign;
+import com.music.player.infra.api.service.log.dto.SaveSysLogDto;
+import com.music.player.infra.api.service.log.SysLogServiceApi;
 import com.music.player.log.config.MusicLogProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -35,7 +35,7 @@ public class SysLogListener implements InitializingBean {
     // new 一个 避免日志脱敏策略影响全局ObjectMapper
     private final static ObjectMapper objectMapper = new ObjectMapper();
 
-    private final SysLogServiceFeign sysLogServiceFeign;
+    private final SysLogServiceApi sysLogServiceApi;
 
 
     private final MusicLogProperties logProperties;
@@ -46,7 +46,7 @@ public class SysLogListener implements InitializingBean {
     @EventListener(SysLogEvent.class)
     public void saveSysLog(SysLogEvent event) {
         SysLogEventSource source = (SysLogEventSource) event.getSource();
-        SaveLogDto saveLogDto = new SaveLogDto();
+        SaveSysLogDto saveLogDto = new SaveSysLogDto();
         BeanUtils.copyProperties(source, saveLogDto);
 
         // json 格式刷参数放在异步中处理，提升性能
@@ -54,7 +54,7 @@ public class SysLogListener implements InitializingBean {
             String params = objectMapper.writeValueAsString(source.getBody());
             saveLogDto.setParams(StrUtil.subPre(params, logProperties.getMaxLength()));
         }
-        sysLogServiceFeign.saveLog(saveLogDto);
+        sysLogServiceApi.saveSysLog(saveLogDto);
     }
 
     @Override

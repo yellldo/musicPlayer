@@ -23,11 +23,11 @@ public class QuerySysUserListVo {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long userId;
 
+    private String loginName;
+
     private String nickName;
 
     private String userStatus;
-
-    private String isDelete;
 
     private Date createTime;
 }

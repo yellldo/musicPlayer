@@ -1,8 +1,14 @@
 package com.music.player.mybatis.config;
 
 import cn.hutool.core.util.StrUtil;
+import com.baidu.fsg.uid.UidGenerator;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.baomidou.mybatisplus.core.metadata.TableInfo;
+import com.baomidou.mybatisplus.core.metadata.TableInfoHelper;
 import com.music.player.framework.common.constant.CommonConstants;
+import com.music.player.framework.common.spring.SpringContextUtils;
+import com.music.player.mybatis.constants.EntityConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -24,18 +30,23 @@ import java.util.Optional;
 @Slf4j
 public class MybatisPlusMetaObjectHandler implements MetaObjectHandler {
 
+    private UidGenerator uidGenerator;
+
     @Override
     public void insertFill(MetaObject metaObject) {
         log.debug("mybatis plus start insert fill ....");
         LocalDateTime now = LocalDateTime.now();
 
-        fillValIfNullByName("createTime", now, metaObject, true);
-        fillValIfNullByName("updateTime", now, metaObject, true);
+        // 填充主键
+        extractId(metaObject);
+
+        fillValIfNullByName(EntityConstant.CREATE_TIME_FIELD, now, metaObject, true);
+        fillValIfNullByName(EntityConstant.UPDATE_TIME_FIELD, now, metaObject, true);
 //        fillValIfNullByName("createBy", getUserName(), metaObject, true);
 //        fillValIfNullByName("updateBy", getUserName(), metaObject, true);
 
         // 删除标记自动填充
-        fillValIfNullByName("delFlag", CommonConstants.STATUS_NORMAL, metaObject, true);
+        fillValIfNullByName(EntityConstant.DELETE_FIELD, CommonConstants.STATUS_NORMAL, metaObject, true);
     }
 
     @Override
@@ -53,7 +64,7 @@ public class MybatisPlusMetaObjectHandler implements MetaObjectHandler {
      * @param metaObject MetaObject
      * @param isCover    是否覆盖原有值,避免更新操作手动入参
      */
-    private static void fillValIfNullByName(String fieldName, Object fieldVal, MetaObject metaObject, boolean isCover) {
+    private void fillValIfNullByName(String fieldName, Object fieldVal, MetaObject metaObject, boolean isCover) {
         // 0. 如果填充值为空
         if (fieldVal == null) {
             return;
@@ -73,6 +84,21 @@ public class MybatisPlusMetaObjectHandler implements MetaObjectHandler {
         Class<?> getterType = metaObject.getGetterType(fieldName);
         if (ClassUtils.isAssignableValue(getterType, fieldVal)) {
             metaObject.setValue(fieldName, fieldVal);
+        }
+    }
+
+
+    public void extractId(MetaObject metaObject) {
+        // 通过tableInfo动态获取主键字段
+        TableInfo tableInfo = TableInfoHelper.getTableInfo(metaObject.getOriginalObject().getClass());
+        String keyProperty = tableInfo.getKeyProperty();
+        if (uidGenerator == null) {
+            uidGenerator = SpringContextUtils.getBean(UidGenerator.class);
+        }
+        Long id = uidGenerator.getUID();
+        IdType idType = tableInfo.getIdType();
+        if (!idType.equals(IdType.AUTO)) {
+            metaObject.setValue(keyProperty, id);
         }
     }
 
