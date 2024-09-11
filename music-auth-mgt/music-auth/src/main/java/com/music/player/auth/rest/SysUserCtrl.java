@@ -43,6 +43,7 @@ public class SysUserCtrl {
         return R.ok(sysUserService.querySysUserList(querySysUserListDto));
     }
 
+    @ApiOperation("查询后台用户列表")
     @PostMapping("login")
     public R login(@RequestBody SysUserLoginDto sysUserLoginDto) {
         return R.ok(sysUserBiz.login(sysUserLoginDto));

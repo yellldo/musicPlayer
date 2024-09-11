@@ -52,12 +52,12 @@ create table sys_role
         primary key,
     role_name   varchar(50)                        not null comment '角色名称',
     role_desc   varchar(500)                       null comment '角色说明',
-    enable      char(1)                            not null comment '状态：1启用0、禁用',
+    enable      char(1)  default '1'               not null comment '状态：1启用0、禁用',
+    is_delete   char(1)                            null comment '删除状态 0、否1、是',
     create_time datetime default CURRENT_TIMESTAMP null comment '创建时间',
     create_by   bigint                             null comment '创建人',
     update_time datetime                           null comment '更新时间',
     update_by   bigint                             null comment '更新人'
-
 )
     comment '后台角色' charset = utf8mb4;
 

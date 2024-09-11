@@ -37,6 +37,7 @@ public class MusicExceptionHandler {
      */
     public static final String ERROR_STATUS = "500";
 
+
     @ExceptionHandler(value = Exception.class)
     public BaseResponse handleException(Exception e) {
         log.error("系统内部异常，异常信息", e);
@@ -50,7 +51,7 @@ public class MusicExceptionHandler {
      * @return -
      */
     @ExceptionHandler(BizException.class)
-    public BaseResponse handleSystemException(BizException e) {
+    public BaseResponse handleBizException(BizException e) {
         log.error("exception occur!:", e);
         return new BaseResponse(ERROR_STATUS, e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
     }

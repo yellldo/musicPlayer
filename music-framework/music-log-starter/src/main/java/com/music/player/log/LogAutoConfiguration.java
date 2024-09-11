@@ -1,5 +1,6 @@
 package com.music.player.log;
 
+import com.music.player.infra.api.service.log.SysLogServiceApi;
 import com.music.player.log.aspect.SysLogAspect;
 import com.music.player.log.config.MusicLogProperties;
 import com.music.player.log.event.SysLogListener;
@@ -22,10 +23,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @ConditionalOnProperty(value = "security.log.enabled", matchIfMissing = true)
 public class LogAutoConfiguration {
 
-//    @Bean
-//    public SysLogListener sysLogListener(MusicLogProperties logProperties, RemoteLogService remoteLogService) {
-//        return new SysLogListener(remoteLogService, logProperties);
-//    }
+    @Bean
+    public SysLogListener sysLogListener(MusicLogProperties musicLogProperties, SysLogServiceApi sysLogServiceApi) {
+        return new SysLogListener(sysLogServiceApi, musicLogProperties);
+    }
 
     @Bean
     public SysLogAspect sysLogAspect() {

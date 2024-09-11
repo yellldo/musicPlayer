@@ -71,10 +71,6 @@
             <artifactId>music-auth-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.music.player</groupId>
-            <artifactId>music-common</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
         </dependency>
@@ -85,6 +81,14 @@
         <dependency>
             <groupId>com.music.player</groupId>
             <artifactId>music-swagger-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-web-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-log-starter</artifactId>
         </dependency>
     </dependencies>
 

@@ -35,6 +35,9 @@ public class SysRole implements Serializable {
     @TableField("enable")
     private String enable;
 
+    @TableField("is_delete")
+    private String isDelete;
+
     @TableField("create_time")
     private Date createTime;
 

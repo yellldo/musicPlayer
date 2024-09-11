@@ -16,7 +16,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients(basePackages = {"com.music.player.auth", "com.music.player.infra"})
 @EnableDiscoveryClient
 @MapperScan("com.music.player.infra.mapper")
-@SpringBootApplication(scanBasePackages = "com.music.player")
+@SpringBootApplication(scanBasePackages = {"com.music.player.auth", "com.music.player.infra", "com.music.player.framework"})
 public class MusicPlayerInfraStartUp {
 
     public static void main(String[] args) {

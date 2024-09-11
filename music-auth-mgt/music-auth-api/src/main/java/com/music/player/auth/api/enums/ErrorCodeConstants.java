@@ -28,6 +28,7 @@ public enum ErrorCodeConstants implements IErrorCode {
     EMAIL_EXISTS("1-002-000-007", "邮箱已存在"),
     USER_EXISTS("1-002-000-008", "用户已存在"),
     SYS_USER_LOGIN_FAIL("1-002-000-008", "登录失败，账号或密码错误"),
+    SYS_ROLE_EXISTS("1-002-000-009", "角色已存在"),
     ;
 
     final String errorCode;

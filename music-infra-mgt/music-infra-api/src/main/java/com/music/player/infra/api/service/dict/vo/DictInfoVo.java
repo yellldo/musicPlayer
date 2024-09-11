@@ -1,9 +1,8 @@
-package com.music.player.infra.vo;
+package com.music.player.infra.api.service.dict.vo;
 
-import io.swagger.annotations.ApiModel;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
-import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 
@@ -12,26 +11,16 @@ import java.io.Serializable;
  * Description : DictInfoVo<br>
  *
  * @author : sj
- * @date : 2024/9/7
+ * @date : 2024/9/10
  */
-@ToString
-@Service
+@Setter
 @Getter
-@ApiModel("字典结果实体")
+@ToString
 public class DictInfoVo implements Serializable {
-
-
-    private Integer id;
-
-    private Integer parentId;
 
     private String dictType;
 
     private String dictKey;
 
     private String dictValue;
-
-    private String dictStatus;
-
-    private String dictRemark;
 }

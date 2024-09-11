@@ -16,13 +16,10 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * @author : sj
  * @date : 2024/3/18
  */
-@EnableAspectJAutoProxy
-//@EnableHystrix
-@EnableCaching
 @MapperScan(basePackages = "com.music.player.auth.mapper")
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {"com.music.player.auth", "com.music.player.infra"})
-@SpringBootApplication(scanBasePackages = "com.music.player")
+@SpringBootApplication(scanBasePackages = {"com.music.player.auth", "com.music.player.infra", "com.music.player.framework"})
 public class MusicPlayerAuthStartUp {
 
     public static void main(String[] args) {

@@ -1,7 +1,12 @@
 package com.music.player.auth.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.music.player.auth.dto.QueryRoleListDto;
 import com.music.player.auth.entity.SysRole;
+import com.music.player.auth.vo.SysRoleVo;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * ClassName : SysMenuMapper<br>
@@ -11,4 +16,7 @@ import com.music.player.auth.entity.SysRole;
  * @date : 2024/8/31
  */
 public interface SysRoleMapper extends BaseMapper<SysRole> {
+
+
+    IPage<SysRoleVo> queryRoleList(Page<SysRoleVo> page, @Param("queryRoleListDto") QueryRoleListDto queryRoleListDto);
 }

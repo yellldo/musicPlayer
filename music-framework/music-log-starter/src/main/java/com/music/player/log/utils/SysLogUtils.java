@@ -49,9 +49,9 @@ public class SysLogUtils {
 
         // get 参数脱敏
         MusicLogProperties logProperties = SpringContextHolder.getBean(MusicLogProperties.class);
-        Map<String, String[]> paramsMap = MapUtil.removeAny(request.getParameterMap(),
-                ArrayUtil.toArray(logProperties.getExcludeFields(), String.class));
-        sysLog.setParams(HttpUtil.toParams(paramsMap));
+//        Map<String, String[]> paramsMap = MapUtil.removeAny(request.getParameterMap(),
+//                ArrayUtil.toArray(logProperties.getExcludeFields(), String.class));
+        sysLog.setParams(HttpUtil.toParams(request.getParameterMap()));
         return sysLog;
     }
 

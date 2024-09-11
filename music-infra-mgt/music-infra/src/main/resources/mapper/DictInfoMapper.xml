@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.music.player.infra.mapper.DictInfoMapper">
 
-    <select id="queryDictInfoList" resultType="com.music.player.infra.vo.DictInfoVo"
+    <select id="queryDictInfoList" resultType="com.music.player.infra.api.service.dict.vo.DictInfoVo"
             parameterType="com.music.player.infra.dto.QueryDictInfoListDto">
         select id,dict_type,dict_key,dict_value,dict_status,dict_remark from dict_info
         <where>
@@ -19,7 +19,7 @@
         order by create_time desc,id desc
     </select>
 
-    <select id="queryParentDictList" resultType="com.music.player.infra.vo.DictInfoVo"
+    <select id="queryParentDictList" resultType="com.music.player.infra.api.service.dict.vo.DictInfoVo"
             parameterType="com.music.player.infra.dto.QueryParentDictListDto">
         select id,dict_type,dict_key,dict_value,dict_status,dict_remark from dict_info
         <where>
@@ -29,5 +29,18 @@
             </if>
         </where>
         order by create_time desc,id desc
+    </select>
+
+    <select id="queryDictList" resultType="com.music.player.infra.api.service.dict.vo.DictInfoVo"
+            parameterType="com.music.player.infra.api.service.dict.dto.QueryDictListDto">
+        select dict_type,dict_key,dict_value from dict_info
+        <where>
+            <if test="queryDictListDto.dictType != null and queryDictListDto.dictType != ''">
+                and dict_type = #{queryDictListDto.dictType}
+            </if>
+            <if test="queryDictListDto.dictKey != null and queryDictListDto.dictKey != ''">
+                and dict_key = #{queryDictListDto.dictKey}
+            </if>
+        </where>
     </select>
 </mapper>

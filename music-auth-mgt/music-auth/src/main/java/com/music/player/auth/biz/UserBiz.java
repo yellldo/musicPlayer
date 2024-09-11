@@ -8,7 +8,7 @@ import com.music.player.auth.api.service.user.dto.GetUserInfoDto;
 import com.music.player.auth.api.service.user.vo.UserInfoVo;
 import com.music.player.auth.config.JwtConfig;
 import com.music.player.auth.constants.AuthConstants;
-import com.music.player.auth.constants.AuthRedisKey;
+import com.music.player.auth.constants.AuthRedisConstant;
 import com.music.player.auth.convert.UserConvert;
 import com.music.player.auth.dto.UserLoginDto;
 import com.music.player.auth.dto.UserRegisterDto;
@@ -103,7 +103,7 @@ public class UserBiz {
      * @return
      */
     public UserInfoVo getUserInfo(GetUserInfoDto getUserInfoDto) {
-        String cacheKey = AuthRedisKey.USER_KEY + getUserInfoDto.getUserId();
+        String cacheKey = AuthRedisConstant.USER_KEY + getUserInfoDto.getUserId();
         if (cacheService.exists(cacheKey)) {
             return cacheService.get(cacheKey);
         }

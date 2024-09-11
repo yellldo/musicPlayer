@@ -3,7 +3,7 @@ package com.music.player.auth.biz;
 import cn.hutool.core.lang.UUID;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.music.player.auth.api.enums.ErrorCodeConstants;
-import com.music.player.auth.constants.AuthRedisKey;
+import com.music.player.auth.constants.AuthRedisConstant;
 import com.music.player.auth.convert.SysUserConvert;
 import com.music.player.auth.dto.SysUserLoginDto;
 import com.music.player.auth.dto.SysUserRegisterDto;
@@ -14,6 +14,10 @@ import com.music.player.framework.cache.service.CacheService;
 import com.music.player.framework.common.support.BizException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.Duration;
+import java.time.temporal.TemporalUnit;
+import java.util.concurrent.TimeUnit;
 
 /**
  * ClassName : SysUserBiz<br>
@@ -67,7 +71,7 @@ public class SysUserBiz {
         }
         // 这里暂时先用UUID代替
         String token = UUID.fastUUID().toString();
-        cacheService.set(AuthRedisKey.SYS_USER_KEY + token, SysUserConvert.INSTANT.login(sysUser));
+        cacheService.set(AuthRedisConstant.SYS_USER_KEY + token, SysUserConvert.INSTANT.login(sysUser), Duration.ofMinutes(AuthRedisConstant.SYS_USER_LOGIN_EXPIRE));
         return token;
     }
 

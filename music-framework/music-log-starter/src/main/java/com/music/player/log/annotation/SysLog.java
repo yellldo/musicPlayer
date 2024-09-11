@@ -27,4 +27,9 @@ public @interface SysLog {
      * @return 日志描述
      */
     String expression() default "";
+
+    /**
+     * 类型
+     */
+    String type() default "0";
 }

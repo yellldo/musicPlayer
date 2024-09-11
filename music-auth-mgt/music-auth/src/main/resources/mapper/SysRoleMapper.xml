@@ -5,4 +5,18 @@
 <mapper namespace="com.music.player.auth.mapper.SysRoleMapper">
 
 
+    <select id="queryRoleList" parameterType="com.music.player.auth.dto.QueryRoleListDto"
+            resultType="com.music.player.auth.vo.SysRoleVo">
+        select role_id,role_name,role_desc,enable from sys_role
+        <where>
+            is_delete = '0'
+            <if test="queryRoleListDto.roleName != null and queryRoleListDto.roleName != ''">
+                and role_name like concat('%',#{queryRoleListDto.roleName},'%')
+            </if>
+            <if test="queryRoleListDto.enable != null and queryRoleListDto.enable != ''">
+                and enable = #{queryRoleListDto.enable}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
 </mapper>
