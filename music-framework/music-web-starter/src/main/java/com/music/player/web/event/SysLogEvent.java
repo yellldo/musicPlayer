@@ -1,6 +1,7 @@
 package com.music.player.web.event;
 
-import org.springframework.context.ApplicationEvent;
+import com.music.player.infra.api.service.log.dto.SaveSysLogDto;
+import lombok.Getter;
 
 /**
  * ClassName : SysLogEvent<br>
@@ -9,9 +10,14 @@ import org.springframework.context.ApplicationEvent;
  * @author : sj
  * @date : 2024/9/9
  */
-public class SysLogEvent extends ApplicationEvent {
+@Getter
+public class SysLogEvent extends BaseEvent {
 
-    public SysLogEvent(Object source) {
-        super(source);
+    private SaveSysLogDto saveSysLogDto;
+
+
+    public SysLogEvent(String desc, SaveSysLogDto saveSysLogDto) {
+        super(desc);
+        this.saveSysLogDto = saveSysLogDto;
     }
 }

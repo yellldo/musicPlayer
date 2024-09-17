@@ -86,10 +86,6 @@
             <groupId>com.music.player</groupId>
             <artifactId>music-web-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.music.player</groupId>
-            <artifactId>music-log-starter</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

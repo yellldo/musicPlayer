@@ -29,11 +29,32 @@ public class SysMenu implements Serializable {
     @TableField("menu_name")
     private String menuName;
 
+    @TableField("menu_url")
+    private String menuUrl;
+
+    @TableField("menu_permission")
+    private String menuPermission;
+
+    @TableField("menu_icon")
+    private String menuIcon;
+
+    @TableField("menu_status")
+    private String menuStatus;
+
+    @TableField("level")
+    private Integer level;
+
+    @TableField("menu_type")
+    private String menuType;
+
     @TableField("parent_id")
     private Long parentId;
 
     @TableField("priority")
     private Long priority;
+
+    @TableField("is_delete")
+    private String isDelete;
 
     @TableField("create_time")
     private Date createTime;

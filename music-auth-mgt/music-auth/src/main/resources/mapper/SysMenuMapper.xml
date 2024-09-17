@@ -5,4 +5,19 @@
 <mapper namespace="com.music.player.auth.mapper.SysMenuMapper">
 
 
+    <select id="queryMenuList" parameterType="com.music.player.auth.dto.QueryMenuListDto"
+            resultType="com.music.player.auth.vo.SysMenuVo">
+        select menu_id,menu_name,menu_type,menu_icon,menu_permission,level,priority,menu_status,menu_url,parent_id from
+        sys_menu
+        <where>
+            is_delete = '0'
+            <if test="queryMenuListDto.menuName != null and queryMenuListDto.menuName !=''">
+                and menu_name like concat('%',#{queryMenuListDto.menuName},'%')
+            </if>
+            <if test="queryMenuListDto.menuType != null and queryMenuListDto.menuType !=''">
+                and menu_type = #{queryMenuListDto.menuType}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
 </mapper>

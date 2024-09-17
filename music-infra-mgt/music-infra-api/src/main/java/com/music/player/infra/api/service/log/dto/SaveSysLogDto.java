@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -19,6 +20,7 @@ import java.io.Serializable;
 @Getter
 @ToString
 @ApiModel
+@Accessors(chain = true)
 public class SaveSysLogDto implements Serializable {
 
     /**
@@ -37,7 +39,7 @@ public class SaveSysLogDto implements Serializable {
      * 操作IP地址
      */
     @Schema(description = "操作ip地址")
-    private String remoteAddr;
+    private String ip;
 
     /**
      * 请求URI

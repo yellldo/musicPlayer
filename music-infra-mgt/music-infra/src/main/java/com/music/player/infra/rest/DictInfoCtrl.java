@@ -5,6 +5,7 @@ import com.music.player.infra.biz.DictInfoBiz;
 import com.music.player.infra.dto.*;
 import com.music.player.infra.service.DictInfoService;
 //import com.music.player.web.annotation.LogRecord;
+import com.music.player.web.annotation.LogRecord;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class DictInfoCtrl {
     @Autowired
     private DictInfoBiz dictInfoBiz;
 
-    //    @LogRecord(value = "查询字典列表")
+    @LogRecord(value = "查询字典列表")
     @ApiOperation("查询字典列表")
     @GetMapping("queryDictInfoList")
     public R queryDictInfoList(QueryDictInfoListDto queryDictInfoListDto) {
@@ -43,7 +44,7 @@ public class DictInfoCtrl {
         return R.ok(dictInfoService.queryParentDictList(queryParentDictListDto));
     }
 
-    //    @LogRecord(value = "新增字典项")
+    @LogRecord(value = "新增字典项")
     @ApiOperation("新增字典项")
     @PostMapping("saveDictInfo")
     public R saveDictInfo(@RequestBody SaveDictInfoDto saveDictInfoDto, HttpServletRequest request) {
@@ -51,7 +52,7 @@ public class DictInfoCtrl {
         return R.ok();
     }
 
-    //    @LogRecord(value = "删除字典")
+    @LogRecord(value = "删除字典")
     @ApiOperation("删除字典")
     @PostMapping("deleteDict")
     public R deleteDict(@RequestBody DeleteDictDto deleteDictDto) {
@@ -59,7 +60,7 @@ public class DictInfoCtrl {
         return R.ok();
     }
 
-    //    @LogRecord(value = "更新字典")
+    @LogRecord(value = "更新字典")
     @ApiOperation("更新字典")
     @PostMapping("modifyDictInfo")
     public R modifyDictInfo(@RequestBody ModifyDictInfoDto modifyDictInfoDto) {

@@ -22,6 +22,10 @@ public class ModifyRoleDto implements Serializable {
     @NotNull(message = "参数异常")
     private Long roleId;
 
+    private String roleName;
+
+    private String roleDesc;
+
     private String enable;
 
     private String isDelete;

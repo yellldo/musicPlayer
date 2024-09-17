@@ -53,7 +53,7 @@ public class MusicExceptionHandler {
     @ExceptionHandler(BizException.class)
     public BaseResponse handleBizException(BizException e) {
         log.error("exception occur!:", e);
-        return new BaseResponse(ERROR_STATUS, e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
+        return new BaseResponse(e.getErrorCode(), e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
     }
 
     /**

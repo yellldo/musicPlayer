@@ -63,8 +63,8 @@ public class SysLog implements Serializable {
     /**
      * 请求地址
      */
-    @TableField("request_url")
-    private String requestUrl;
+    @TableField("request_uri")
+    private String requestUri;
 
     /**
      * 方法
@@ -77,6 +77,9 @@ public class SysLog implements Serializable {
      */
     @TableField("params")
     private String params;
+
+    @TableField("exception")
+    private String exception;
 
     /**
      * 创建时间

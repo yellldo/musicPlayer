@@ -34,14 +34,20 @@ create table user_info
 drop table if exists sys_menu;
 create table sys_menu
 (
-    menu_id     bigint                             not null
+    menu_id         bigint                             not null
         primary key,
-    menu_name   varchar(50)                        not null comment '菜单名称',
-    parent_id   bigint                             not null comment '上级菜单id',
-    priority    int      default 0                 null comment '排序',
-    create_time datetime default CURRENT_TIMESTAMP null comment '创建时间',
-    update_time datetime                           null comment '更新时间'
-
+    menu_name       varchar(50)                        not null comment '菜单名称',
+    menu_url        varchar(50)                        not null comment '菜单路径',
+    menu_permission varchar(255)                       not null comment '菜单权限',
+    menu_type       char(1)                            not null comment '类型 0、菜单 1、按钮',
+    menu_status     char(1)  default '0'               null comment '菜单状态 0、启用 1、禁用',
+    menu_icon       varchar(255)                       null comment '菜单图标',
+    level           int      default 0                 not null comment '菜单层级',
+    parent_id       bigint                             null comment '上级菜单id',
+    priority        int      default 0                 null comment '排序',
+    is_delete       char(1)  default '0'               null comment '删除状态 0、否1、是',
+    create_time     datetime default CURRENT_TIMESTAMP null comment '创建时间',
+    update_time     datetime                           null comment '更新时间'
 )
     comment '后台菜单' charset = utf8mb4;
 

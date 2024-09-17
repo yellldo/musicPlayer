@@ -11,10 +11,10 @@ create table sys_log
     request_uri varchar(100) comment '地址',
     method      varchar(50) comment '方法',
     params      varchar(100) comment '入参',
+    exception   varchar(500) comment '异常信息',
     create_time datetime default CURRENT_TIMESTAMP
 )
     comment '后台用户' charset = utf8mb4;
-
 
 drop table if exists dict_info;
 create table dict_info

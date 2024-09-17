@@ -14,7 +14,6 @@
 
     <modules>
         <module>music-common</module>
-        <module>music-log-starter</module>
         <module>music-mybatis-starter</module>
         <module>music-cache-starter</module>
         <module>music-swagger-starter</module>

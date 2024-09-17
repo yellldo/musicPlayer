@@ -1,7 +1,10 @@
 package com.music.player.auth.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.music.player.auth.dto.QueryMenuListDto;
 import com.music.player.auth.entity.SysMenu;
+import com.music.player.auth.vo.SysMenuVo;
 
 /**
  * ClassName : SysMenuService<br>
@@ -11,4 +14,7 @@ import com.music.player.auth.entity.SysMenu;
  * @date : 2024/8/31
  */
 public interface SysMenuService extends IService<SysMenu> {
+
+    IPage<SysMenuVo> queryMenuList(QueryMenuListDto queryMenuListDto);
+
 }

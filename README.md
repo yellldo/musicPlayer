@@ -58,7 +58,7 @@
 | Druid                | JDBC 连接池、监控组件  | 1.2.8       |      |
 | Redisson             | Redis 客户端      | 3.1.18      |      |
 | Knife4j              | Swagger 增强UI实现 | 3.0.2       |      |
-| Fastjson             | JSON 工具库       |             |      |
+| Fastjson2            | JSON 工具库       |             |      |
 | Mapstrut             | Java Bean 转换   | 1.4.2.Final |      |
 | Lombok               | 消除冗长的 Java 代码  | 1.18.30     |      |
 |                      |                |             |      |
