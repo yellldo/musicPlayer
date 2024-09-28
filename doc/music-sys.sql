@@ -34,3 +34,17 @@ create table dict_info
     update_by   bigint                             null comment '更新人'
 )
     comment '字典表' charset = utf8mb4;
+
+
+drop table if exists infra_file;
+create table infra_file
+(
+    file_id      bigint       not null primary key,
+    file_name    varchar(100) not null comment '文件名称',
+    file_url     varchar(255) not null comment '文件访问地址',
+    file_size    integer      not null comment '文件大小',
+    file_channel char(1)      not null comment '文件渠道',
+    is_delete    char(1)  default '0' comment '删除标志位 0、未删除 1、已删除',
+    create_time  datetime default CURRENT_TIMESTAMP comment '创建时间',
+    update_time  datetime comment '修改时间'
+) comment '文件表' charset = utf8mb4;

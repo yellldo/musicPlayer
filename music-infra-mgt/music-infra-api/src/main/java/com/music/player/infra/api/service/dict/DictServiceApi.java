@@ -19,8 +19,9 @@ import java.util.List;
 @FeignClient(value = ApiConstants.NAME, path = ApiConstants.PATH)
 public interface DictServiceApi {
 
+    public final static String PREFIX = "/dict/";
 
-    @GetMapping("queryDictList")
+    @GetMapping(PREFIX + "queryDictList")
     R<List<DictInfoVo>> queryDictList(QueryDictListDto queryDictListDto);
 
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.player.infra.mapper.SysLogMapper">
+
+
+    <select id="querySysLog" parameterType="com.music.player.infra.dto.QuerySysLogDto"
+            resultType="com.music.player.infra.vo.SysLogVo">
+        select log_type,user_type,user_name,ip,request_uri,method,params,exception,create_time from sys_log
+        <where>
+            <if test="querySysLogDto.logType != null and querySysLogDto.logType !=''">
+                and log_type = #{querySysLogDto.logType}
+            </if>
+            <if test="querySysLogDto.userType != null and querySysLogDto.userType !=''">
+                and user_type = #{querySysLogDto.userType}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>
