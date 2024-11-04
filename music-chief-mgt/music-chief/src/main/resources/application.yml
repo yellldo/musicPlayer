@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: music-chief
+  main:
+    allow-bean-definition-overriding: true
+server:
+  servlet:
+    context-path: /music-chief
+

@@ -1,7 +1,7 @@
 package com.music.player.message.rest;
 
 import com.music.player.message.api.dto.CreateMessageDto;
-import com.music.player.message.api.service.MessageServiceFeign;
+import com.music.player.message.api.service.MessageServiceApi;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -13,11 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class MessageCtrl implements MessageServiceFeign {
+public class MessageCtrl {
 
 
-    @Override
-    public void createMessage(CreateMessageDto createMessageDto) {
-
-    }
 }

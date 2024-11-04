@@ -201,6 +201,11 @@
             </dependency>
             <dependency>
                 <groupId>com.music.player</groupId>
+                <artifactId>music-chief-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.music.player</groupId>
                 <artifactId>music-mybatis-starter</artifactId>
                 <version>${revision}</version>
             </dependency>

@@ -34,7 +34,7 @@ public class CreateMessageDto {
     private String messageType;
 
     /**
-     *
+     * 标题
      */
     private String title;
 

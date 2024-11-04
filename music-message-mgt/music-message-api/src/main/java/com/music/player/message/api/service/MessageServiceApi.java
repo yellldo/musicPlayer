@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
- * ClassName : MessageServiceFeign<br>
- * Description : MessageServiceFeign<br>
+ * ClassName : MessageServiceApi<br>
+ * Description : MessageServiceApi<br>
  *
  * @author : sj
  * @date : 2024/4/3
  */
 @FeignClient(value = "music-message")
-public interface MessageServiceFeign {
+public interface MessageServiceApi {
 
     /**
      * 发送消息
