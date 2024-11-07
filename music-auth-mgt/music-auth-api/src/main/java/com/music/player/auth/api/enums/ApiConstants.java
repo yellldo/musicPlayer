@@ -16,5 +16,5 @@ public class ApiConstants {
      */
     public static final String NAME = "music-auth";
 
-    public static final String PATH = "music-auth/";
+    public static final String PATH = "/music-auth/";
 }

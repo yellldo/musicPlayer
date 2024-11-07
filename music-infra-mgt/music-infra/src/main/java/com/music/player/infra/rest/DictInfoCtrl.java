@@ -37,7 +37,6 @@ public class DictInfoCtrl {
         return R.ok(dictInfoService.queryDictInfoList(queryDictInfoListDto));
     }
 
-    //    @LogRecord(value = "查询父级字典列表")
     @ApiOperation("查询父级字典列表")
     @GetMapping("queryParentDictList")
     public R queryParentDictList(QueryParentDictListDto queryParentDictListDto) {

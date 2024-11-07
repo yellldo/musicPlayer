@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.player.adm.mapper.SysMenuMapper">
+
+
+    <select id="queryMenuList" parameterType="com.music.player.adm.dto.QueryMenuListDto"
+            resultType="com.music.player.adm.vo.SysMenuVo">
+        select menu_id,menu_name,menu_type,menu_icon,menu_permission,level,priority,menu_status,menu_url,parent_id from
+        sys_menu
+        <where>
+            is_delete = '0'
+            <if test="queryMenuListDto.menuName != null and queryMenuListDto.menuName !=''">
+                and menu_name like concat('%',#{queryMenuListDto.menuName},'%')
+            </if>
+            <if test="queryMenuListDto.menuType != null and queryMenuListDto.menuType !=''">
+                and menu_type = #{queryMenuListDto.menuType}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>

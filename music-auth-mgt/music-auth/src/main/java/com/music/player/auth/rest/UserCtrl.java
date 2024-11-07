@@ -43,19 +43,19 @@ public class UserCtrl {
      */
     @ApiOperation("用户注册")
     @PostMapping("register")
-    public R<Boolean> regitsrer(@RequestBody @Valid UserRegisterDto userRegisterDto) {
+    public R regitsrer(@RequestBody @Valid UserRegisterDto userRegisterDto) {
         userBiz.register(userRegisterDto);
         return R.success();
     }
 
     @PostMapping("getCode")
-    public R<Boolean> getCode(@RequestBody UserGetCodeDto userGetCodeDto) {
+    public R getCode(@RequestBody UserGetCodeDto userGetCodeDto) {
         return R.success();
     }
 
     @ApiOperation("获取用户信息")
     @GetMapping("userInfo")
-    public R<Boolean> userInfo() {
+    public R userInfo() {
         return R.success();
     }
 }

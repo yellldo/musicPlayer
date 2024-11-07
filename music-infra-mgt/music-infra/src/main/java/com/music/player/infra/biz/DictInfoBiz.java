@@ -2,9 +2,7 @@ package com.music.player.infra.biz;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.music.player.auth.api.service.user.SysUserServiceApi;
 import com.music.player.auth.api.service.user.dto.GetSysUserInfoDto;
-import com.music.player.auth.api.service.user.vo.SysUserInfoVo;
 import com.music.player.framework.common.base.R;
 import com.music.player.framework.common.constant.CommonConstants;
 import com.music.player.framework.common.support.BizException;
@@ -37,8 +35,6 @@ public class DictInfoBiz {
 
     @Autowired
     private DictInfoService dictInfoService;
-    @Autowired
-    private SysUserServiceApi sysUserServiceApi;
 
     /**
      * 新增字典
@@ -48,7 +44,6 @@ public class DictInfoBiz {
      */
     public void saveDictInfo(SaveDictInfoDto saveDictInfoDto, HttpServletRequest request) {
         String token = TokenUtil.getToken(request);
-        R<SysUserInfoVo> sysUserInfoR = sysUserServiceApi.getSysUserInfo(new GetSysUserInfoDto().setToken(token));
         LambdaQueryWrapper<DictInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(DictInfo::getDictKey, saveDictInfoDto.getDictKey());
         queryWrapper.eq(DictInfo::getDictType, saveDictInfoDto.getDictType());
@@ -59,9 +54,6 @@ public class DictInfoBiz {
             throw new BizException(ErrorCodeConstants.DICT_EXISTS);
         }
         DictInfo dictInfo = DictInfoConvert.INSTANT.saveDictInfo(saveDictInfoDto);
-        if (sysUserInfoR != null) {
-            dictInfo.setCreateBy(sysUserInfoR.getData().getUserId());
-        }
         dictInfoService.save(dictInfo);
     }
 

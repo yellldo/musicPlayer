@@ -23,7 +23,6 @@ import java.util.Date;
 @TableName("user_info")
 public class UserInfo implements Serializable {
 
-
     @TableId("user_id")
     private Long userId;
 
@@ -32,6 +31,9 @@ public class UserInfo implements Serializable {
 
     @TableField("login_type")
     private String loginType;
+
+    @TableField("user_type")
+    private String userType;
 
     @TableField("password")
     private String password;
@@ -50,6 +52,9 @@ public class UserInfo implements Serializable {
 
     @TableField("is_vip")
     private String isVip;
+
+    @TableField("vip_level")
+    private Integer vipLevel;
 
     @TableField("create_time")
     private Date createTime;

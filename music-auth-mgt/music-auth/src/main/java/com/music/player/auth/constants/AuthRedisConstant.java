@@ -11,12 +11,7 @@ public class AuthRedisConstant {
 
 
     public static String USER_KEY = "user:info:";
-    public static String SYS_USER_KEY = "sys:user:info:";
 
-    /**
-     * 后台用户登录过期时间
-     */
-    public static long SYS_USER_LOGIN_EXPIRE = 100;
     /**
      * 门户用户登录过期时间
      */

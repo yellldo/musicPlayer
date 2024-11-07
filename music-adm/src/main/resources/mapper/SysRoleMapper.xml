@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.player.adm.mapper.SysRoleMapper">
+
+
+    <select id="queryRoleList" parameterType="com.music.player.adm.dto.QueryRoleListDto"
+            resultType="com.music.player.adm.vo.SysRoleVo">
+        select role_id,role_name,role_desc,enable from sys_role
+        <where>
+            is_delete = '0'
+            <if test="queryRoleListDto.roleName != null and queryRoleListDto.roleName != ''">
+                and role_name like concat('%',#{queryRoleListDto.roleName},'%')
+            </if>
+            <if test="queryRoleListDto.enable != null and queryRoleListDto.enable != ''">
+                and enable = #{queryRoleListDto.enable}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>

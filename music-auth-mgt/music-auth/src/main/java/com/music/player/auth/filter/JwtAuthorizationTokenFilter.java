@@ -1,12 +1,9 @@
 package com.music.player.auth.filter;
 
-import com.music.player.auth.api.dto.JwtUser;
 import com.music.player.auth.config.JwtConfig;
-import com.music.player.auth.service.SysUserService;
 import com.music.player.auth.service.UserInfoService;
 import com.music.player.auth.utils.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -37,8 +34,6 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
     private RedisTemplate redisTemplate;
     @Autowired
     private UserInfoService userInfoService;
-    @Autowired
-    private SysUserService sysUserService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
