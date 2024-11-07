@@ -71,6 +71,10 @@
             <artifactId>music-auth-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-chief-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
         </dependency>

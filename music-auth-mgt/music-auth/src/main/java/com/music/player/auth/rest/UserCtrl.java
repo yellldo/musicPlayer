@@ -28,6 +28,10 @@ public class UserCtrl {
     @Autowired
     private UserBiz userBiz;
 
+    /**
+     * user login
+     * return user info and token info
+     */
     @ApiOperation(value = "用户登录")
     @PostMapping("login")
     public R<AuthInfo> login(@RequestBody @Valid UserLoginDto userLoginDto) {
@@ -36,10 +40,9 @@ public class UserCtrl {
     }
 
     /**
-     * 用户注册
+     * user register
      *
-     * @param userRegisterDto -
-     * @return -
+     * @return Http code
      */
     @ApiOperation("用户注册")
     @PostMapping("register")

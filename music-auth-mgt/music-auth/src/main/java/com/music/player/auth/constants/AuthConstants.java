@@ -9,8 +9,12 @@ package com.music.player.auth.constants;
  */
 public class AuthConstants {
 
-    public static String LOGIN_TYPE_PHONE = "1";
-    public static String LOGIN_TYPE_EMAIL = "2";
+    public static final String LOGIN_TYPE_PHONE = "1";
+    public static final String LOGIN_TYPE_EMAIL = "2";
 
+    /**
+     * 用户类型
+     */
+    public static final String USER_TYPE_AUTHOR = "1";
 
 }

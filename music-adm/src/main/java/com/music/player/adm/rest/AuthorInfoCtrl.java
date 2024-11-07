@@ -13,6 +13,9 @@ public class AuthorInfoCtrl {
     @Autowired
     private AuthorBiz authorBiz;
 
+    /**
+     * the author audit
+     */
     @PostMapping("auditAuthor")
     public R auditAuthor(@RequestBody AdmAuditAuthorDto admAuditAuthorDto) {
         authorBiz.auditAuthor(admAuditAuthorDto);

@@ -15,6 +15,10 @@ public class DictCtrl {
     @Autowired
     private DictServiceApi dictServiceApi;
 
+    /**
+     * Obtain the dict list
+     * return dict list by page
+     */
     @GetMapping("queryDictList")
     public R queryDictList(QueryDictListDto queryDictListDto) {
         return dictServiceApi.queryDictList(queryDictListDto);

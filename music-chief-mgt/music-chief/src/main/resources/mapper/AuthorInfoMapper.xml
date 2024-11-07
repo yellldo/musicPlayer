@@ -4,8 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.music.player.chief.mapper.AuthorInfoMapper">
 
-    <select id="queryAuthList">
-
+    <select id="queryAuthorList" parameterType="com.music.player.chief.dto.QueryAuthorListDto"
+            resultType="com.music.player.chief.vo.QueryAuthorListVo">
+        select author_id,author_name,gender,country,city,author_status from author_info
+        <where>
+            is_delete = '0'
+            <if test="queryAuthorListDto.authorName != null and queryAuthorListDto.authorName != ''">
+                and author_name like = concat('%',#{queryAuthorListDto.authorName},'%')
+            </if>
+        </where>
     </select>
 
 

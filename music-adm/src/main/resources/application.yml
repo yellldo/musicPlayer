@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: music-adm
+  main:
+    allow-bean-definition-overriding: true
+server:
+  servlet:
+    context-path: /music-adm
+

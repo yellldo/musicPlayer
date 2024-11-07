@@ -11,6 +11,7 @@ import com.music.player.framework.common.base.R;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AuthorBiz {
@@ -20,9 +21,18 @@ public class AuthorBiz {
     @Autowired
     private UserServiceApi userServiceApi;
 
+    /**
+     * the author audit
+     * <p>
+     * Obtain user information based on user type
+     * TODO distributed transaction are required here
+     */
+    @Transactional(rollbackFor = Exception.class)
     public void auditAuthor(AdmAuditAuthorDto admAuditAuthorDto) {
-        AuditAuthorDto auditAuthorDto = new AuditAuthorDto();
-        BeanUtils.copyProperties(admAuditAuthorDto, auditAuthorDto);
+        AuditAuthorDto auditAuthorDto = new AuditAuthorDto()
+                .setAuditRemark(admAuditAuthorDto.getAuditRemark())
+                .setAuthorApplyId(admAuditAuthorDto.getAuthorApplyId())
+                .setAuditStatus(admAuditAuthorDto.getAuditStatus());
         R<AuditAuthorVo> result = authorInfoServiceApi.auditAuthor(auditAuthorDto);
         if (HttpCode.SUCCESS.getCode() == result.getCode()) {
             AuditAuthorVo auditAuthorVo = result.getData();
@@ -31,7 +41,6 @@ public class AuthorBiz {
                     .setUserId(auditAuthorVo.getUserId());
             userServiceApi.saveUserAuthorInfo(saveUserAuthorInfoDto);
         }
-
     }
 
 }

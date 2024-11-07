@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Getter
 @ToString
 @Accessors(chain = true)
-public class QueryAuthorList extends QueryRequest implements Serializable {
+public class QueryAuthorListDto extends QueryRequest implements Serializable {
 
     private String authName;
 

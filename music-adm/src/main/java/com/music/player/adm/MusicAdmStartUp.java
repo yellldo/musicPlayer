@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient
 @MapperScan(basePackages = "com.music.player.adm.mapper")
-@EnableFeignClients(basePackages = {"com.music.player.auth"})
+@EnableFeignClients(basePackages = {"com.music.player.auth", "com.music.player.chief"})
 public class MusicAdmStartUp {
 
     public static void main(String[] args) {

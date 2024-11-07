@@ -3,9 +3,12 @@ package com.music.player.chief.api.service.author;
 import com.music.player.chief.api.enums.ApiConstants;
 import com.music.player.chief.api.service.author.dto.AuditAuthorDto;
 import com.music.player.chief.api.service.author.dto.AuthenticatedDto;
+import com.music.player.chief.api.service.author.dto.FetchAuthorInfoDto;
 import com.music.player.chief.api.service.author.vo.AuditAuthorVo;
+import com.music.player.chief.api.service.author.vo.FetchAuthorInfoVo;
 import com.music.player.framework.common.base.R;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -21,5 +24,8 @@ public interface AuthorInfoServiceApi {
 
     @PostMapping(PREFIX + "auditAuthor")
     R<AuditAuthorVo> auditAuthor(@RequestBody AuditAuthorDto auditAuthorDto);
+
+    @GetMapping("fetchUserInfo")
+    R<FetchAuthorInfoVo> fetchAuthorInfo(FetchAuthorInfoDto fetchAuthorInfoDto);
 
 }

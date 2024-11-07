@@ -45,7 +45,7 @@ public class UserBiz {
     private JwtConfig jwtConfig;
 
     /**
-     * 登录并生成token
+     * login and generate token.
      */
     public AuthInfo login(UserLoginDto userLoginDto) {
         LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
@@ -61,6 +61,9 @@ public class UserBiz {
         if (!BCryptUtil.checkPassword(userLoginDto.getPassword(), userInfo.getPassword())) {
             throw new BizException(ErrorCodeConstants.PASSWORD_NOT_MATCH);
         }
+
+        // todo get user info
+
         JwtUser jwtUser = UserConvert.INSTANT.jwtUser(userInfo);
         String token = jwtTokenUtil.generateToken(jwtUser);
         cacheService.set(jwtConfig.getOnlineKey() + token, jwtUser, Duration.ofHours(jwtConfig.getExpiration()));
@@ -68,7 +71,7 @@ public class UserBiz {
     }
 
     /**
-     * 注册
+     * register.
      *
      * @param userRegisterDto
      */
@@ -97,7 +100,7 @@ public class UserBiz {
     }
 
     /**
-     * 获取用户信息
+     * get user info.
      *
      * @param getUserInfoDto
      * @return
