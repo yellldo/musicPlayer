@@ -59,7 +59,7 @@ public class AuthorInfoServiceApiImpl implements AuthorInfoServiceApi {
                 authorInfoService.save(authorInfo);
             }
             auditAuthorVo.setAuthorId(authorInfo.getAuthorId());
-            cacheService.set(AuthorRedisConstant.AUTHOR_KEY + authorInfo.getAuthorId(), AuthorInfoConvert.INSTANT.authorInfo(authorInfo));
+            cacheService.set(AuthorRedisConstant.AUTHOR_KEY + authorInfo.getAuthorId(), AuthorInfoConvert.INSTANT.authorInfoVo(authorInfo));
         }
         auditAuthorVo.setUserId(authorApplyInfo.getUserId());
         return R.ok(auditAuthorVo);
