@@ -6,8 +6,8 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
- * ClassName : GetSysUserInfoDto<br>
- * Description : GetSysUserInfoDto<br>
+ * ClassName : ObtainSysUserInfoDto<br>
+ * Description : ObtainSysUserInfoDto<br>
  *
  * @author : sj
  * @date : 2024/9/7
@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
 @Getter
 @ToString
 @Accessors(chain = true)
-public class GetSysUserInfoDto {
+public class ObtainSysUserInfoDto {
 
     private String token;
 }

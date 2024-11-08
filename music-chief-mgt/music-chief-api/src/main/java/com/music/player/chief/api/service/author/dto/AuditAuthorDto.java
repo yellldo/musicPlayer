@@ -18,6 +18,9 @@ public class AuditAuthorDto implements Serializable {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long authorApplyId;
 
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long authorId;
+
     private String auditStatus;
 
     private String auditRemark;

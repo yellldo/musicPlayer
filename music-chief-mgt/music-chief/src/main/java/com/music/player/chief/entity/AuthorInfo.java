@@ -31,11 +31,29 @@ public class AuthorInfo {
     @TableField("gender")
     private String gender;
 
+    @TableField("id_number")
+    private String idNumber;
+
+    @TableField("birthday")
+    private String birthday;
+
+    @TableField("school")
+    private String school;
+
     @TableField("country")
     private String country;
 
     @TableField("city")
     private String city;
+
+    @TableField("profile_photo")
+    private String profilePhoto;
+
+    @TableField("background_image")
+    private String backgroundImage;
+
+    @TableField("author_status")
+    private String authorStatus;
 
     @TableField("is_delete")
     private String isDelete;

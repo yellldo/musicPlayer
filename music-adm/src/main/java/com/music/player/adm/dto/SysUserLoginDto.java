@@ -19,12 +19,12 @@ import java.io.Serializable;
 @ToString
 public class SysUserLoginDto implements Serializable {
 
-    @NotEmpty(message = "请输入登录账号")
+    @NotEmpty(message = "登录账号不能为空")
     private String loginName;
 
     /**
      * 这里传的密文
      */
-    @NotEmpty(message = "请输入密码")
+    @NotEmpty(message = "密码不能为空")
     private String password;
 }

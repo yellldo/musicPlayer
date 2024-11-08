@@ -1,7 +1,5 @@
 package com.music.player.message.rest;
 
-import com.music.player.message.api.dto.CreateMessageDto;
-import com.music.player.message.api.service.MessageServiceApi;
 import org.springframework.web.bind.annotation.RestController;
 
 /**

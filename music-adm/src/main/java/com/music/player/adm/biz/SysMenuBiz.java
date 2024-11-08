@@ -26,9 +26,7 @@ public class SysMenuBiz {
 
 
     /**
-     * 添加菜单
-     *
-     * @param saveSysMenuDto
+     * Add a menu
      */
     public void saveSysMenu(SaveSysMenuDto saveSysMenuDto) {
         LambdaQueryWrapper<SysMenu> queryWrapper = new LambdaQueryWrapper<>();

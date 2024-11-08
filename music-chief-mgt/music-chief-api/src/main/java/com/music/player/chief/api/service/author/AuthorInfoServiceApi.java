@@ -17,7 +17,7 @@ import javax.validation.Valid;
 @FeignClient(value = ApiConstants.NAME, path = ApiConstants.PATH)
 public interface AuthorInfoServiceApi {
 
-    public final static String PREFIX = "/author/";
+    String PREFIX = "/author/";
 
     @PostMapping(PREFIX + "authenticated")
     void authenticated(@RequestBody @Valid AuthenticatedDto authenticatedDto);
@@ -25,7 +25,7 @@ public interface AuthorInfoServiceApi {
     @PostMapping(PREFIX + "auditAuthor")
     R<AuditAuthorVo> auditAuthor(@RequestBody AuditAuthorDto auditAuthorDto);
 
-    @GetMapping("fetchUserInfo")
+    @GetMapping(PREFIX + "fetchUserInfo")
     R<FetchAuthorInfoVo> fetchAuthorInfo(FetchAuthorInfoDto fetchAuthorInfoDto);
 
 }

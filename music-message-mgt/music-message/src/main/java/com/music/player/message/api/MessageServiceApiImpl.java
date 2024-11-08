@@ -1,7 +1,7 @@
 package com.music.player.message.api;
 
-import com.music.player.message.api.dto.CreateMessageDto;
-import com.music.player.message.api.service.MessageServiceApi;
+import com.music.player.message.api.service.message.dto.CreateMessageDto;
+import com.music.player.message.api.service.message.MessageServiceApi;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -17,6 +17,7 @@ public class MessageServiceApiImpl implements MessageServiceApi {
 
     @Override
     public void createMessage(CreateMessageDto createMessageDto) {
+
 
     }
 }

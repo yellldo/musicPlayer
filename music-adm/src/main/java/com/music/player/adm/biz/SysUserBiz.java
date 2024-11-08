@@ -2,7 +2,6 @@ package com.music.player.adm.biz;
 
 import cn.hutool.core.lang.UUID;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.music.player.adm.constants.AuthRedisConstant;
 import com.music.player.adm.convert.SysUserConvert;
 import com.music.player.adm.dto.SysUserLoginDto;
 import com.music.player.adm.dto.SysUserRegisterDto;
@@ -36,9 +35,7 @@ public class SysUserBiz {
 
 
     /**
-     * 后台用户注册
-     *
-     * @param sysUserRegisterDto
+     * User register
      */
     public void register(SysUserRegisterDto sysUserRegisterDto) {
         LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<>();
@@ -52,7 +49,7 @@ public class SysUserBiz {
     }
 
     /**
-     * 后台用户登录
+     * User login
      *
      * @param sysUserLoginDto
      * @return token
@@ -69,7 +66,7 @@ public class SysUserBiz {
         }
         // 这里暂时先用UUID代替
         String token = UUID.fastUUID().toString();
-        cacheService.set(AuthRedisConstant.SYS_USER_KEY + token, SysUserConvert.INSTANT.login(sysUser), Duration.ofMinutes(AuthRedisConstant.SYS_USER_LOGIN_EXPIRE));
+        cacheService.set(UserRedisConstant.SYS_USER_KEY + token, SysUserConvert.INSTANT.login(sysUser), Duration.ofMinutes(UserRedisConstant.SYS_USER_LOGIN_EXPIRE));
         return token;
     }
 

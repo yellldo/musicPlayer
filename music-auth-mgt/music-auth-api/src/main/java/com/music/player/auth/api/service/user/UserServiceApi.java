@@ -1,8 +1,7 @@
 package com.music.player.auth.api.service.user;
 
-import com.music.player.auth.api.service.user.dto.GetUserInfoDto;
+import com.music.player.auth.api.service.user.dto.ObtainUserInfoDto;
 import com.music.player.auth.api.enums.ApiConstants;
-import com.music.player.auth.api.service.user.dto.RelevanceAuthorDto;
 import com.music.player.auth.api.service.user.dto.SaveUserAuthorInfoDto;
 import com.music.player.auth.api.service.user.vo.UserInfoVo;
 import com.music.player.framework.common.base.R;
@@ -22,24 +21,15 @@ public interface UserServiceApi {
 
 
     /**
-     * 获取用户信息
-     *
-     * @param getUserInfoDto
-     * @return
+     * obtain user information
      */
-    @PostMapping("user/getUserInfo")
-    R<UserInfoVo> getUserInfo(@RequestBody GetUserInfoDto getUserInfoDto);
+    @PostMapping("user/obtainUserInfo")
+    R<UserInfoVo> obtainUserInfo(@RequestBody ObtainUserInfoDto obtainUserInfoDto);
 
-
-    @PostMapping("saveUserAuthorInfo")
-    void saveUserAuthorInfo(@RequestBody SaveUserAuthorInfoDto saveUserAuthorInfoDto);
 
     /**
-     * 关联作者
-     *
-     * @param relevanceAuthorDto
+     * save user information
      */
-    @PostMapping("relevanceAuthor")
-    void relevanceAuthor(@RequestBody RelevanceAuthorDto relevanceAuthorDto);
-
+    @PostMapping("saveUserAuthorInfo")
+    void saveUserAuthorInfo(@RequestBody SaveUserAuthorInfoDto saveUserAuthorInfoDto);
 }

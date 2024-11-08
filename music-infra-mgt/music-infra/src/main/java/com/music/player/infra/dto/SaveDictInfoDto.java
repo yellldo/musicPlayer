@@ -22,18 +22,18 @@ import java.io.Serializable;
 @ToString
 public class SaveDictInfoDto implements Serializable {
 
-    @NotEmpty(message = "请输入字典类型")
+    @NotEmpty(message = "字典类型不能为空")
     @ApiModelProperty("字典类型")
     private String dictType;
 
-    @NotEmpty(message = "请输入字典key")
+    @NotEmpty(message = "字典key不能为空")
     @ApiModelProperty("字典key")
     private String dictKey;
 
     @ApiModelProperty("父级id")
     private Integer parentId;
 
-    @NotEmpty(message = "请输入字典值")
+    @NotEmpty(message = "字典值不能为空")
     @ApiModelProperty("字典值")
     private String dictValue;
 

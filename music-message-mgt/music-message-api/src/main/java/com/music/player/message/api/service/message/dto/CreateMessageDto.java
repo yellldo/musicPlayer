@@ -1,4 +1,4 @@
-package com.music.player.message.api.dto;
+package com.music.player.message.api.service.message.dto;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -25,18 +25,14 @@ public class SysRoleBiz {
     private SysRoleService sysRoleService;
 
     /**
-     * 更新角色信息
-     *
-     * @param modifyRoleDto
+     * Update the role information
      */
     public void modifyRole(ModifyRoleDto modifyRoleDto) {
         sysRoleService.updateById(SysRoleConvert.INSTANT.modifyRole(modifyRoleDto));
     }
 
     /**
-     * 新增角色
-     *
-     * @param saveRoleDto
+     * Add a role
      */
     public void saveRole(SaveRoleDto saveRoleDto) {
         LambdaQueryWrapper<SysRole> queryWrapper = new LambdaQueryWrapper<>();

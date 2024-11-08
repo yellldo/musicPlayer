@@ -1,13 +1,13 @@
 package com.music.player.auth.api;
 
 import com.music.player.auth.api.service.user.UserServiceApi;
-import com.music.player.auth.api.service.user.dto.GetUserInfoDto;
-import com.music.player.auth.api.service.user.dto.RelevanceAuthorDto;
+import com.music.player.auth.api.service.user.dto.ObtainUserInfoDto;
 import com.music.player.auth.api.service.user.dto.SaveUserAuthorInfoDto;
 import com.music.player.auth.api.service.user.vo.UserInfoVo;
 import com.music.player.auth.biz.UserBiz;
 import com.music.player.auth.entity.UserAuthorInfo;
 import com.music.player.auth.service.UserAuthorInfoService;
+import com.music.player.framework.cache.service.CacheService;
 import com.music.player.framework.common.base.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,10 +26,12 @@ public class UserServiceApiImpl implements UserServiceApi {
     private UserBiz userBiz;
     @Autowired
     private UserAuthorInfoService userAuthorInfoService;
+    @Autowired
+    private CacheService cacheService;
 
     @Override
-    public R<UserInfoVo> getUserInfo(GetUserInfoDto getUserInfoDto) {
-        return R.ok(userBiz.getUserInfo(getUserInfoDto));
+    public R<UserInfoVo> obtainUserInfo(ObtainUserInfoDto obtainUserInfoDto) {
+        return R.ok(userBiz.obtainUserInfo(obtainUserInfoDto));
     }
 
     @Override
@@ -40,8 +42,5 @@ public class UserServiceApiImpl implements UserServiceApi {
         userAuthorInfoService.save(userAuthorInfo);
     }
 
-    @Override
-    public void relevanceAuthor(RelevanceAuthorDto relevanceAuthorDto) {
 
-    }
 }

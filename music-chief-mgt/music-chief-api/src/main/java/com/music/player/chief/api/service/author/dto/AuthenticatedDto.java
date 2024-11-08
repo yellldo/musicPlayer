@@ -17,6 +17,12 @@ public class AuthenticatedDto implements Serializable {
     @NotBlank(message = "请输入作者姓名")
     private String authorName;
 
+    private String idNumber;
+
+    private String birthday;
+
+    private String school;
+
     private Long userId;
 
     private String gender;
@@ -24,5 +30,9 @@ public class AuthenticatedDto implements Serializable {
     private String country;
 
     private String city;
+
+    private String profilePhoto;
+
+    private String backgroundImage;
 
 }

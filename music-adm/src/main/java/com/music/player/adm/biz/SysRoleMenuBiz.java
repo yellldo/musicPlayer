@@ -27,9 +27,7 @@ public class SysRoleMenuBiz {
     private ThreadPoolTaskExecutor customAsyncTaskExecutor;
 
     /**
-     * 角色关联菜单
-     *
-     * @param roleRelationMenuDto
+     * Role relation menu
      */
     @Transactional(rollbackFor = Exception.class)
     public void relation(RoleRelationMenuDto roleRelationMenuDto) {

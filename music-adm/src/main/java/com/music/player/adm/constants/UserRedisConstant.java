@@ -1,13 +1,13 @@
 package com.music.player.adm.constants;
 
 /**
- * ClassName : AuthRedisConstant<br>
+ * ClassName : UserRedisConstant<br>
  * Description : redis 常量<br>
  *
  * @author : sj
  * @date : 2024/8/31
  */
-public class AuthRedisConstant {
+public class UserRedisConstant {
 
 
     public static String SYS_USER_KEY = "sys:user:info:";

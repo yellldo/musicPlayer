@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.music.player.auth.api.dto.AuthInfo;
 import com.music.player.auth.api.dto.JwtUser;
 import com.music.player.auth.api.enums.ErrorCodeConstants;
-import com.music.player.auth.api.service.user.dto.GetUserInfoDto;
+import com.music.player.auth.api.service.user.dto.ObtainUserInfoDto;
 import com.music.player.auth.api.service.user.vo.UserInfoVo;
 import com.music.player.auth.config.JwtConfig;
 import com.music.player.auth.constants.AuthConstants;
@@ -45,7 +45,7 @@ public class UserBiz {
     private JwtConfig jwtConfig;
 
     /**
-     * login and generate token.
+     * Login and generate token.
      */
     public AuthInfo login(UserLoginDto userLoginDto) {
         LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
@@ -71,9 +71,7 @@ public class UserBiz {
     }
 
     /**
-     * register.
-     *
-     * @param userRegisterDto
+     * User register.
      */
     public void register(UserRegisterDto userRegisterDto) {
         if (StringUtils.isNotBlank(userRegisterDto.getPhone())) {
@@ -100,18 +98,15 @@ public class UserBiz {
     }
 
     /**
-     * get user info.
-     *
-     * @param getUserInfoDto
-     * @return
+     * Obtain user info.
      */
-    public UserInfoVo getUserInfo(GetUserInfoDto getUserInfoDto) {
-        String cacheKey = AuthRedisConstant.USER_KEY + getUserInfoDto.getUserId();
+    public UserInfoVo obtainUserInfo(ObtainUserInfoDto obtainUserInfoDto) {
+        String cacheKey = AuthRedisConstant.USER_KEY + obtainUserInfoDto.getUserId();
         if (cacheService.exists(cacheKey)) {
             return cacheService.get(cacheKey);
         }
         LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(UserInfo::getUserId, getUserInfoDto.getUserId());
+        queryWrapper.eq(UserInfo::getUserId, obtainUserInfoDto.getUserId());
         UserInfo userInfo = userInfoService.getOne(queryWrapper);
         UserInfoVo getUserInfoVo = UserConvert.INSTANT.getUserInfo(userInfo);
         cacheService.set(cacheKey, getUserInfoVo);

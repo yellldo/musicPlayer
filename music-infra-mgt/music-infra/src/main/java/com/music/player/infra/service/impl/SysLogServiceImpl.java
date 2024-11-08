@@ -24,7 +24,7 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
 
     @Override
     public IPage<SysLogVo> querySysLog(QuerySysLogDto querySysLogDto) {
-        Page<SysLogVo> page = new Page<>();
+        Page<SysLogVo> page = new Page<>(querySysLogDto.getPageNum(), querySysLogDto.getPageSize());
         return baseMapper.querySysLog(page, querySysLogDto);
     }
 }

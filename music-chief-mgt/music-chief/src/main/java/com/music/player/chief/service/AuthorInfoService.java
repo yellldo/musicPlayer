@@ -9,4 +9,6 @@ import com.music.player.chief.vo.QueryAuthorListVo;
 public interface AuthorInfoService extends IService<AuthorInfo> {
 
     IPage<QueryAuthorListVo> queryAuthorList(QueryAuthorListDto queryAuthorListDto);
+
+
 }

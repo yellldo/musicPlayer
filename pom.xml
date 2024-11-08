@@ -19,7 +19,6 @@
         <module>music-pay-mgt</module>
         <module>music-chief-mgt</module>
         <module>music-adm</module>
-        <module>music-web</module>
     </modules>
 
     <properties>

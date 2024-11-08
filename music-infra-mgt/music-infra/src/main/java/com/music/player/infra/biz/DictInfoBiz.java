@@ -2,8 +2,6 @@ package com.music.player.infra.biz;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.music.player.auth.api.service.user.dto.GetSysUserInfoDto;
-import com.music.player.framework.common.base.R;
 import com.music.player.framework.common.constant.CommonConstants;
 import com.music.player.framework.common.support.BizException;
 import com.music.player.framework.common.util.TokenUtil;
@@ -37,10 +35,7 @@ public class DictInfoBiz {
     private DictInfoService dictInfoService;
 
     /**
-     * 新增字典
-     *
-     * @param saveDictInfoDto
-     * @param request
+     * Add a dict
      */
     public void saveDictInfo(SaveDictInfoDto saveDictInfoDto, HttpServletRequest request) {
         String token = TokenUtil.getToken(request);
@@ -57,6 +52,9 @@ public class DictInfoBiz {
         dictInfoService.save(dictInfo);
     }
 
+    /**
+     * Delete the dict based on the condition
+     */
     @Transactional(rollbackFor = Exception.class)
     public void deleteDict(DeleteDictDto deleteDictDto) {
         // 更新父级字典删除状态
@@ -72,15 +70,16 @@ public class DictInfoBiz {
     }
 
     /**
-     * 更新字典信息
-     *
-     * @param modifyDictInfoDto
+     * Update dict information
      */
     public void modifyDictInfo(ModifyDictInfoDto modifyDictInfoDto) {
         DictInfo dictInfo = DictInfoConvert.INSTANT.modifyDictInfo(modifyDictInfoDto);
         dictInfoService.updateById(dictInfo);
     }
 
+    /**
+     * Query the list of dict
+     */
     public List<DictInfoVo> queryDictList(QueryDictListDto queryDictListDto) {
         return dictInfoService.queryDictList(queryDictListDto);
     }

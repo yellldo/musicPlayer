@@ -21,17 +21,35 @@ public class AuthorApplyInfo {
     @TableField("user_id")
     private Long userId;
 
+    @TableField("author_id")
+    private Long authorId;
+
     @TableField("author_name")
     private String authorName;
 
     @TableField("gender")
     private String gender;
 
+    @TableField("id_number")
+    private String idNumber;
+
+    @TableField("birthday")
+    private String birthday;
+
+    @TableField("school")
+    private String school;
+
     @TableField("country")
     private String country;
 
     @TableField("city")
     private String city;
+
+    @TableField("profile_photo")
+    private String profilePhoto;
+
+    @TableField("background_image")
+    private String backgroundImage;
 
     @TableField("auditStatus")
     private String auditStatus;

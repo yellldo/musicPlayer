@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.player.chief.mapper.MusicInfoMapper">
+
+    <select id="queryMusicList" parameterType="com.music.player.chief.dto.QueryMusicListDto"
+            resultType="com.music.player.chief.vo.QueryMusicListVo">
+        select music_id,music_name,author_id,music_cover,music_url,music_status from music_info
+        <where>
+            is_delete = '0'
+            <if test="queryMusicListDto.musicName != null and queryMusicListDto.musicName != ''">
+                and music_name like concat('%',#{queryMusicListDto.musicName},'%')
+            </if>
+            <if test="queryMusicListDto.musicStatus != null and queryMusicListDto.musicStatus != ''">
+                and music_status = #{queryMusicListDto.musicStatus}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+</mapper>

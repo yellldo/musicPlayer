@@ -5,8 +5,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * ClassName : GetUserInfoDto<br>
- * Description : GetUserInfoDto<br>
+ * ClassName : ObtainUserInfoDto<br>
+ * Description : ObtainUserInfoDto<br>
  *
  * @author : sj
  * @date : 2024/8/31
@@ -14,7 +14,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class GetUserInfoDto {
+public class ObtainUserInfoDto {
 
     private Long userId;
 }

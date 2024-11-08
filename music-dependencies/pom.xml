@@ -45,6 +45,7 @@
         <hutool.version>5.8.27</hutool.version>
         <knife4j.version>3.0.2</knife4j.version>
         <feign-okhhtp>13.3</feign-okhhtp>
+        <rocketmq.version>2.2.3</rocketmq.version>
     </properties>
 
     <dependencyManagement>
@@ -235,7 +236,11 @@
                 <artifactId>music-uid-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

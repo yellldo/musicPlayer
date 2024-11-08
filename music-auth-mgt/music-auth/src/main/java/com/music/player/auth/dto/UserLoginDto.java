@@ -22,14 +22,14 @@ import javax.validation.constraints.NotEmpty;
 public class UserLoginDto {
 
     @ApiModelProperty("登录方式")
-    @NotEmpty(message = "请选择登录方式")
+    @NotEmpty(message = "登录方式不能为空")
     private String loginType;
 
     @ApiModelProperty("登录账号")
-    @NotEmpty(message = "请输入账号")
+    @NotEmpty(message = "登录账号不能为空")
     private String loginName;
 
     @ApiModelProperty("密码")
-    @NotEmpty(message = "请输入密码")
+    @NotEmpty(message = "密码不能为空")
     private String password;
 }
