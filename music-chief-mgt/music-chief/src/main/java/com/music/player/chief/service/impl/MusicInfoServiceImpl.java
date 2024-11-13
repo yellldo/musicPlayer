@@ -13,6 +13,9 @@ import com.music.player.chief.vo.QueryMusicListVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author shenjia
+ */
 @Service
 public class MusicInfoServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> implements MusicInfoService {
 

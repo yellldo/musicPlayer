@@ -1,5 +1,8 @@
 package com.music.player.chief.constants;
 
+/**
+ * @author shenjia
+ */
 public class AuthorConstants {
 
 

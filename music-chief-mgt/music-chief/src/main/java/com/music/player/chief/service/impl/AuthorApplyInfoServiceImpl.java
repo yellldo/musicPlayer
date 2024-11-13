@@ -6,6 +6,9 @@ import com.music.player.chief.mapper.AuthorApplyInfoMapper;
 import com.music.player.chief.service.AuthorApplyInfoService;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author shenjia
+ */
 @Service
 public class AuthorApplyInfoServiceImpl extends ServiceImpl<AuthorApplyInfoMapper, AuthorApplyInfo> implements AuthorApplyInfoService {
 

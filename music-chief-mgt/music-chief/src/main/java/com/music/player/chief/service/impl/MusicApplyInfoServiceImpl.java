@@ -10,6 +10,9 @@ import com.music.player.chief.service.MusicApplyInfoService;
 import com.music.player.chief.vo.QueryMusicApplyInfoVo;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author shenjia
+ */
 @Service
 public class MusicApplyInfoServiceImpl extends ServiceImpl<MusicApplyInfoMapper, MusicApplyInfo> implements MusicApplyInfoService {
 

@@ -11,6 +11,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author shenjia
+ */
 @Api(tags = "作者管理")
 @RestController
 @RequestMapping("authInfo")

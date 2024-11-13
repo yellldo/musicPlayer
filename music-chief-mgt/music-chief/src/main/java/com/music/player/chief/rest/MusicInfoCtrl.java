@@ -10,6 +10,9 @@ import com.music.player.framework.common.base.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author shenjia
+ */
 @RestController
 @RequestMapping("musicInfo")
 public class MusicInfoCtrl {
