@@ -10,6 +10,9 @@ import com.music.player.chief.service.AuthorInfoService;
 import com.music.player.chief.vo.QueryAuthorListVo;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author shenjia
+ */
 @Service
 public class AuthorInfoServiceImpl extends ServiceImpl<AuthorInfoMapper, AuthorInfo> implements AuthorInfoService {
 

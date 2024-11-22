@@ -8,6 +8,9 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
+/**
+ * @author shenjia
+ */
 @Mapper
 public interface MusicInfoConvert {
 
