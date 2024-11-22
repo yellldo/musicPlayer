@@ -2,6 +2,7 @@ package com.music.player.chief.convert;
 
 import com.music.player.chief.dto.PublishMusicDto;
 import com.music.player.chief.entity.MusicApplyInfo;
+import com.music.player.chief.entity.MusicInfo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -22,4 +23,6 @@ public interface MusicInfoConvert {
     })
     MusicApplyInfo publishMusic(PublishMusicDto publishMusicDto);
 
+
+    MusicInfo musicApplyInfo(MusicApplyInfo musicApplyInfo);
 }

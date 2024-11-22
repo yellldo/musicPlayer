@@ -1,6 +1,6 @@
 package com.music.player.chief.convert;
 
-import com.music.player.chief.api.service.author.dto.AuditAuthorDto;
+import com.music.player.chief.api.service.author.dto.ApprovalAuthorDto;
 import com.music.player.chief.api.service.author.dto.AuthenticatedDto;
 import com.music.player.chief.dto.UpdateAuthorInfoDto;
 import com.music.player.chief.entity.AuthorApplyInfo;
@@ -34,7 +34,7 @@ public interface AuthorApplyInfoConvert {
             @Mapping(source = "auditStatus", target = "auditStatus"),
             @Mapping(source = "auditRemark", target = "auditRemark")
     })
-    AuthorApplyInfo auditAuthor(AuditAuthorDto auditAuthorDto);
+    AuthorApplyInfo approvalAuthor(ApprovalAuthorDto approvalAuthorDto);
 
     @Mappings({
             @Mapping(source = "authorName", target = "authorName"),

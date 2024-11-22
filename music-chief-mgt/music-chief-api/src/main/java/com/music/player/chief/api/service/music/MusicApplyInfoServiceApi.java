@@ -11,6 +11,4 @@ public interface MusicApplyInfoServiceApi {
     String PREFIX = "/musicInfo/";
 
 
-    @PostMapping("publishMusic")
-    R publishMusic();
 }

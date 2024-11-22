@@ -53,7 +53,8 @@ create table music_info
     music_url     varchar(500) not null comment '歌曲链接',
     music_status  char(1)      null comment '歌曲状态 0、正常 1、上架 2、下架',
     is_delete     char(1)  default '0' comment '删除标志位0、未删除1、已删除',
-    create_time   datetime default now() comment '创建时间'
+    create_time   datetime default now() comment '创建时间',
+    update_time   datetime default now() comment '修改时间'
 ) comment '歌曲表' charset = utf8mb4;
 
 create index idx_create_time_music_name on music_info (create_time, music_name);
@@ -62,6 +63,7 @@ drop table if exists music_apply_info;
 create table music_apply_info
 (
     music_apply_id     bigint       not null primary key comment '主键',
+    music_id           bigint       null comment '歌曲id',
     music_name         varchar(30)  not null comment '歌曲名称',
     author_id          bigint       not null comment '作者id',
     music_cover        varchar(500) null comment '封面',

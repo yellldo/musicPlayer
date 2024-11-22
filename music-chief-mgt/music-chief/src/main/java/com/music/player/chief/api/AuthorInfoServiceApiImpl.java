@@ -2,10 +2,10 @@ package com.music.player.chief.api;
 
 import com.music.player.chief.api.enums.ErrorCodeConstants;
 import com.music.player.chief.api.service.author.AuthorInfoServiceApi;
-import com.music.player.chief.api.service.author.dto.AuditAuthorDto;
+import com.music.player.chief.api.service.author.dto.ApprovalAuthorDto;
 import com.music.player.chief.api.service.author.dto.AuthenticatedDto;
 import com.music.player.chief.api.service.author.dto.FetchAuthorInfoDto;
-import com.music.player.chief.api.service.author.vo.AuditAuthorVo;
+import com.music.player.chief.api.service.author.vo.ApprovalAuthorVo;
 import com.music.player.chief.api.service.author.vo.FetchAuthorInfoVo;
 import com.music.player.chief.biz.AuthorInfoBiz;
 import com.music.player.chief.constants.AuthorConstants;
@@ -44,25 +44,25 @@ public class AuthorInfoServiceApiImpl implements AuthorInfoServiceApi {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public R<AuditAuthorVo> auditAuthor(AuditAuthorDto auditAuthorDto) {
-        AuthorApplyInfo authorApplyInfo = AuthorApplyInfoConvert.INSTANT.auditAuthor(auditAuthorDto);
+    public R<ApprovalAuthorVo> approvalAuthor(ApprovalAuthorDto approvalAuthorDto) {
+        AuthorApplyInfo authorApplyInfo = AuthorApplyInfoConvert.INSTANT.approvalAuthor(approvalAuthorDto);
         authorApplyInfoService.updateById(authorApplyInfo);
-        AuditAuthorVo auditAuthorVo = new AuditAuthorVo();
-        if (AuthorConstants.AUTHOR_AUDIT_STATUS_PASS.equals(auditAuthorDto.getAuditStatus())) {
+        ApprovalAuthorVo approvalAuthorVo = new ApprovalAuthorVo();
+        if (AuthorConstants.AUTHOR_AUDIT_STATUS_PASS.equals(approvalAuthorDto.getAuditStatus())) {
             AuthorInfo authorInfo = new AuthorInfo();
-            authorApplyInfo = authorApplyInfoService.getById(auditAuthorDto.getAuthorApplyId());
-            if (auditAuthorDto.getAuthorId() != null) {
+            authorApplyInfo = authorApplyInfoService.getById(approvalAuthorDto.getAuthorApplyId());
+            if (approvalAuthorDto.getAuthorId() != null) {
                 authorInfo = AuthorInfoConvert.INSTANT.authorApplyInfo(authorApplyInfo);
                 authorInfoService.updateById(authorInfo);
             } else {
                 authorInfo = AuthorInfoConvert.INSTANT.authorApplyInfo(authorApplyInfo);
                 authorInfoService.save(authorInfo);
             }
-            auditAuthorVo.setAuthorId(authorInfo.getAuthorId());
+            approvalAuthorVo.setAuthorId(authorInfo.getAuthorId());
             cacheService.set(AuthorRedisConstant.AUTHOR_KEY + authorInfo.getAuthorId(), AuthorInfoConvert.INSTANT.authorInfoVo(authorInfo));
         }
-        auditAuthorVo.setUserId(authorApplyInfo.getUserId());
-        return R.ok(auditAuthorVo);
+        approvalAuthorVo.setUserId(authorApplyInfo.getUserId());
+        return R.ok(approvalAuthorVo);
     }
 
     @Override

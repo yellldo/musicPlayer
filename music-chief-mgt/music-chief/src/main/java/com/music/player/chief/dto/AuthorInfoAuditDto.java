@@ -11,6 +11,6 @@ import java.io.Serializable;
 @ToString
 public class AuthorInfoAuditDto implements Serializable {
 
-
     private String aa;
+
 }

@@ -1,6 +1,7 @@
 package com.music.player.chief.rest;
 
-import com.music.player.chief.biz.MusicBiz;
+import com.music.player.chief.biz.MusicInfoBiz;
+import com.music.player.chief.dto.ApprovalMusicDto;
 import com.music.player.chief.dto.QueryMusicApplyListDto;
 import com.music.player.chief.dto.PublishMusicDto;
 import com.music.player.chief.dto.QueryMusicListDto;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class MusicInfoCtrl {
 
     @Autowired
-    private MusicBiz musicBiz;
+    private MusicInfoBiz musicInfoBiz;
     @Autowired
     private MusicApplyInfoService musicApplyInfoService;
     @Autowired
@@ -23,24 +24,35 @@ public class MusicInfoCtrl {
 
 
     /**
-     * publish the author's music
+     * Publish the author's music
      */
     @PostMapping("publishMusic")
     public R publishMusic(@RequestBody PublishMusicDto publishMusicDto) {
-        musicBiz.publishMusic(publishMusicDto);
+        musicInfoBiz.publishMusic(publishMusicDto);
         return R.ok();
     }
 
     /**
-     * query music apply list
+     * Query the list of music apply
      */
     @GetMapping("queryMusicApplyList")
     public R queryMusicApplyList(QueryMusicApplyListDto queryMusicApplyListDto) {
         return R.ok(musicApplyInfoService.queryMusicApplyList(queryMusicApplyListDto));
     }
 
+    /**
+     * Query the list of music
+     */
     @GetMapping("queryMusicList")
     public R queryMusicList(QueryMusicListDto queryMusicListDto) {
         return R.ok(musicInfoService.queryMusicList(queryMusicListDto));
+    }
+
+    /**
+     * Approval music
+     */
+    @PostMapping("approvalMusic")
+    public R approvalMusic(@RequestBody ApprovalMusicDto approvalMusicDto) {
+        return R.ok();
     }
 }

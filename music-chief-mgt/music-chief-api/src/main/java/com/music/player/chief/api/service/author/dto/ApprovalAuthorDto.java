@@ -1,4 +1,4 @@
-package com.music.player.adm.dto;
+package com.music.player.chief.api.service.author.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -13,12 +13,16 @@ import java.io.Serializable;
 @Getter
 @ToString
 @Accessors(chain = true)
-public class AdmAuditAuthorDto implements Serializable {
+public class ApprovalAuthorDto implements Serializable {
 
     @JsonSerialize(using = ToStringSerializer.class)
     private Long authorApplyId;
 
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long authorId;
+
     private String auditStatus;
 
     private String auditRemark;
+
 }

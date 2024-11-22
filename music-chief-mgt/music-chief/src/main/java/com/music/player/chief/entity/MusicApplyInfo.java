@@ -18,6 +18,9 @@ public class MusicApplyInfo {
     @TableId("music_apply_id")
     private Long musicApplyId;
 
+    @TableField("music_id")
+    private Long musicId;
+
     @TableField("music_name")
     private String musicName;
 
@@ -36,8 +39,11 @@ public class MusicApplyInfo {
     @TableField("duration")
     private Integer duration;
 
-    @TableField("music_status")
-    private String musicStatus;
+    @TableField("music_apply_status")
+    private String musicApplyStatus;
+
+    @TableField("music_apply_remark")
+    private String musicApplyRemark;
 
     @TableField("is_delete")
     private String isDelete;

@@ -44,4 +44,7 @@ public class MusicInfo {
 
     @TableField("create_time")
     private Date createTime;
+
+    @TableField("update_time")
+    private Date updateTime;
 }

@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString
-public class AuditAuthorVo implements Serializable {
+public class ApprovalAuthorVo implements Serializable {
 
     private Long userId;
 

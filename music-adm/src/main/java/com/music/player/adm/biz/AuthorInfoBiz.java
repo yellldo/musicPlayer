@@ -1,12 +1,12 @@
 package com.music.player.adm.biz;
 
-import com.music.player.adm.dto.AdmAuditAuthorDto;
+import com.music.player.adm.dto.AdmApprovalAuthorDto;
 import com.music.player.auth.api.service.user.UserServiceApi;
 import com.music.player.auth.api.service.user.dto.SaveUserAuthorInfoDto;
 import com.music.player.chief.api.service.author.AuthorInfoServiceApi;
-import com.music.player.chief.api.service.author.dto.AuditAuthorDto;
+import com.music.player.chief.api.service.author.dto.ApprovalAuthorDto;
 import com.music.player.chief.api.service.author.dto.FetchAuthorInfoDto;
-import com.music.player.chief.api.service.author.vo.AuditAuthorVo;
+import com.music.player.chief.api.service.author.vo.ApprovalAuthorVo;
 import com.music.player.chief.api.service.author.vo.FetchAuthorInfoVo;
 import com.music.player.framework.common.base.HttpCode;
 import com.music.player.framework.common.base.R;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class AuthorBiz {
+public class AuthorInfoBiz {
 
     @Autowired
     private AuthorInfoServiceApi authorInfoServiceApi;
@@ -23,30 +23,30 @@ public class AuthorBiz {
     private UserServiceApi userServiceApi;
 
     /**
-     * The author audit
+     * The approval audit
      * Obtain user information based on user type
      * TODO distributed transaction are required here
      */
     @Transactional(rollbackFor = Exception.class)
-    public void auditAuthor(AdmAuditAuthorDto admAuditAuthorDto) {
-        AuditAuthorDto auditAuthorDto = new AuditAuthorDto()
-                .setAuditRemark(admAuditAuthorDto.getAuditRemark())
-                .setAuthorApplyId(admAuditAuthorDto.getAuthorApplyId())
-                .setAuditStatus(admAuditAuthorDto.getAuditStatus());
-        R<AuditAuthorVo> result = authorInfoServiceApi.auditAuthor(auditAuthorDto);
+    public void approvalAuthor(AdmApprovalAuthorDto admApprovalAuthorDto) {
+        ApprovalAuthorDto approvalAuthorDto = new ApprovalAuthorDto()
+                .setAuditRemark(admApprovalAuthorDto.getAuditRemark())
+                .setAuthorApplyId(admApprovalAuthorDto.getAuthorApplyId())
+                .setAuditStatus(admApprovalAuthorDto.getAuditStatus());
+        R<ApprovalAuthorVo> result = authorInfoServiceApi.approvalAuthor(approvalAuthorDto);
         if (HttpCode.SUCCESS.getCode() == result.getCode()) {
-            AuditAuthorVo auditAuthorVo = result.getData();
+            ApprovalAuthorVo approvalAuthorVo = result.getData();
             // determine whether the author exists
             FetchAuthorInfoDto fetchAuthorInfoDto = new FetchAuthorInfoDto()
-                    .setId(auditAuthorVo.getAuthorId());
+                    .setId(approvalAuthorVo.getAuthorId());
             R<FetchAuthorInfoVo> fetchAuthorInfoVoR = authorInfoServiceApi.fetchAuthorInfo(fetchAuthorInfoDto);
 
             if (HttpCode.SUCCESS.getCode() == fetchAuthorInfoVoR.getCode()) {
 
             } else {
                 SaveUserAuthorInfoDto saveUserAuthorInfoDto = new SaveUserAuthorInfoDto()
-                        .setAuthorId(auditAuthorVo.getAuthorId())
-                        .setUserId(auditAuthorVo.getUserId());
+                        .setAuthorId(approvalAuthorVo.getAuthorId())
+                        .setUserId(approvalAuthorVo.getUserId());
                 userServiceApi.saveUserAuthorInfo(saveUserAuthorInfoDto);
             }
         }

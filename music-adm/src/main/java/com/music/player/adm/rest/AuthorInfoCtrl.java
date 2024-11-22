@@ -1,7 +1,7 @@
 package com.music.player.adm.rest;
 
-import com.music.player.adm.biz.AuthorBiz;
-import com.music.player.adm.dto.AdmAuditAuthorDto;
+import com.music.player.adm.biz.AuthorInfoBiz;
+import com.music.player.adm.dto.AdmApprovalAuthorDto;
 import com.music.player.framework.common.base.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 public class AuthorInfoCtrl {
 
     @Autowired
-    private AuthorBiz authorBiz;
+    private AuthorInfoBiz authorInfoBiz;
 
     /**
      * the author audit
      */
-    @PostMapping("auditAuthor")
-    public R auditAuthor(@RequestBody AdmAuditAuthorDto admAuditAuthorDto) {
-        authorBiz.auditAuthor(admAuditAuthorDto);
+    @PostMapping("approvalAuthor")
+    public R approvalAuthor(@RequestBody AdmApprovalAuthorDto admApprovalAuthorDto) {
+        authorInfoBiz.approvalAuthor(admApprovalAuthorDto);
         return R.ok();
     }
 

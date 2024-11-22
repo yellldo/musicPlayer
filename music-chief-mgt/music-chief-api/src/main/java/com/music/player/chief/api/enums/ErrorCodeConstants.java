@@ -8,7 +8,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ErrorCodeConstants implements IErrorCode {
 
-    AUTHOR_NOT_EXISTS("2-002-000-004", "用户不存在"),
+    AUTHOR_NOT_EXISTS("2-002-000-001", "用户不存在"),
+
+    MUSIC_APPLY_NOT_EXISTS("2-002-000-002", "音乐申请信息不存在"),
 
     ;
 
