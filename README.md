@@ -1,6 +1,5 @@
 # musicPlayer
 
-磊哥的音乐播放器
 
 
 # common 基础工具类
