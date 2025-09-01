@@ -3,16 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.musicPlayer</groupId>
+    <groupId>com.music.player</groupId>
+    <artifactId>musicPlayer</artifactId>
+    <version>${revision}</version>
     <packaging>pom</packaging>
     <modules>
         <module>music-dependencies</module>
         <module>music-framework</module>
-        <module>music-framework/music-common</module>
+        <module>music-infra</module>
+        <module>music-system</module>
     </modules>
-    <artifactId>musicPlayer</artifactId>
-    <version>${revision}</version>
 
     <properties>
         <revision>1.0-SNAPSHOT</revision>

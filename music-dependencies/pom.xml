@@ -20,6 +20,11 @@
         <spring-cloud-alibaba-dependencies.version>2023.0.3.3</spring-cloud-alibaba-dependencies.version>
         <spring-boot-dependencies.version>3.5.5</spring-boot-dependencies.version>
         <spring-cloud-dependencies.version>2025.0.0</spring-cloud-dependencies.version>
+        <mybatis-plus.version>3.5.13</mybatis-plus.version>
+        <druid.version>1.2.27</druid.version>
+        <mybatis-plus-join.version>1.5.4</mybatis-plus-join.version>
+        <dynamic-datasource.version>4.3.1</dynamic-datasource.version>
+        <mybatis-plus-jsqlparser.version>3.5.12</mybatis-plus-jsqlparser.version>
         <spring-doc.version>2.8.11</spring-doc.version>
         <hutool-bom.version>5.8.40</hutool-bom.version>
         <guava.version>33.4.8-jre</guava.version>
@@ -63,6 +68,35 @@
                 </exclusions>
             </dependency>
             <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-3-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.yulichang</groupId>
+                <artifactId>mybatis-plus-join-boot-starter</artifactId> <!-- MyBatis 联表查询 -->
+                <version>${mybatis-plus-join.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot3-starter</artifactId> <!-- 多数据源 -->
+                <version>${dynamic-datasource.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-jsqlparser</artifactId>
+                <version>${mybatis-plus-jsqlparser.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${spring-doc.version}</version>
@@ -71,9 +105,11 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-bom</artifactId>
                 <version>${hutool-bom.version}</version>
-                <type>pom</type>
-                <!-- 注意这里是import -->
-                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-bom.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
@@ -81,6 +117,11 @@
                 <version>${guava.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-common</artifactId>
+                <version>${revision}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
