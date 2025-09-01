@@ -22,6 +22,7 @@
         <spring-cloud-dependencies.version>2025.0.0</spring-cloud-dependencies.version>
         <spring-doc.version>2.8.11</spring-doc.version>
         <hutool-bom.version>5.8.40</hutool-bom.version>
+        <guava.version>33.4.8-jre</guava.version>
     </properties>
 
 
@@ -73,6 +74,11 @@
                 <type>pom</type>
                 <!-- 注意这里是import -->
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
 
         </dependencies>

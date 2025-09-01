@@ -1,0 +1,76 @@
+package com.music.player.framework.common.constants;
+
+/**
+ * ClassName : CommonConstants<br>
+ * Description : CommonConstants<br>
+ *
+ * @author : sj
+ * @date : 8/31/25
+ */
+public class CommonConstants {
+
+    /**
+     * 删除
+     */
+    public static final String STATUS_DEL = "1";
+    /**
+     * 未删除
+     */
+    public static final String STATUS_NOT_DEL = "0";
+
+    /**
+     * 正常
+     */
+    public static final String STATUS_NORMAL = "0";
+
+    /**
+     * 锁定
+     */
+    public static final String STATUS_LOCK = "9";
+
+    /**
+     * 菜单树根节点
+     */
+    public static final Long MENU_TREE_ROOT_ID = -1L;
+
+    /**
+     * 菜单
+     */
+    public static final String MENU = "0";
+
+    /**
+     * 编码
+     */
+    public static final String UTF8 = "UTF-8";
+
+    /**
+     * JSON 资源
+     */
+    public static final String CONTENT_TYPE = "application/json; charset=utf-8";
+
+
+    /**
+     * 成功标记
+     */
+    public static final Integer SUCCESS = 200;
+
+    /**
+     * 失败标记
+     */
+    public static final Integer FAIL = 500;
+
+    /**
+     * 当前页
+     */
+    public static final String CURRENT = "current";
+
+    /**
+     * size
+     */
+    public static final String SIZE = "size";
+
+    /**
+     * 请求开始时间
+     */
+    public static final String REQUEST_START_TIME = "REQUEST-START-TIME";
+}
