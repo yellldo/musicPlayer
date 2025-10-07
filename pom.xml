@@ -12,6 +12,7 @@
         <module>music-framework</module>
         <module>music-infra</module>
         <module>music-system</module>
+        <module>music-gateway</module>
     </modules>
 
     <properties>
