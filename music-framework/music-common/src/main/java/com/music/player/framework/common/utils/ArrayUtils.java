@@ -36,9 +36,9 @@ public class ArrayUtils {
         return result;
     }
 
-    public static <T, V> V[] toArray(Collection<T> from, Function<T, V> mapper) {
-        return toArray(convertList(from, mapper));
-    }
+//    public static <T, V> V[] toArray(Collection<T> from, Function<T, V> mapper) {
+//        return toArray(convertList(from, mapper));
+//    }
 
 
     @SuppressWarnings("unchecked")

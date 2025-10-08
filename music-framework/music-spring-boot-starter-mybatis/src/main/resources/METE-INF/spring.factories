@@ -1,2 +1,2 @@
 org.springframework.boot.env.EnvironmentPostProcessor=\
-  com.music.player.mybatis.config.IdTypeEnvironmentPostProcessor
+  config.com.music.player.framework.mybatis.IdTypeEnvironmentPostProcessor

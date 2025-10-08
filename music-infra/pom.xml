@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
-    <description>用户、系统配置相关</description>
+    <description>后台用户、系统配置相关</description>
     <modules>
         <module>music-infra-server</module>
         <module>music-infra-api</module>

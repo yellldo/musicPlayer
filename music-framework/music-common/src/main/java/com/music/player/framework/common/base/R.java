@@ -47,6 +47,10 @@ public class R<T> implements Serializable {
         return restResult(null, CommonConstants.FAIL, null);
     }
 
+    public static <T> R<T> failed(Integer code, String msg) {
+        return restResult(null, code, msg);
+    }
+
     public static <T> R<T> failed(String msg) {
         return restResult(null, CommonConstants.FAIL, msg);
     }

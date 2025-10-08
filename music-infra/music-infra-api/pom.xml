@@ -10,11 +10,18 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>music-infra-api</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
     <description>
         infra 模块 API，暴露给其它模块调用
     </description>
 
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 </project>
