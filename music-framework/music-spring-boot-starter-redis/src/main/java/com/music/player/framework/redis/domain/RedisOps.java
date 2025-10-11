@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.*;
+import org.springframework.util.StringUtils;
 
 import java.time.Duration;
 import java.util.Map;
@@ -41,7 +42,6 @@ public class RedisOps {
         this.streamOps = redisTemplate.opsForStream();
         this.stringRedisTemplate = stringRedisTemplate;
     }
-
 
     /**
      * 检查value是否为null
@@ -114,6 +114,14 @@ public class RedisOps {
             return;
         }
         valueOps.set(key, value == null ? new NullValue() : value, seconds, TimeUnit.SECONDS);
+    }
+
+    public void del(String key) {
+        if (!StringUtils.hasLength(key)) {
+            log.warn("key为空，不进行删除操作");
+            return;
+        }
+        redisTemplate.delete(key);
     }
 
     /**

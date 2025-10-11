@@ -21,4 +21,34 @@ create table user_info(
 	update_time datetime null comment '更新时间',
   	create_by bigint comment '创建人',
   	update_by bigint comment '更新人'
-)
+) comment '用户表' charset = utf8mb4;
+
+drop table if exists user_login_log;
+create table user_login_log(
+    id bigint primary key not null,
+    userId bigint not null,
+    ip varchar(15) null comment '登录ip',
+    device varchar(20) null comment '登录设备',
+ 	create_time datetime null comment '创建时间',
+ 	update_time datetime null comment '更新时间',
+   	create_by bigint comment '创建人',
+   	update_by bigint comment '更新人'
+) comment '登录日志表' charset = utf8mb4;
+
+drop table if exists user_follow;
+create table user_follow(
+    id bigint not null,
+    follower_id bigint not null,
+    following_id bigint not null,
+    create_time datetime comment '被关注的时间'
+) comment '用户关注表' charset = utf8mb4;
+
+
+drop table if exists user_favorite_song;
+create table user_favorite_song(
+(
+    id bigint primary key not null,
+    user_id bigint not null comment '用户ID',
+    song_id bigint not null comment '歌曲ID',
+    create_time datetime comment '收藏时间'
+) comment '用户收藏歌曲表' charset = utf8mb4;

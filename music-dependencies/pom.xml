@@ -32,6 +32,7 @@
         <p6spy.version>1.9.2</p6spy.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
         <sa-token.version>1.43.0</sa-token.version>
+        <knife4j.version>4.4.0</knife4j.version>
     </properties>
 
 
@@ -152,6 +153,11 @@
                 <artifactId>music-user-api</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-system-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.mapstruct</groupId>
@@ -183,6 +189,14 @@
                 <artifactId>sa-token-redis-template</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 

@@ -1,4 +1,4 @@
-package com.music.player.framework.mybatis.config;
+package com.music.player.framework.mybatis;
 
 import com.music.player.framework.mybatis.handler.MetaDataHandler;
 import org.springframework.boot.autoconfigure.AutoConfiguration;

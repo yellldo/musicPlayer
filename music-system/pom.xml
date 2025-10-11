@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
+    <description>系统管理相关</description>
     <modules>
         <module>music-system-api</module>
         <module>music-system-server</module>

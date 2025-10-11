@@ -15,6 +15,7 @@
         <module>music-gateway</module>
         <module>music-user</module>
         <module>music-recommend</module>
+        <module>music-content</module>
     </modules>
 
     <properties>

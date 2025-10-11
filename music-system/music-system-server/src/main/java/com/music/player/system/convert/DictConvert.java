@@ -2,10 +2,13 @@ package com.music.player.system.convert;
 
 import com.music.player.framework.common.base.PageResult;
 import com.music.player.system.dto.CreateDictDto;
+import com.music.player.system.dto.UpdateDictDto;
 import com.music.player.system.entity.DictInfo;
 import com.music.player.system.vo.DictInfoVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+
+import java.util.List;
 
 
 /**
@@ -24,4 +27,7 @@ public interface DictConvert {
 
     PageResult<DictInfoVo> convertPage(PageResult<DictInfo> pageResult);
 
+    List<DictInfoVo> converList(List<DictInfo> dictInfos);
+
+    DictInfo update(UpdateDictDto updateDictDto);
 }

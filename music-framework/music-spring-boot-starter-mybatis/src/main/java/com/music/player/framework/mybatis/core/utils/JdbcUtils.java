@@ -3,14 +3,9 @@ package com.music.player.framework.mybatis.core.utils;
 //import com.baomidou.dynamic.datasource.DynamicRoutingDataSource;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.music.player.framework.common.utils.ObjectUtils;
-import com.music.player.framework.common.utils.SpringUtils;
-import com.music.player.framework.mybatis.core.enums.DbTypeEnum;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 /**
  * ClassName : JdbcUtils<br>

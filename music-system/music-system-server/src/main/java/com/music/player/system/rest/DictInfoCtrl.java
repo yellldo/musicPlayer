@@ -1,9 +1,12 @@
 package com.music.player.system.rest;
 
+import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.base.R;
 import com.music.player.system.biz.DictBiz;
 import com.music.player.system.dto.CreateDictDto;
 import com.music.player.system.dto.DictPageDto;
+import com.music.player.system.dto.UpdateDictDto;
+import com.music.player.system.vo.DictInfoVo;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("dictInfo")
 public class DictInfoCtrl {
 
-
     @Autowired
     private DictBiz dictBiz;
 
@@ -37,8 +39,14 @@ public class DictInfoCtrl {
     }
 
     @PostMapping("page")
-    public R getDictPage(@RequestBody DictPageDto dictPageDto) {
+    public R<PageResult<DictInfoVo>> getDictPage(@RequestBody DictPageDto dictPageDto) {
         return dictBiz.page(dictPageDto);
+    }
+
+    @PostMapping("update")
+    public R update(@Valid @RequestBody UpdateDictDto updateDictDto) {
+        dictBiz.update(updateDictDto);
+        return R.ok();
     }
 
 }

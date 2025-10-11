@@ -1,11 +1,11 @@
 spring:
   application:
-    name: music-infra
+    name: music-system
   main:
     allow-bean-definition-overriding: true
   config:
     import:
-      - nacos:music-infra.yml
+      - nacos:music-system.yml
   cloud:
     nacos:
       username: nacos
@@ -21,13 +21,13 @@ spring:
 #      - dev
 server:
   servlet:
-    context-path: /music-infra
-  port: 8088
+    context-path: /music-system
+  port: 9018
 mybatis-plus:
   # 实体类扫描路径
-  type-aliases-package: com.music.player.infra.entity
+  type-aliases-package: com.music.player.*.entity
   # xml 扫描路径
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:mapper/*/*.xml
   configuration:
     jdbc-type-for-null: null
   global-config:

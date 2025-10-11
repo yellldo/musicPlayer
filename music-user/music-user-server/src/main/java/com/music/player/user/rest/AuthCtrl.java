@@ -41,7 +41,7 @@ public class AuthCtrl {
     private AuthBiz authBiz;
 
     @PostMapping("login")
-    public R<LoginVo> login(@Valid @RequestBody LoginDto loginDto) {
+    public R<LoginVo> login(@Valid @RequestBody LoginDto loginDto, HttpServletRequest request) {
         String key = RedisConstants.LOGIN_PHONE_CODE + loginDto.getPhone();
         Integer code = redisOps.get(key, false);
         if (!Objects.nonNull(code)) {
@@ -50,7 +50,7 @@ public class AuthCtrl {
         if (!code.equals(loginDto.getCode())) {
             throw new BusinessException(ErrorCodeConstants.PHONE_CODE_NOT_MATCH);
         }
-        SaTokenInfo tokenInfo = authBiz.login(loginDto);
+        SaTokenInfo tokenInfo = authBiz.login(request, loginDto);
 
         LoginVo loginVo = new LoginVo()
                 .setToken(tokenInfo.getTokenValue())

@@ -1,4 +1,4 @@
-package com.music.player.system.api.enums;
+package com.music.player.system.enmus;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

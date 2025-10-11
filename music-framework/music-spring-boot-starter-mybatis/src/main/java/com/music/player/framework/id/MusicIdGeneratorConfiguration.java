@@ -1,4 +1,4 @@
-package com.music.player.framework.id.config;
+package com.music.player.framework.id;
 
 import cn.hutool.core.lang.Snowflake;
 import com.music.player.framework.id.service.IdGeneratorService;

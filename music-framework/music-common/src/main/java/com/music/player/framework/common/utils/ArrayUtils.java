@@ -8,6 +8,8 @@ import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import static com.music.player.framework.common.utils.CollectionUtils.convertList;
+
 /**
  * ClassName : ArrayUtils<br>
  * Description : ArrayUtils<br>
@@ -36,9 +38,9 @@ public class ArrayUtils {
         return result;
     }
 
-//    public static <T, V> V[] toArray(Collection<T> from, Function<T, V> mapper) {
-//        return toArray(convertList(from, mapper));
-//    }
+    public static <T, V> V[] toArray(Collection<T> from, Function<T, V> mapper) {
+        return toArray(convertList(from, mapper));
+    }
 
 
     @SuppressWarnings("unchecked")

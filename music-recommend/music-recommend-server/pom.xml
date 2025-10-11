@@ -10,5 +10,13 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>music-recommend-server</artifactId>
+    <packaging>jar</packaging>
+
+    <name>${project.artifactId}</name>
+    <description>
+        recommend 模块，主要提供两块能力：
+        1.
+    </description>
+
 
 </project>

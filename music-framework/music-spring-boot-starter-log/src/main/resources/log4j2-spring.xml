@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <!-- 全局属性，可在日志模板中引用 -->
+    <Properties>
+        <!-- 定义日志输出格式 -->
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+        <!-- 日志文件存储目录 -->
+        <Property name="LOG_DIR">${spring:logging.file.path}</Property>
+        <!-- 应用名称（用于日志文件名） -->
+        <Property name="APP_NAME">${spring:logging.file.name}</Property>
+    </Properties>
+
+    <!-- 输出源（Appenders） -->
+    <Appenders>
+        <!-- 1. 控制台输出（彩色日志，适合开发环境） -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}" disableAnsi="false"/>
+            <!-- 日志级别过滤器：只输出 INFO 及以上级别 -->
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Console>
+
+        <!-- 2. 文件滚动归档（生产环境推荐） -->
+        <RollingRandomAccessFile name="File"
+                                 fileName="${LOG_DIR}/${APP_NAME}.log"
+                                 filePattern="${LOG_DIR}/${APP_NAME}-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <!-- 按时间滚动（每天） -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!-- 按文件大小滚动（100MB） -->
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <!-- 保留最近 30 天的日志，压缩为 .gz 归档 -->
+            <DefaultRolloverStrategy max="30" compressionLevel="9"/>
+        </RollingRandomAccessFile>
+
+        <!-- 3. 异步日志提升性能（可选） -->
+        <Async name="AsyncFile" bufferSize="262144">
+            <AppenderRef ref="File"/>
+        </Async>
+    </Appenders>
+
+    <!-- 日志记录器（Loggers） -->
+    <Loggers>
+        <!-- 默认屏蔽无关日志 -->
+        <Logger name="org.apache" level="WARN"/>
+        <Logger name="com.zaxxer.hikari" level="WARN"/>
+
+        <!-- 自定义包路径日志级别 -->
+        <Logger name="com.music.player" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AsyncFile"/>
+        </Logger>
+
+        <!-- Spring 框架日志控制 -->
+        <Logger name="org.springframework" level="INFO"/>
+
+        <!-- 根日志记录器 -->
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AsyncFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
