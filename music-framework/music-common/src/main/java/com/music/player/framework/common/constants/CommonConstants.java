@@ -18,15 +18,6 @@ public class CommonConstants {
      */
     public static final String STATUS_NOT_DEL = "0";
 
-    /**
-     * 正常
-     */
-    public static final String STATUS_NORMAL = "0";
-
-    /**
-     * 锁定
-     */
-    public static final String STATUS_LOCK = "9";
 
     /**
      * 菜单树根节点
@@ -59,15 +50,7 @@ public class CommonConstants {
      */
     public static final Integer FAIL = 500;
 
-    /**
-     * 当前页
-     */
-    public static final String CURRENT = "current";
-
-    /**
-     * size
-     */
-    public static final String SIZE = "size";
+    public static final String AUTHORIZATION = "Authorization";
 
     /**
      * 请求开始时间

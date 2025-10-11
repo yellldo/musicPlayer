@@ -1,6 +1,7 @@
 package com.music.player.framework.common.validation;
 
 import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
 import java.lang.annotation.*;
 
@@ -25,4 +26,10 @@ import java.lang.annotation.*;
         validatedBy = EmailValidator.class
 )
 public @interface Email {
+
+    String message() default "邮箱格式不正确";
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 }

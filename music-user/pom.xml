@@ -7,6 +7,10 @@
         <artifactId>musicPlayer</artifactId>
         <version>${revision}</version>
     </parent>
+    <modules>
+        <module>music-user-server</module>
+        <module>music-user-api</module>
+    </modules>
 
 
     <modelVersion>4.0.0</modelVersion>

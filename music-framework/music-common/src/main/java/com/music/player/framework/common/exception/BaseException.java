@@ -1,6 +1,7 @@
 package com.music.player.framework.common.exception;
 
 import com.music.player.framework.common.base.R;
+import com.music.player.framework.common.constants.CommonConstants;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,19 +18,28 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 public class BaseException extends RuntimeException {
 
-    private String errorCode;
+    private IErrorCode iErrorCode;
+
+    private Integer errorCode;
 
     private String errorMessage;
 
+    public BaseException(IErrorCode iErrorCode) {
+        super(iErrorCode.getErrorMessage());
+        this.iErrorCode = iErrorCode;
+        this.errorCode = iErrorCode.getErrorCode();
+        this.errorMessage = iErrorCode.getErrorMessage();
+    }
+
     public BaseException(R r) {
         super(r.getMsg());
-        this.setErrorCode(r.getMsg());
+        this.setErrorCode(r.getCode());
         this.setErrorMessage(r.getMsg());
     }
 
     public BaseException(String message) {
         super(message);
-        this.setErrorCode("500");
+        this.setErrorCode(CommonConstants.FAIL);
         this.setErrorMessage(message);
     }
 }

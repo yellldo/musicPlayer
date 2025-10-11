@@ -1,6 +1,7 @@
 package com.music.player.framework.common.validation;
 
 import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
 import java.lang.annotation.*;
 
@@ -27,4 +28,8 @@ import java.lang.annotation.*;
 public @interface Mobile {
 
     String message() default "手机号格式不正确";
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 }

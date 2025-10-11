@@ -19,6 +19,9 @@ import java.time.LocalDateTime;
 @Getter
 public class BaseEntity implements Serializable {
 
+    @TableField(fill = FieldFill.INSERT)
+    private String isDelete;
+
     /**
      * 创建者
      */
@@ -28,7 +31,7 @@ public class BaseEntity implements Serializable {
     /**
      * 创建时间
      */
-    @TableField(fill = FieldFill.DEFAULT)
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
@@ -42,4 +45,5 @@ public class BaseEntity implements Serializable {
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
+
 }

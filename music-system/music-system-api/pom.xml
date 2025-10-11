@@ -11,6 +11,15 @@
 
     <artifactId>music-system-api</artifactId>
     <name>${project.artifactId}</name>
+    <description>
+        system 模块 API，暴露给其它模块调用
+    </description>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 </project>

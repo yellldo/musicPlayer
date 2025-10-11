@@ -41,7 +41,6 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>com.music.player</groupId>
             <artifactId>music-common</artifactId>

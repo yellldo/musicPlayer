@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: music-user
+  main:
+    allow-bean-definition-overriding: true
+  config:
+    import:
+      - nacos:music-user.yml
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: music
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: music
+  data:
+    redis:
+      host: localhost
+      port: 16379
+      password: gzzgdnz
+      database: 1
+server:
+  servlet:
+    context-path: /music-user
+  port: 9000
+mybatis-plus:
+  # 实体类扫描路径
+  type-aliases-package: com.music.player.user.entity
+  # xml 扫描路径
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    jdbc-type-for-null: null
+  global-config:
+    # 关闭 mybatis-plus的 banner
+    banner: false

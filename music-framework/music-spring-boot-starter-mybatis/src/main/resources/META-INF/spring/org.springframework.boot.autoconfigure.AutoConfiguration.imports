@@ -1,0 +1,2 @@
+com.music.player.framework.mybatis.config.MusicMybatisAutoConfiguration
+com.music.player.framework.id.config.MusicIdGeneratorConfiguration
