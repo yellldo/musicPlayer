@@ -25,6 +25,8 @@ public interface IBaseService<T> extends IService<T> {
 
     PageResult<T> selectPage(QueryRequestParam queryRequestParam, Wrapper<T> wrapper);
 
+    PageResult<T> selectPage(QueryRequestParam queryRequestParam, Wrapper<T> wrapper, String sort);
+
     T selectOne(SFunction<T, ?> field, Object value);
 
     T selectOne(String field, Object value);

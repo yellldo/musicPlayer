@@ -23,4 +23,5 @@ public class QueryRequestParam extends QueryRequest {
 
     @Schema(description = "排序字段")
     private List<SortingField> sortingFields;
+
 }

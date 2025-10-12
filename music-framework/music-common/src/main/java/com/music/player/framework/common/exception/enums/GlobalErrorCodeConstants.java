@@ -1,13 +1,39 @@
 package com.music.player.framework.common.exception.enums;
 
+import com.music.player.framework.common.exception.IErrorCode;
+
 /**
  * ClassName : GlobalErrorCodeConstants<br>
- * Description : GlobalErrorCodeConstants<br>
+ * Description : 全局异常码<br>
  *
  * @author : sj
  * @date : 10/8/25
  */
-public class GlobalErrorCodeConstants {
+public enum GlobalErrorCodeConstants implements IErrorCode {
+
+    PARAM_ERROR(1_000_000_001, "参数异常"),
 
 
+    ;
+
+    private final Integer code;
+    private final String msg;
+
+
+    GlobalErrorCodeConstants(Integer code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    @Override
+    public Integer getErrorCode() {
+        return this.code;
+    }
+
+    @Override
+    public String getErrorMessage() {
+        return this.msg;
+    }
 }
+
+

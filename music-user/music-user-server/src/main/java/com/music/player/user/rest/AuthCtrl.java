@@ -17,6 +17,7 @@ import com.music.player.user.enmus.ErrorCodeConstants;
 import com.music.player.user.vo.LoginVo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +32,7 @@ import java.util.Objects;
  * @author : sj
  * @date : 10/9/25
  */
+@Slf4j
 @RestController
 @RequestMapping("auth")
 public class AuthCtrl {
@@ -43,24 +45,32 @@ public class AuthCtrl {
     @PostMapping("login")
     public R<LoginVo> login(@Valid @RequestBody LoginDto loginDto, HttpServletRequest request) {
         String key = RedisConstants.LOGIN_PHONE_CODE + loginDto.getPhone();
-        Integer code = redisOps.get(key, false);
-        if (!Objects.nonNull(code)) {
-            throw new BusinessException(ErrorCodeConstants.PHONE_CODE_EXPIRED);
-        }
-        if (!code.equals(loginDto.getCode())) {
-            throw new BusinessException(ErrorCodeConstants.PHONE_CODE_NOT_MATCH);
-        }
-        SaTokenInfo tokenInfo = authBiz.login(request, loginDto);
+        LoginVo loginVo = new LoginVo();
+        try {
+            Integer code = redisOps.get(key, false);
+            if (!Objects.nonNull(code)) {
+                throw new BusinessException(ErrorCodeConstants.PHONE_CODE_EXPIRED);
+            }
+            if (!code.equals(loginDto.getCode())) {
+                throw new BusinessException(ErrorCodeConstants.PHONE_CODE_NOT_MATCH);
+            }
+            SaTokenInfo tokenInfo = authBiz.login(request, loginDto);
 
-        LoginVo loginVo = new LoginVo()
-                .setToken(tokenInfo.getTokenValue())
-                .setTokenTimeout(tokenInfo.getTokenTimeout());
+            loginVo = new LoginVo()
+                    .setToken(tokenInfo.getTokenValue())
+                    .setTokenTimeout(tokenInfo.getTokenTimeout());
+
+        } catch (Exception e) {
+            log.error("登陆失败", e);
+        } finally {
+            redisOps.del(key);
+        }
         return R.ok(loginVo);
     }
 
     @SaIgnore
     @PostMapping("register")
-    public R register(@RequestBody RegisterUserDto registerUserDto) {
+    public R<?> register(@RequestBody RegisterUserDto registerUserDto) {
         authBiz.register(registerUserDto);
         return R.ok();
     }
@@ -89,7 +99,7 @@ public class AuthCtrl {
     }
 
     @PostMapping("logout")
-    public R logout(HttpServletRequest request) {
+    public R<?> logout(HttpServletRequest request) {
         StpUtil.logout();
         return R.ok();
     }

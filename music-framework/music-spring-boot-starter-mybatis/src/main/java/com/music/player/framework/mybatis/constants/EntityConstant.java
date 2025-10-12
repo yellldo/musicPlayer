@@ -9,7 +9,6 @@ package com.music.player.framework.mybatis.constants;
  */
 public class EntityConstant {
 
-    public static final String ID = "";
 
     public static final String IS_DELETE_FIELD = "isDelete";
 

@@ -36,3 +36,6 @@ mybatis-plus:
   global-config:
     # 关闭 mybatis-plus的 banner
     banner: false
+
+logging:
+  config: classpath:logback-spring.xml

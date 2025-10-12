@@ -48,6 +48,11 @@ public class BaseServiceImpl<M extends CommonMapper<T>, T> extends ServiceImpl<M
     }
 
     @Override
+    public PageResult<T> selectPage(QueryRequestParam queryRequestParam, Wrapper<T> wrapper, String sort) {
+        return mapper.selectPage(queryRequestParam, queryRequestParam.getSortingFields(), wrapper, sort);
+    }
+
+    @Override
     public PageResult<T> selectPage(QueryRequestParam queryRequestParam, Wrapper<T> wrapper) {
         return mapper.selectPage(queryRequestParam, queryRequestParam.getSortingFields(), wrapper);
     }

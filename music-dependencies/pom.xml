@@ -142,6 +142,11 @@
                 <artifactId>music-spring-boot-starter-redis</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-spring-boot-starter-log</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.music.player</groupId>
@@ -156,6 +161,12 @@
             <dependency>
                 <groupId>com.music.player</groupId>
                 <artifactId>music-system-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-recommend-api</artifactId>
                 <version>${revision}</version>
             </dependency>
 

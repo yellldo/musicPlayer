@@ -18,6 +18,28 @@ public class CommonConstants {
      */
     public static final String STATUS_NOT_DEL = "0";
 
+    public static final Integer PWD_ERROR_COUNT = 0;
+
+    public static final Integer PWD_MAX_ERROR_COUNT = 9;
+
+
+    public static final String USER_STATUS_NORMAL = "0";
+
+    public static final String USER_STATUS_DISABLED = "1";
+
+    /**
+     * 锁定
+     */
+    public static final String USER_STATUS_LOCKED = "-1";
+
+    /**
+     * 需要重置
+     */
+    public static final String STATUS_RESET = "1";
+    /**
+     * 不需要重置
+     */
+    public static final String STATUS_NOT_RESET = "1";
 
     /**
      * 菜单树根节点

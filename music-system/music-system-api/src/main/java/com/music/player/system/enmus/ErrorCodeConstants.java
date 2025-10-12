@@ -12,8 +12,12 @@ import com.music.player.framework.common.exception.IErrorCode;
  */
 public enum ErrorCodeConstants implements IErrorCode {
 
+
     DICT_NOT_EXISTS(1_002_000_001, "配置不存在"),
     LOGIN_NAME_EXISTS(1_002_000_002, "账号已被使用"),
+    USER_NOT_EXISTS(1_002_000_003, "用户不存在"),
+    ROLE_NAME_EXISTS(1_002_000_003, "该角色已存在"),
+
 
     ;
 

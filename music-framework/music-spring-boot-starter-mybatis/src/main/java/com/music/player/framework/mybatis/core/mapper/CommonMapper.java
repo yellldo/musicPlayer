@@ -1,5 +1,6 @@
 package com.music.player.framework.mybatis.core.mapper;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -11,6 +12,8 @@ import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.base.QueryRequest;
 import com.music.player.framework.common.base.QueryRequestParam;
 import com.music.player.framework.common.base.SortingField;
+import com.music.player.framework.common.constants.CommonConstants;
+import com.music.player.framework.mybatis.constants.EntityConstant;
 import com.music.player.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.music.player.framework.mybatis.core.utils.MyBatisUtils;
 import org.apache.ibatis.annotations.Param;
@@ -35,6 +38,28 @@ public interface CommonMapper<T> extends MPJBaseMapper<T> {
         return selectPage(queryRequest, null, wrapper);
     }
 
+    default PageResult<T> selectPage(QueryRequest queryRequest, List<SortingField> sortingFieldList, Wrapper<T> wrapper, String sort) {
+
+        // 是否默认排序
+        if (StrUtil.isNotBlank(sort)) {
+            if (sortingFieldList == null || sortingFieldList.isEmpty()) {
+                sortingFieldList = List.of(new SortingField(EntityConstant.CREATED_TIME_FIELD, sort));
+            }
+        }
+
+        // 不分页
+        if (QueryRequest.PAGE_SIZE_NONE.equals(queryRequest.getPageSize())) {
+            MyBatisUtils.addOrder(wrapper, sortingFieldList);
+            List<T> list = selectList(wrapper);
+            return new PageResult<>(list, (long) list.size());
+        }
+
+        // MyBatis Plus 查询
+        IPage<T> page = MyBatisUtils.buildPage(wrapper, queryRequest, sortingFieldList);
+        selectPage(page, wrapper);
+        return new PageResult<>(page.getRecords(), page.getTotal());
+    }
+
     default PageResult<T> selectPage(QueryRequest queryRequest, List<SortingField> sortingFieldList, Wrapper<T> wrapper) {
 
         // 不分页
@@ -45,7 +70,7 @@ public interface CommonMapper<T> extends MPJBaseMapper<T> {
         }
 
         // MyBatis Plus 查询
-        IPage<T> page = MyBatisUtils.buildPage(queryRequest, sortingFieldList);
+        IPage<T> page = MyBatisUtils.buildPage(wrapper, queryRequest, sortingFieldList);
         selectPage(page, wrapper);
         return new PageResult<>(page.getRecords(), page.getTotal());
     }

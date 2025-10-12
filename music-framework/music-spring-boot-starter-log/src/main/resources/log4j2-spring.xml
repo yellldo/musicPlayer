@@ -3,7 +3,9 @@
     <!-- 全局属性，可在日志模板中引用 -->
     <Properties>
         <!-- 定义日志输出格式 -->
-        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss} | [%X{requestId} | %highlight(%-5level) |
+            %boldYellow(%thread) | %boldGreen(%logger) | %msg%n
+        </Property>
         <!-- 日志文件存储目录 -->
         <Property name="LOG_DIR">${spring:logging.file.path}</Property>
         <!-- 应用名称（用于日志文件名） -->

@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 /**
  * ClassName : UserLoginLog<br>
  * Description : UserLoginLog<br>
@@ -21,8 +23,7 @@ import lombok.ToString;
 @Getter
 @ToString(callSuper = true)
 @TableName("user_login_log")
-@EqualsAndHashCode(callSuper = true)
-public class UserLoginLog extends BaseEntity {
+public class UserLoginLog {
 
     @TableId
     private Long id;
@@ -35,4 +36,7 @@ public class UserLoginLog extends BaseEntity {
 
     @TableField("device")
     private String device;
+
+    @TableField("create_time")
+    private LocalDateTime createTime;
 }

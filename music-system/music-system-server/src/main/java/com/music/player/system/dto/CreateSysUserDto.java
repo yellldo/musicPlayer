@@ -21,5 +21,7 @@ public class CreateSysUserDto {
     @NotBlank(message = "请输入登录账号")
     private String loginName;
 
+    private String nickName;
+
     private String remark;
 }

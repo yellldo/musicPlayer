@@ -22,7 +22,7 @@ public class SpringContextUtil implements ApplicationContextAware {
     }
 
     public ApplicationContext getApplicationContext() {
-        return applicationContext;
+        return SpringContextUtil.applicationContext;
     }
 
     public static void publishEvent(Object event) {

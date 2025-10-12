@@ -26,13 +26,10 @@ create table user_info(
 drop table if exists user_login_log;
 create table user_login_log(
     id bigint primary key not null,
-    userId bigint not null,
+    user_id bigint not null,
     ip varchar(15) null comment '登录ip',
     device varchar(20) null comment '登录设备',
- 	create_time datetime null comment '创建时间',
- 	update_time datetime null comment '更新时间',
-   	create_by bigint comment '创建人',
-   	update_by bigint comment '更新人'
+ 	create_time datetime  default current_time comment '创建时间'
 ) comment '登录日志表' charset = utf8mb4;
 
 drop table if exists user_follow;

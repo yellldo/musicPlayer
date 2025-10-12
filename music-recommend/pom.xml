@@ -10,6 +10,7 @@
 
     <modules>
         <module>music-recommend-server</module>
+        <module>music-recommend-api</module>
     </modules>
 
 

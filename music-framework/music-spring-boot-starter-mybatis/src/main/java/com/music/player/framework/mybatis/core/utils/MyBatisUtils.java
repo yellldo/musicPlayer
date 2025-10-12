@@ -21,15 +21,12 @@ import java.util.Collection;
  */
 public class MyBatisUtils {
 
-    public static <T> Page<T> buildPage(QueryRequest queryRequest, Collection<SortingField> sortingFields) {
+    public static <T> Page<T> buildPage(Wrapper<T> wrapper, QueryRequest queryRequest, Collection<SortingField> sortingFields) {
         // 页码 + 数量
         Page<T> page = new Page<>(queryRequest.getPageNum(), queryRequest.getPageSize());
         // 排序字段
         if (CollUtil.isNotEmpty(sortingFields)) {
-            for (SortingField sortingField : sortingFields) {
-                page.addOrder(new OrderItem().setAsc(SortingField.ORDER_ASC.equals(sortingField.getOrder()))
-                        .setColumn(StrUtil.toUnderlineCase(sortingField.getField())));
-            }
+            addOrder(wrapper, sortingFields);
         }
         return page;
     }

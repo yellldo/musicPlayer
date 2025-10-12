@@ -31,6 +31,7 @@ package com.music.player.framework.common.exception.enums;
  */
 public class ServiceErrorCodeRange {
 
+    // 全局 错误码区间 [1-000-000-000 ~ 1-001-000-000)
     // 模块 infra 错误码区间 [1-001-000-000 ~ 1-002-000-000)
     // 模块 system 错误码区间 [1-002-000-000 ~ 1-003-000-000)
     // 模块 user 错误码区间 [1-003-000-000 ~ 1-004-000-000)

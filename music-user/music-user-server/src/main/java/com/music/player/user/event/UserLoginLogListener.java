@@ -1,14 +1,15 @@
 package com.music.player.user.event;
 
 
+import com.music.player.user.biz.UserLoginLogBiz;
 import com.music.player.user.dto.CreateUserLoginLogDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-import java.util.function.Consumer;
 
 /**
  * ClassName : UserLoginLogListener<br>
@@ -23,14 +24,18 @@ import java.util.function.Consumer;
 public class UserLoginLogListener {
 
 
-    private final Consumer<Object> consumer;
-
+    @Autowired
+    private UserLoginLogBiz userLoginLogBiz;
 
     @Async
     @EventListener(UserLoginLogEvent.class)
     public void saveUserLoginLog(UserLoginLogEvent event) {
-        CreateUserLoginLogDto createUserLoginLogDto = event.getCreateUserLoginLogDto();
-        consumer.accept(createUserLoginLogDto);
+        try {
+            CreateUserLoginLogDto createUserLoginLogDto = event.getCreateUserLoginLogDto();
+            userLoginLogBiz.recordLoginLog(createUserLoginLogDto);
+        } catch (Exception e) {
+            log.error("记录登陆记录失败", e);
+        }
     }
 
 

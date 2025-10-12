@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 /**
  * ClassName : SysUser<br>
@@ -21,6 +22,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
+@Accessors(chain = true)
 @TableName("sys_user")
 @EqualsAndHashCode(callSuper = true)
 public class SysUser extends BaseEntity {
@@ -36,6 +38,15 @@ public class SysUser extends BaseEntity {
 
     @TableField("password")
     private String password;
+
+    @TableField("remark")
+    private String remark;
+
+    @TableField("is_super")
+    private String isSuper;
+
+    @TableField("is_reset")
+    private String isReset;
 
     @TableField("user_status")
     private String userStatus;

@@ -24,9 +24,12 @@ drop table if exists sys_user;
 create table sys_user(
     user_id bigint primary key not null,
     login_name varchar(10) not null comment '登录账号',
+    nick_name varchar(20) null comment '昵称',
     password varchar(50) not null comment '密码',
     user_status char(1) default '0' comment '状态0、正常1、禁用',
     remark varchar(100) null comment '用户备注',
+    error_count int null comment '错误次数',
+    is_reset char(1) default '0' comment '是否要重置密码 0、否 1、是 ',
     is_super char(1) default '0' comment '是否超级用户 0、否 1、是',
     is_delete char(1) default '0' comment '删除状态 0、未删除 1、已删除',
     create_time datetime null comment '创建时间',
