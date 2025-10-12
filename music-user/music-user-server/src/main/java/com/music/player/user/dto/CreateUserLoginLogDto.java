@@ -6,6 +6,9 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  * ClassName : CreateUserLoginLogDto<br>
  * Description : CreateUserLoginLogDto<br>
@@ -17,9 +20,16 @@ import lombok.experimental.Accessors;
 @Getter
 @ToString
 @Accessors(chain = true)
-public class CreateUserLoginLogDto {
+public class CreateUserLoginLogDto implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -4434362953758054893L;
 
     private Long userId;
+
+    private String loginName;
+
+    private String isSuccess;
 
     private String ip;
 

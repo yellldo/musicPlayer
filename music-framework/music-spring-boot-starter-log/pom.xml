@@ -40,5 +40,9 @@
             <groupId>com.music.player</groupId>
             <artifactId>music-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>transmittable-thread-local</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 /**
  * ClassName : SysMenu<br>
@@ -19,6 +20,7 @@ import lombok.ToString;
  */
 @Setter
 @Getter
+@Accessors(chain = true)
 @TableName("sys_menu")
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
@@ -42,9 +44,13 @@ public class SysMenu extends BaseEntity {
     @TableField("menu_type")
     private String menuType;
 
+    @TableField("menu_path")
+    private String menuPath;
+
+    @TableField("permission")
+    private String permission;
+
     @TableField("is_show")
     private String isShow;
 
-    @TableField("is_delete")
-    private String isDelete;
 }

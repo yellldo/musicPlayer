@@ -1,18 +1,19 @@
 package com.music.player.framework.log.aspect;
 
 
-import cn.hutool.core.exceptions.ExceptionUtil;
+import com.alibaba.ttl.TransmittableThreadLocal;
 import com.music.player.framework.common.utils.HttpContextUtil;
 import com.music.player.framework.common.utils.SpringContextUtil;
-import com.music.player.framework.log.annoatation.HttpRequestLog;
+import com.music.player.framework.log.annotation.HttpRequestLog;
 import com.music.player.framework.log.event.HttpRequestLogEvent;
 import com.music.player.framework.log.utils.LogUtils;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 
-import java.util.function.Consumer;
+import java.util.Map;
 
 /**
  * ClassName : HttpRequestLogAspect<br>
@@ -26,7 +27,9 @@ import java.util.function.Consumer;
 public class HttpRequestLogAspect {
 
 
-    @Pointcut("@annotation(HttpRequestLog.HttpRequestLog)")
+    private static final ThreadLocal<Map<String, Object>> THREAD_LOCAL = new TransmittableThreadLocal<>();
+
+    @Pointcut("@annotation(com.music.player.framework.log.annotation.HttpRequestLog)")
     public void logPrint() {
     }
 
@@ -35,31 +38,27 @@ public class HttpRequestLogAspect {
     public void log(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         HttpRequestLog httpRequestLog = signature.getMethod().getAnnotation(HttpRequestLog.class);
-        String url = HttpContextUtil.getHttpServletRequest().getRequestURI();
+        HttpServletRequest httpServletRequest = HttpContextUtil.getHttpServletRequest();
+        String url = httpServletRequest.getRequestURI();
         log.info("请求url：[{}],请求方法：[{}],请求入参：[{}]", url, httpRequestLog.logRemark(), joinPoint.getArgs());
-        if (httpRequestLog.recordRequest()) {
-
-        }
     }
 
     // 后置通知
-    @AfterReturning(returning = "ret", pointcut = "pointCut()")
+    @AfterReturning(returning = "ret", pointcut = "logPrint()")
     public void doAfterReturn(JoinPoint joinPoint, Object ret) {
 
     }
 
 
     // 异常通知，拦截记录异常日志
-    @AfterThrowing(pointcut = "pointCut()", throwing = "e")
+    @AfterThrowing(pointcut = "logPrint()", throwing = "e")
     public void doAfterThrow(JoinPoint joinPoint, Exception e) {
-        tryCatch((x) -> {
-            HttpRequestLog httpRequestLog = LogUtils.getHttpRequestLog(joinPoint);
-            if (checkRecord(httpRequestLog)) {
-                return;
-            }
+        HttpRequestLog httpRequestLog = LogUtils.getHttpRequestLog(joinPoint);
+        if (checkRecord(httpRequestLog)) {
+            return;
+        }
 
-            publishEvent();
-        });
+        publishEvent();
     }
 
     /**
@@ -81,11 +80,5 @@ public class HttpRequestLogAspect {
 
     }
 
-    public void tryCatch(Consumer<String> consumer) {
-        try {
-            consumer.accept("");
-        } catch (Exception e) {
-            log.warn("记录日志失败", e);
-        }
-    }
+
 }

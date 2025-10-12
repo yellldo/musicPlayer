@@ -23,4 +23,7 @@ public class UserConstants {
 
     public static final String USER_TYPE_VIP = "2";
 
+    public static final String LOGIN_SUCCESS = "0";
+    public static final String LOGIN_ERROR = "1";
+
 }

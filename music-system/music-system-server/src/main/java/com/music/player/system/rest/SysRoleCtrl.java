@@ -3,8 +3,7 @@ package com.music.player.system.rest;
 import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.base.R;
 import com.music.player.system.biz.SysRoleBiz;
-import com.music.player.system.dto.SysRoleCreateDto;
-import com.music.player.system.dto.SysRolePageDto;
+import com.music.player.system.dto.*;
 import com.music.player.system.vo.SysRoleVo;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -42,4 +41,32 @@ public class SysRoleCtrl {
     public R<PageResult<SysRoleVo>> page(@RequestBody SysRolePageDto sysRolePageDto) {
         return R.ok(sysRoleBiz.page(sysRolePageDto));
     }
+
+    /**
+     * delete role
+     */
+    @PostMapping("delete")
+    public R<?> deleteRole(@Valid @RequestBody SysRoleIdDto sysRoleIdDto) {
+        sysRoleBiz.deleteRole(sysRoleIdDto.getRoleId());
+        return R.ok();
+    }
+
+    /**
+     * change a role status
+     */
+    @PostMapping("updateStatus")
+    public R<?> updateStatus(@Valid @RequestBody SysRoleUpdateStatusDto sysRoleUpdateStatusDto) {
+        sysRoleBiz.updateStatus(sysRoleUpdateStatusDto);
+        return R.ok();
+    }
+
+    /**
+     * assign menu
+     */
+    @PostMapping("assign")
+    public R<?> assign(@Valid @RequestBody SysRoleAssignDto sysRoleAssignDto) {
+        sysRoleBiz.assign(sysRoleAssignDto);
+        return R.ok();
+    }
+
 }

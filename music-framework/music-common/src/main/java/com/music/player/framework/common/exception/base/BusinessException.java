@@ -1,9 +1,9 @@
 package com.music.player.framework.common.exception.base;
 
-import com.music.player.framework.common.base.R;
-import com.music.player.framework.common.exception.BaseException;
 import com.music.player.framework.common.exception.IErrorCode;
 import lombok.Getter;
+
+import java.io.Serial;
 
 /**
  * ClassName : BusinessException<br>
@@ -13,25 +13,15 @@ import lombok.Getter;
  * @date : 10/8/25
  */
 @Getter
-public class BusinessException extends BaseException {
+public class BusinessException extends BaseUnCheckException {
 
-    @Getter
-    private String[] args;
+
+    @Serial
+    private static final long serialVersionUID = -2048152732013177744L;
 
     public BusinessException(IErrorCode iErrorCode) {
         super(iErrorCode);
     }
 
-    public BusinessException(IErrorCode iErrorCode, String... args) {
-        super(iErrorCode);
-        this.args = args;
-    }
 
-    public BusinessException(R r) {
-        super(r);
-    }
-
-    public BusinessException(String message) {
-        super(message);
-    }
 }

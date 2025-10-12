@@ -1,10 +1,10 @@
 package com.music.player.system.dto;
 
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 
 /**
  * ClassName : DictInfoListDto<br>

@@ -18,6 +18,7 @@ import com.music.player.user.enmus.ErrorCodeConstants;
 import com.music.player.user.entity.UserInfo;
 import com.music.player.user.event.UserLoginLogEvent;
 import com.music.player.user.service.UserInfoService;
+import com.music.player.user.utils.LogUtils;
 import com.music.player.user.vo.UserInfoVo;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,26 +52,28 @@ public class AuthBiz {
             throw new BusinessException(ErrorCodeConstants.USER_NOT_EXISTS);
         }
 
+        CreateUserLoginLogDto createUserLoginLogDto = new CreateUserLoginLogDto()
+                .setUserId(userInfoVo.getUserId())
+                .setLoginName(userInfoVo.getPhone())
+                .setIp(IpUtils.getClientIp(request));
+
         String isDelete = userInfoVo.getIsDelete();
 
         if (CommonConstants.STATUS_DEL.equals(isDelete)) {
-            throw new BusinessException(ErrorCodeConstants.USER_NOT_EXISTS);
+            LogUtils.publishAndThrow(createUserLoginLogDto, UserConstants.LOGIN_ERROR, ErrorCodeConstants.USER_NOT_EXISTS);
         }
 
         String userStatus = userInfoVo.getUserStatus();
 
         if (!UserConstants.USER_STATUS_NORMAL.equals(userStatus)) {
-            throw new BusinessException(ErrorCodeConstants.USER_STATUS_ERROR);
+            LogUtils.publishAndThrow(createUserLoginLogDto, UserConstants.LOGIN_ERROR, ErrorCodeConstants.USER_STATUS_ERROR);
         }
 
         // 登陆
         StpUtil.login(userInfoVo.getUserId());
 
         // 异步记录登录记录
-        CreateUserLoginLogDto createUserLoginLogDto = new CreateUserLoginLogDto()
-                .setUserId(userInfoVo.getUserId())
-                .setIp(IpUtils.getClientIp(request));
-        SpringContextUtil.publishEvent(new UserLoginLogEvent(createUserLoginLogDto));
+        LogUtils.publishLoginLog(createUserLoginLogDto, UserConstants.LOGIN_ERROR);
         return StpUtil.getTokenInfo();
     }
 

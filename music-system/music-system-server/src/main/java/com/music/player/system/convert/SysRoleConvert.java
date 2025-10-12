@@ -2,6 +2,7 @@ package com.music.player.system.convert;
 
 import com.music.player.framework.common.base.PageResult;
 import com.music.player.system.dto.SysRoleCreateDto;
+import com.music.player.system.dto.SysRoleUpdateStatusDto;
 import com.music.player.system.entity.SysRole;
 import com.music.player.system.vo.SysRoleVo;
 import org.mapstruct.Mapper;
@@ -23,4 +24,6 @@ public interface SysRoleConvert {
     SysRole create(SysRoleCreateDto sysRoleCreateDto);
 
     PageResult<SysRoleVo> convertPage(PageResult<SysRole> pageResult);
+
+    SysRole updateStatus(SysRoleUpdateStatusDto sysRoleUpdateStatusDto);
 }

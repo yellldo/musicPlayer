@@ -31,11 +31,17 @@ public class UserLoginLog {
     @TableField("user_id")
     private Long userId;
 
+    @TableField("login_name")
+    private String loginName;
+
     @TableField("ip")
     private String ip;
 
     @TableField("device")
     private String device;
+
+    @TableField("is_success")
+    private String isSuccess;
 
     @TableField("create_time")
     private LocalDateTime createTime;

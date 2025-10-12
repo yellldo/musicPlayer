@@ -2,9 +2,8 @@
 <Configuration status="WARN" monitorInterval="30">
     <Properties>
         <!-- 定义日志格式 -->
-        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss} | [%X{requestId} | %highlight(%-5level) |
-            %boldYellow(%thread) | %boldGreen(%logger) | %msg%n
-        </Property>
+        <Property name="LOG_PATTERN">%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Property>
+        <!--        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss} | [%X{requestId} | (%-5level) | (%thread) | (%logger) | %msg%n</Property>-->
 
         <!-- 定义日志文件路径 -->
         <Property name="LOG_DIR">${logging.file.path}</Property>

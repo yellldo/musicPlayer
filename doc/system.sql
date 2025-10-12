@@ -67,6 +67,7 @@ create table sys_menu(
     icon varchar(10) comment '菜单图标',
     level int comment '菜单级别',
     menu_type char(1) comment '菜单类型 0、 菜单 1、按钮',
+    menu_path varchar(10) comment '菜单路径',
     is_show char(1) comment '是否展示 0、是 1、否',
     is_delete char(1) default '0' comment '删除状态 0、未删除 1、已删除',
     create_time datetime null comment '创建时间',

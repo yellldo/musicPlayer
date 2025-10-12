@@ -1,7 +1,7 @@
 package com.music.player.framework.log.utils;
 
 
-import com.music.player.framework.log.annoatation.HttpRequestLog;
+import com.music.player.framework.log.annotation.HttpRequestLog;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 

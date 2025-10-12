@@ -1,4 +1,4 @@
-package com.music.player.framework.log.annoatation;
+package com.music.player.framework.log.annotation;
 
 
 import java.lang.annotation.ElementType;

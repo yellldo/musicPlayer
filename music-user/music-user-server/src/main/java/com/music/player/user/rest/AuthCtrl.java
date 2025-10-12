@@ -45,7 +45,7 @@ public class AuthCtrl {
     @PostMapping("login")
     public R<LoginVo> login(@Valid @RequestBody LoginDto loginDto, HttpServletRequest request) {
         String key = RedisConstants.LOGIN_PHONE_CODE + loginDto.getPhone();
-        LoginVo loginVo = new LoginVo();
+        LoginVo loginVo;
         try {
             Integer code = redisOps.get(key, false);
             if (!Objects.nonNull(code)) {
@@ -62,6 +62,7 @@ public class AuthCtrl {
 
         } catch (Exception e) {
             log.error("登陆失败", e);
+            throw e;
         } finally {
             redisOps.del(key);
         }

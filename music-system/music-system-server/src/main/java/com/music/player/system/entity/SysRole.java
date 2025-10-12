@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 /**
  * ClassName : SysRole<br>
@@ -20,6 +21,7 @@ import lombok.ToString;
  */
 @Setter
 @Getter
+@Accessors(chain = true)
 @TableName("sys_role")
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)

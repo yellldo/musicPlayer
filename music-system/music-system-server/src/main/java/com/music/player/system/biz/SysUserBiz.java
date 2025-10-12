@@ -3,6 +3,7 @@ package com.music.player.system.biz;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.constants.CommonConstants;
 import com.music.player.framework.common.exception.base.BusinessException;
@@ -26,6 +27,7 @@ import org.springframework.stereotype.Service;
  * @author : sj
  * @date : 2025/10/11
  */
+@DS("system")
 @Slf4j
 @Service
 public class SysUserBiz {

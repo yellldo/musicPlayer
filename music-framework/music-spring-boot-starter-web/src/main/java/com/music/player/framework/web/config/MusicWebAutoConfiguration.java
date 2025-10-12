@@ -1,7 +1,7 @@
 package com.music.player.framework.web.config;
 
 import com.music.player.framework.web.handler.GlobalExceptionHandler;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,17 +13,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author : sj
  * @date : 10/7/25
  */
+@Slf4j
 @AutoConfiguration
 public class MusicWebAutoConfiguration implements WebMvcConfigurer {
 
-    /**
-     * 应用名
-     */
-    @Value("${spring.application.name}")
-    private String applicationName;
-
     @Bean
     public GlobalExceptionHandler globalExceptionHandler() {
-        return new GlobalExceptionHandler(applicationName);
+        return new GlobalExceptionHandler();
     }
 }

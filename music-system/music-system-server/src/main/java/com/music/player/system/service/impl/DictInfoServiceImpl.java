@@ -1,5 +1,6 @@
 package com.music.player.system.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.music.player.framework.mybatis.core.service.impl.BaseServiceImpl;
 import com.music.player.system.entity.DictInfo;
 import com.music.player.system.mapper.DictInfoMapper;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
  * @author : sj
  * @date : 10/7/25
  */
+@DS("system")
 @Service
 public class DictInfoServiceImpl extends BaseServiceImpl<DictInfoMapper, DictInfo> implements DictInfoService {
 }

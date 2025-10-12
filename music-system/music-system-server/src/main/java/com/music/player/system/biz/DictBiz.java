@@ -1,6 +1,7 @@
 package com.music.player.system.biz;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.base.R;
 import com.music.player.framework.common.exception.base.BusinessException;
@@ -29,6 +30,7 @@ import java.util.List;
  * @author : sj
  * @date : 10/7/25
  */
+@DS("system")
 @Service
 public class DictBiz {
 

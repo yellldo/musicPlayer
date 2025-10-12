@@ -27,9 +27,11 @@ drop table if exists user_login_log;
 create table user_login_log(
     id bigint primary key not null,
     user_id bigint not null,
+    login_name varchar(50) not null comment '登陆账号',
+    is_success char(1) comment '登陆结果 0、成功 1、失败',
     ip varchar(15) null comment '登录ip',
     device varchar(20) null comment '登录设备',
- 	create_time datetime  default current_time comment '创建时间'
+ 	create_time datetime  comment '创建时间'
 ) comment '登录日志表' charset = utf8mb4;
 
 drop table if exists user_follow;
