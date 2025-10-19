@@ -7,6 +7,7 @@ import com.music.player.system.dto.*;
 import com.music.player.system.vo.SysRoleVo;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,6 +49,12 @@ public class SysRoleCtrl {
     @PostMapping("delete")
     public R<?> deleteRole(@Valid @RequestBody SysRoleIdDto sysRoleIdDto) {
         sysRoleBiz.deleteRole(sysRoleIdDto.getRoleId());
+        return R.ok();
+    }
+
+    @PostMapping("update")
+    public R<?> update(@Valid @RequestBody SysRoleUpdateDto sysRoleUpdateDto) {
+        sysRoleBiz.update(sysRoleUpdateDto);
         return R.ok();
     }
 

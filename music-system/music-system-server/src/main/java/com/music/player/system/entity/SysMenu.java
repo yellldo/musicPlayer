@@ -47,10 +47,14 @@ public class SysMenu extends BaseEntity {
     @TableField("menu_path")
     private String menuPath;
 
+    @TableField("menu_status")
+    private String menuStatus;
+
+    @TableField("component_path")
+    public String componentPath;
+
     @TableField("permission")
     private String permission;
 
-    @TableField("is_show")
-    private String isShow;
 
 }

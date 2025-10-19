@@ -22,7 +22,17 @@ public class SysMenuUpdateDto extends SysMenuIdDto {
 
     private String menuPath;
 
+    private String menuType;
+
+    private String componentPath;
+
+    private String menuStatus;
+
+    private Integer sort;
+
+    private String permission;
+
     private String icon;
 
-    private String isShow;
+
 }

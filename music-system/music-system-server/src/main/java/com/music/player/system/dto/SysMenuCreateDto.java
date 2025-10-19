@@ -23,13 +23,18 @@ public class SysMenuCreateDto {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long parentId;
 
-    private Integer level;
-
     private String menuType;
 
     private String menuPath;
 
+    private String componentPath;
+
+    private String menuStatus;
+
+    private Integer sort;
+
+    private String icon;
+
     private String permission;
 
-    private String isShow;
 }

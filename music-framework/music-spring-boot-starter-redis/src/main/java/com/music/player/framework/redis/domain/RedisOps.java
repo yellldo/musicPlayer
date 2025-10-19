@@ -1,12 +1,15 @@
 package com.music.player.framework.redis.domain;
 
+import com.music.player.framework.common.utils.MapToEntityConvert;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.*;
+import org.springframework.lang.NonNull;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import java.time.Duration;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -84,6 +87,28 @@ public class RedisOps {
      * @param <T>
      * @return
      */
+    public <T> T get(@NonNull String key, boolean cacheNullValue, T t) {
+        T value = (T) valueOps.get(key);
+        if (cacheNullValue && value == null) {
+            set(key, newNullVal(), true);
+        }
+        Object o;
+        try {
+            o = MapToEntityConvert.mapToEntity((LinkedHashMap<String, Object>) value, t.getClass());
+        } catch (Exception e) {
+
+        }
+        return returnValue(value);
+    }
+
+    /**
+     *
+     * 返回与键 key 相关联的 value 值
+     *
+     * @param key
+     * @param <T>
+     * @return
+     */
     public <T> T get(@NonNull String key, boolean cacheNullValue) {
         T value = (T) valueOps.get(key);
         if (cacheNullValue && value == null) {
@@ -95,8 +120,7 @@ public class RedisOps {
     /**
      * 将值 value 存放到 key
      * <p>
-     * 如果存在key，那就覆盖
-     * 之前设置的生存时间（TTL），也会被重置
+     * 如果存在key，那就覆盖,TTL也会被重置
      *
      * @param key            key，一定不能为空
      * @param value          值
@@ -109,11 +133,21 @@ public class RedisOps {
         valueOps.set(key, value == null ? new NullValue() : value);
     }
 
-    public void set(@NonNull String key, Object value, long seconds, boolean cacheNullValue) {
+    public void setEx(@NonNull String key, Object value, long seconds, boolean cacheNullValue) {
         if (!cacheNullValue && value == null) {
             return;
         }
-        valueOps.set(key, value == null ? new NullValue() : value, seconds, TimeUnit.SECONDS);
+        valueOps.set(key, value == null ? new NullValue() : value, Duration.ofSeconds(seconds));
+    }
+
+    public void setEx(@NonNull String key, Object value, long seconds) {
+        Assert.notNull(key, "key不能为空");
+        valueOps.set(key, value, Duration.ofSeconds(seconds));
+    }
+
+    public void setEx(@NonNull String key, Object value, Duration duration) {
+        Assert.notNull(key, "key不能为空");
+        valueOps.set(key, value, duration);
     }
 
     public void del(String key) {
@@ -122,6 +156,16 @@ public class RedisOps {
             return;
         }
         redisTemplate.delete(key);
+    }
+
+    /**
+     * 返回key的ttl
+     *
+     * @param key
+     * @return
+     */
+    public long ttl(@NonNull String key) {
+        return redisTemplate.getExpire(key);
     }
 
     /**

@@ -95,7 +95,7 @@ public class AuthCtrl {
             throw new BusinessException(ErrorCodeConstants.PHONE_CODE_EXISTS);
         }
         int value = RandomUtil.randomInt(100000, 999999);
-        redisOps.set(key, value, 60L, true);
+        redisOps.setEx(key, value, 60L, true);
         return R.ok(value);
     }
 

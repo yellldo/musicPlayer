@@ -17,9 +17,10 @@ import lombok.ToString;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class DictPageDto extends QueryRequestParam {
+public class DictCodePageDto extends QueryRequestParam {
 
     private String dictType;
 
-    private String dictKey;
+    private String dictStatus;
+
 }

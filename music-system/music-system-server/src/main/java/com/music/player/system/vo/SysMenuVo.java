@@ -1,5 +1,7 @@
 package com.music.player.system.vo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,8 +22,10 @@ import java.util.List;
 @Accessors(chain = true)
 public class SysMenuVo {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long menuId;
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long parentId;
 
     private String menuName;
@@ -30,11 +34,11 @@ public class SysMenuVo {
 
     private String menuPath;
 
+    public String componentPath;
+
     private Integer level;
 
     private String icon;
 
-    private String isShow;
-
-    private List<SysMenuVo> child;
+    private List<SysMenuVo> children;
 }

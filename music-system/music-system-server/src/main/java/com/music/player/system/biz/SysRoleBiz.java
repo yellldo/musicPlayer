@@ -2,16 +2,16 @@ package com.music.player.system.biz;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.base.SortingField;
 import com.music.player.framework.common.constants.CommonConstants;
 import com.music.player.framework.common.exception.base.BusinessException;
 import com.music.player.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.music.player.system.convert.SysRoleConvert;
-import com.music.player.system.dto.SysRoleAssignDto;
-import com.music.player.system.dto.SysRoleCreateDto;
-import com.music.player.system.dto.SysRolePageDto;
-import com.music.player.system.dto.SysRoleUpdateStatusDto;
+import com.music.player.system.dto.*;
 import com.music.player.system.enmus.ErrorCodeConstants;
 import com.music.player.system.entity.SysRole;
 import com.music.player.system.entity.SysRoleMenu;
@@ -52,7 +52,7 @@ public class SysRoleBiz {
 
     public PageResult<SysRoleVo> page(SysRolePageDto sysRolePageDto) {
         PageResult<SysRole> sysRolePageResult = sysRoleService.selectPage(sysRolePageDto, new LambdaQueryWrapperX<SysRole>()
-                .eqIfPresent(SysRole::getRoleName, sysRolePageDto.getRoleName())
+                .likeIfPresent(SysRole::getRoleName, sysRolePageDto.getRoleName())
                 .eqIfPresent(SysRole::getRoleStatus, sysRolePageDto.getRoleStatus())
                 .eq(SysRole::getIsDelete, CommonConstants.STATUS_NOT_DEL), SortingField.ORDER_DESC);
 
@@ -63,6 +63,21 @@ public class SysRoleBiz {
         SysRole sysRole = new SysRole()
                 .setRoleId(roleId);
         sysRole.setIsDelete(CommonConstants.STATUS_DEL);
+        sysRoleService.updateById(sysRole);
+    }
+
+    public void update(SysRoleUpdateDto sysRoleUpdateDto) {
+
+        long count = sysRoleService.selectCount(new LambdaQueryWrapperX<SysRole>()
+                .eq(SysRole::getRoleName, sysRoleUpdateDto.getRoleName())
+                .ne(SysRole::getRoleId, sysRoleUpdateDto.getRoleId())
+                .eq(SysRole::getIsDelete, CommonConstants.STATUS_NOT_DEL));
+
+        if (count > 0) {
+            throw new BusinessException(ErrorCodeConstants.ROLE_NAME_USED);
+        }
+
+        SysRole sysRole = SysRoleConvert.INSTANT.update(sysRoleUpdateDto);
         sysRoleService.updateById(sysRole);
     }
 

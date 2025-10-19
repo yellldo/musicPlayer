@@ -1,7 +1,6 @@
 package com.music.player.user.rest;
 
 import com.music.player.framework.common.base.R;
-import com.music.player.framework.log.annotation.HttpRequestLog;
 import com.music.player.user.biz.UserInfoBiz;
 import com.music.player.user.dto.UpdateUserInfoDto;
 import com.music.player.user.dto.UserInfoIdDto;
@@ -24,7 +23,7 @@ public class UserInfoCtrl {
     @Autowired
     private UserInfoBiz userInfoBiz;
 
-    @HttpRequestLog(logRemark = "门户用户查询（分页）")
+    //    @HttpRequestLog(logRemark = "门户用户查询（分页）")
     @GetMapping("page")
     public R page(UserInfoPageDto userInfoPageDto) {
         return R.ok(userInfoBiz.page(userInfoPageDto));

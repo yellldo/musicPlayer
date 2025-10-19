@@ -16,12 +16,7 @@ spring:
       config:
         server-addr: 127.0.0.1:8848
         namespace: music
-  data:
-    redis:
-      host: localhost
-      port: 16379
-      password: gzzgdnz
-      database: 1
+
 server:
   servlet:
     context-path: /music-user

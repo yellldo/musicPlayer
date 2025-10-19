@@ -82,7 +82,8 @@ public class SysUserBiz {
         SysUser sysUser = new SysUser().setIsReset(CommonConstants.STATUS_RESET)
                 .setErrorCount(CommonConstants.PWD_ERROR_COUNT)
                 .setPassword(SecureUtil.md5(sysUserUpdatePwdDto.getPassword()))
-                .setUserId(sysUserUpdatePwdDto.getUserId());
+                .setUserId(sysUserUpdatePwdDto.getUserId())
+                .setIsReset(CommonConstants.STATUS_NOT_RESET);
         sysUserService.updateById(sysUser);
     }
 

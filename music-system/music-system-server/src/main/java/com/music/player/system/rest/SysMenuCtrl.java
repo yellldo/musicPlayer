@@ -1,17 +1,16 @@
 package com.music.player.system.rest;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.music.player.framework.common.base.R;
 import com.music.player.system.biz.SysMenuBiz;
 import com.music.player.system.dto.SysMenuCreateDto;
 import com.music.player.system.dto.SysMenuIdDto;
+import com.music.player.system.dto.SysMenuPageDto;
 import com.music.player.system.dto.SysMenuUpdateDto;
 import com.music.player.system.vo.SysMenuVo;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,9 +35,15 @@ public class SysMenuCtrl {
         return R.ok();
     }
 
-    @PostMapping("list")
-    public R<List<SysMenuVo>> list() {
-        return R.ok(sysMenuBiz.list());
+    @GetMapping("page")
+    public R<?> page(SysMenuPageDto sysMenuPageDto) {
+        return R.ok(sysMenuBiz.page(sysMenuPageDto));
+    }
+
+
+    @GetMapping("build")
+    public R<List<SysMenuVo>> buildMenus() {
+        return R.ok(sysMenuBiz.buildMenus(StpUtil.getLoginIdAsLong()));
     }
 
     @PostMapping("update")
@@ -53,5 +58,9 @@ public class SysMenuCtrl {
         return R.ok();
     }
 
+    @GetMapping("tree")
+    public R<?> tree() {
+        return R.ok(sysMenuBiz.tree());
+    }
 }
 

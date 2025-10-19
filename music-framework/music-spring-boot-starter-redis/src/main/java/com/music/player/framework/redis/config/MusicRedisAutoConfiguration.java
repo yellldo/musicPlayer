@@ -1,5 +1,8 @@
 package com.music.player.framework.redis.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.music.player.framework.redis.domain.RedisOps;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -10,6 +13,7 @@ import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
@@ -29,14 +33,14 @@ public class MusicRedisAutoConfiguration {
         template.setConnectionFactory(factory);
         // key采用 String的序列化方式
         template.setKeySerializer(new StringRedisSerializer());
-        // hash的 key也采用 String的序列化方式
-        template.setHashKeySerializer(new StringRedisSerializer());
-        // value序列化方式采用 jackson
-        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        // hash的 value序列化方式采用 jackson
-        template.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
         // 开启事务
         template.setEnableTransactionSupport(true);
+
+        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
+
+        template.afterPropertiesSet();
         return template;
     }
 

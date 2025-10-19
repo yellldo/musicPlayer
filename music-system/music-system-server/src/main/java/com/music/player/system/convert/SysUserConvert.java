@@ -28,5 +28,7 @@ public interface SysUserConvert {
     SysUser update(SysUserUpdateDto sysUserUpdateDto);
 
     SysUser resetPwd(SysUserResetPwdDto sysUserResetPwdDto);
+
+    SysUserVo copy(SysUser sysUser);
 }
 

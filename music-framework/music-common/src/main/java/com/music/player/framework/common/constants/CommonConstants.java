@@ -39,7 +39,7 @@ public class CommonConstants {
     /**
      * 不需要重置
      */
-    public static final String STATUS_NOT_RESET = "1";
+    public static final String STATUS_NOT_RESET = "0";
 
     /**
      * 菜单树根节点

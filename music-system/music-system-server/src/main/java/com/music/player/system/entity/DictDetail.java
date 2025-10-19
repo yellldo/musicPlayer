@@ -3,57 +3,44 @@ package com.music.player.system.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.music.player.framework.mybatis.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.experimental.Accessors;
 
 /**
- * ClassName : DictInfo<br>
- * Description : DictInfo<br>
+ * ClassName : DictDetail<br>
+ * Description : DictDetail<br>
  *
  * @author : sj
- * @date : 10/7/25
+ * @date : 10/19/25
  */
 @Setter
 @Getter
-@ToString
-@TableName("dict_info")
-@Accessors(chain = true)
-public class DictInfo extends BaseEntity {
+@ToString(callSuper = true)
+public class DictDetail extends BaseEntity {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-
     /**
-     * 字典类型
+     * 父级id
      */
-    @TableField("dict_type")
-    private String dictType;
+    @TableField("parent_id")
+    private Long parentId;
 
-    @TableField("dict_code")
-    private String dictCode;
+    @TableField("dict_label")
+    private String dictLabel;
 
-    @TableField("dict_name")
-    private String dictName;
+    @TableField("dict_value")
+    private String dictValue;
 
     @TableField("sort")
     private Integer sort;
 
-    /**
-     * 字典状态 0、正常 1、禁用
-     */
     @TableField("dict_status")
     private String dictStatus;
 
-    /**
-     * 备注
-     */
     @TableField("dict_remark")
     private String dictRemark;
-
-
 }

@@ -3,10 +3,12 @@ package com.music.player.system.vo;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
 
 /**
  * ClassName : SysUserVo<br>
@@ -18,16 +20,23 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @ToString
-public class SysUserVo {
+@Accessors(chain = true)
+@NoArgsConstructor
+public class SysUserVo implements Serializable {
+
+    private static final long serialVersionUID = -6495567086389149352L;
 
     @JsonSerialize(using = ToStringSerializer.class)
     private Long userId;
 
     private String loginName;
 
+    private String nickName;
+
     private String userStatus;
 
     private String remark;
 
-    private LocalDateTime createTime;
+    private String createTime;
+
 }

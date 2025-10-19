@@ -1,5 +1,6 @@
 package com.music.player.system.convert;
 
+import com.music.player.framework.common.base.PageResult;
 import com.music.player.system.dto.SysMenuCreateDto;
 import com.music.player.system.dto.SysMenuUpdateDto;
 import com.music.player.system.entity.SysMenu;
@@ -29,4 +30,6 @@ public interface SysMenuConvert {
     SysMenuVo copy(SysMenu sysMenu);
 
     SysMenu update(SysMenuUpdateDto sysMenuUpdateDto);
+
+    PageResult<SysMenuVo> convertPage(PageResult<SysMenu> pageResult);
 }

@@ -11,26 +11,30 @@ import lombok.experimental.Accessors;
 import java.time.LocalDateTime;
 
 /**
- * ClassName : SysRoleVo<br>
- * Description : SysRoleVo<br>
+ * ClassName : DictDetailVo<br>
+ * Description : DictDetailVo<br>
  *
  * @author : sj
- * @date : 10/12/25
+ * @date : 10/19/25
  */
 @Setter
 @Getter
 @ToString
 @Accessors(chain = true)
-public class SysRoleVo {
+public class DictDetailVo {
 
     @JsonSerialize(using = ToStringSerializer.class)
-    private Long roleId;
+    private Long id;
 
-    private String roleName;
+    private String dictLabel;
 
-    private String roleRemark;
+    private String dictValue;
 
-    private String roleStatus;
+    private Integer dictStatus;
+
+    private Integer sort;
+
+    private String dictRemark;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
