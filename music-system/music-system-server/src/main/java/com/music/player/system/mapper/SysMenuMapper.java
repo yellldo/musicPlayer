@@ -18,7 +18,7 @@ import java.util.List;
 public interface SysMenuMapper extends CommonMapper<SysMenu> {
 
 
-    @Select(" select sm.* from sys_user_role sur  " +
+    @Select(" select distinct sm.* from sys_user_role sur  " +
             " inner join sys_role_menu srm on sur.role_id  = srm.role_id " +
             " inner join sys_menu sm on sm.menu_id  = srm.menu_id " +
             " where sur.user_id = #{userId} ")

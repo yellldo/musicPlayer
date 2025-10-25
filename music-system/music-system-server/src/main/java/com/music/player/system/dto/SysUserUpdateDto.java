@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * ClassName : SysUserUpdateDto<br>
  * Description : SysUserUpdateDto<br>
@@ -23,6 +25,12 @@ public class SysUserUpdateDto {
     private String remark;
 
     private String nickName;
+
+    private String phone;
+
+    private String email;
+
+    private List<Long> roleList;
 
     private String userStatus;
 }

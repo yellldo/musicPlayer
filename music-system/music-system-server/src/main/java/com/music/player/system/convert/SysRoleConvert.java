@@ -9,6 +9,8 @@ import com.music.player.system.vo.SysRoleVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 /**
  * ClassName : SysRoleConvert<br>
  * Description : SysRoleConvert<br>
@@ -25,6 +27,8 @@ public interface SysRoleConvert {
     SysRole create(SysRoleCreateDto sysRoleCreateDto);
 
     PageResult<SysRoleVo> convertPage(PageResult<SysRole> pageResult);
+
+    List<SysRoleVo> convertList(List<SysRole> pageResult);
 
     SysRole updateStatus(SysRoleUpdateStatusDto sysRoleUpdateStatusDto);
 

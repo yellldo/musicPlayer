@@ -36,9 +36,15 @@ public class SysMenuVo {
 
     public String componentPath;
 
+    private String[] parentIdList;
+
     private Integer level;
 
+    private String permission;
+
     private String icon;
+
+    private String menuRemark;
 
     private List<SysMenuVo> children;
 }

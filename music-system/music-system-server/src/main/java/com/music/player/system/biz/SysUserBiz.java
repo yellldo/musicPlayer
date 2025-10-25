@@ -4,6 +4,7 @@ package com.music.player.system.biz;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.constants.CommonConstants;
 import com.music.player.framework.common.exception.base.BusinessException;
@@ -13,12 +14,22 @@ import com.music.player.system.convert.SysUserConvert;
 import com.music.player.system.dto.*;
 import com.music.player.system.enmus.ErrorCodeConstants;
 import com.music.player.system.entity.SysUser;
+import com.music.player.system.entity.SysUserRole;
+import com.music.player.system.service.SysUserRoleService;
 import com.music.player.system.service.SysUserService;
 import com.music.player.system.vo.SysUserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * ClassName : SysUserBiz<br>
@@ -37,7 +48,10 @@ public class SysUserBiz {
 
     @Autowired
     private SysUserService sysUserService;
+    @Autowired
+    private SysUserRoleService sysUserRoleService;
 
+    @Transactional(rollbackFor = Exception.class)
     public void create(CreateSysUserDto createSysUserDto) {
         long selectCount = sysUserService.selectCount(new LambdaQueryWrapperX<SysUser>()
                 .eqIfPresent(SysUser::getLoginName, createSysUserDto.getLoginName())
@@ -49,6 +63,20 @@ public class SysUserBiz {
         sysUser.setPassword(SecureUtil.md5(defaultPassword));
         sysUser.setIsReset(CommonConstants.STATUS_RESET);
         sysUserService.save(sysUser);
+
+        Long userId = sysUser.getUserId();
+
+        List<Long> roleIdList = createSysUserDto.getRoleList();
+        if (roleIdList != null && !roleIdList.isEmpty()) {
+            List<SysUserRole> sysUserRoleList = new ArrayList<>();
+            roleIdList.forEach(roleId -> {
+                SysUserRole sysUserRole = new SysUserRole();
+                sysUserRole.setRoleId(roleId);
+                sysUserRole.setUserId(userId);
+                sysUserRoleList.add(sysUserRole);
+            });
+            sysUserRoleService.saveBatch(sysUserRoleList);
+        }
     }
 
 
@@ -57,15 +85,80 @@ public class SysUserBiz {
                 .eqIfPresent(SysUser::getUserStatus, sysUserPageDto.getUserStatus())
                 .eqIfPresent(SysUser::getLoginName, sysUserPageDto.getLoginName())
                 .eqIfPresent(SysUser::getIsDelete, CommonConstants.STATUS_NOT_DEL));
-        return SysUserConvert.INSTANT.convertPage(sysUserPageResult);
+
+        PageResult<SysUserVo> sysUserVoPageResult = SysUserConvert.INSTANT.convertPage(sysUserPageResult);
+
+        // 3. 提取所有用户ID（只有当有用户数据时才查角色）
+        List<SysUserVo> userList = sysUserVoPageResult.getList();
+        if (CollectionUtils.isEmpty(userList)) {
+            return sysUserVoPageResult;
+        }
+
+        List<Long> userIds = userList.stream()
+                .map(SysUserVo::getUserId)
+                .toList();
+
+        // 4. 【优化重点】一次性查询所有用户关联的角色（按用户ID分组）
+        List<SysUserRole> allUserRoles = sysUserRoleService.selectList(
+                new LambdaQueryWrapper<SysUserRole>()
+                        .in(SysUserRole::getUserId, userIds)
+                        .select(SysUserRole::getUserId, SysUserRole::getRoleId)
+        );
+
+        // 5. 按 userId 分组，构建 Map<UserId, List<Long>>
+        Map<Long, List<String>> userRoleMap = allUserRoles.stream()
+                .collect(Collectors.groupingBy(
+                        SysUserRole::getUserId,
+                        Collectors.mapping(userRole -> userRole.getRoleId().toString(), Collectors.toList())
+                ));
+
+        // 6. 给每个 SysUserVo 设置角色列表
+        userList.forEach(sysUserVo -> {
+            Long userId = sysUserVo.getUserId();
+            List<String> roleList = userRoleMap.getOrDefault(userId, Collections.emptyList());
+            sysUserVo.setRoleList(roleList);
+        });
+
+        return sysUserVoPageResult;
     }
 
     public void update(SysUserUpdateDto sysUserUpdateDto) {
-        checkUserExistsByUserId(sysUserUpdateDto.getUserId());
+        Long userId = sysUserUpdateDto.getUserId();
+        checkUserExistsByUserId(userId);
 
         SysUser update = SysUserConvert.INSTANT.update(sysUserUpdateDto);
         sysUserService.updateById(update);
+
+        List<Long> roleIdList = sysUserUpdateDto.getRoleList();
+        if (roleIdList != null && !roleIdList.isEmpty()) {
+
+            //  先删后存
+            sysUserRoleService.remove(new LambdaQueryWrapperX<SysUserRole>()
+                    .eq(SysUserRole::getUserId, userId));
+
+            List<SysUserRole> sysUserRoleList = new ArrayList<>();
+            roleIdList.forEach(roleId -> {
+                SysUserRole sysUserRole = new SysUserRole();
+                sysUserRole.setRoleId(roleId);
+                sysUserRole.setUserId(userId);
+                sysUserRoleList.add(sysUserRole);
+            });
+            sysUserRoleService.saveBatch(sysUserRoleList);
+        }
     }
+
+    public void batchDeleteUser(SysUserBatchDeleteUserDto sysUserBatchDeleteUserDto) {
+        List<Long> userIdList = sysUserBatchDeleteUserDto.getUserIdList();
+        if (userIdList == null || userIdList.isEmpty()) {
+            log.info("user id list is empty");
+            return;
+        }
+
+        SysUser sysUser = new SysUser();
+        sysUser.setIsDelete(CommonConstants.STATUS_DEL);
+        sysUserService.update(sysUser, new LambdaQueryWrapperX<SysUser>().in(SysUser::getUserId, userIdList));
+    }
+
 
     public void resetPwd(SysUserResetPwdDto sysUserResetPwdDto) {
         checkUserExistsByUserId(sysUserResetPwdDto.getUserId());

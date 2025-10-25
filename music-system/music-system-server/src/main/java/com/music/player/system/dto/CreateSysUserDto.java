@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * ClassName : CreateSysUserDto<br>
  * Description : CreateSysUserDto<br>
@@ -18,10 +20,19 @@ import lombok.ToString;
 @ToString
 public class CreateSysUserDto {
 
-    @NotBlank(message = "请输入登录账号")
+    @NotBlank(message = "登录账号不能为空")
     private String loginName;
 
+    @NotBlank(message = "昵称不能为空")
     private String nickName;
 
+    private String userStatus;
+
+    private String email;
+
+    private String phone;
+
     private String remark;
+
+    private List<Long> roleList;
 }

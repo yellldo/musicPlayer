@@ -1,5 +1,6 @@
 package com.music.player.system.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * ClassName : SysUserVo<br>
@@ -37,6 +39,12 @@ public class SysUserVo implements Serializable {
 
     private String remark;
 
+    private String phone;
+
+    private String email;
+
     private String createTime;
+
+    private List<String> roleList;
 
 }

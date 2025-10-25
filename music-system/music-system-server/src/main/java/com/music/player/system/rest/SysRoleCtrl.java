@@ -5,6 +5,7 @@ import com.music.player.framework.common.base.R;
 import com.music.player.system.biz.SysRoleBiz;
 import com.music.player.system.dto.*;
 import com.music.player.system.vo.SysRoleVo;
+import com.music.player.system.vo.SysUserVo;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * ClassName : SysRoleCtrl<br>
@@ -43,12 +46,23 @@ public class SysRoleCtrl {
         return R.ok(sysRoleBiz.page(sysRolePageDto));
     }
 
+    @PostMapping("list")
+    public R<List<SysRoleVo>> list() {
+        return R.ok(sysRoleBiz.list());
+    }
+
     /**
      * delete role
      */
     @PostMapping("delete")
     public R<?> deleteRole(@Valid @RequestBody SysRoleIdDto sysRoleIdDto) {
         sysRoleBiz.deleteRole(sysRoleIdDto.getRoleId());
+        return R.ok();
+    }
+
+    @PostMapping("batchDelete")
+    public R<?> batchDelete(@Valid @RequestBody SysRoleBatchDeleteDto sysRoleBatchDeleteDto) {
+        sysRoleBiz.batchDelete(sysRoleBatchDeleteDto);
         return R.ok();
     }
 

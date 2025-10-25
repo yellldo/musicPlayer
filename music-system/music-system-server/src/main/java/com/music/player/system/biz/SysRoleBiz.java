@@ -15,6 +15,7 @@ import com.music.player.system.dto.*;
 import com.music.player.system.enmus.ErrorCodeConstants;
 import com.music.player.system.entity.SysRole;
 import com.music.player.system.entity.SysRoleMenu;
+import com.music.player.system.entity.SysUser;
 import com.music.player.system.service.SysRoleMenuService;
 import com.music.player.system.service.SysRoleService;
 import com.music.player.system.vo.SysRoleVo;
@@ -66,6 +67,27 @@ public class SysRoleBiz {
         sysRoleService.updateById(sysRole);
     }
 
+    public void batchDelete(SysRoleBatchDeleteDto sysRoleBatchDeleteDto) {
+
+        List<Long> roleIdList = sysRoleBatchDeleteDto.getRoleIdList();
+        if (roleIdList == null || roleIdList.isEmpty()) {
+            return;
+        }
+
+        SysRole sysRole = new SysRole();
+        sysRole.setIsDelete(CommonConstants.STATUS_DEL);
+        sysRoleService.update(sysRole, new LambdaQueryWrapperX<SysRole>().in(SysRole::getRoleId, roleIdList));
+
+    }
+
+    public List<SysRoleVo> list() {
+        List<SysRole> list = sysRoleService.list(new LambdaQueryWrapperX<SysRole>()
+                .eq(SysRole::getIsDelete, CommonConstants.STATUS_NOT_DEL));
+
+        return SysRoleConvert.INSTANT.convertList(list);
+
+    }
+
     public void update(SysRoleUpdateDto sysRoleUpdateDto) {
 
         long count = sysRoleService.selectCount(new LambdaQueryWrapperX<SysRole>()
@@ -87,7 +109,7 @@ public class SysRoleBiz {
             return;
         }
 
-        checkSysRoleByRoleId(sysRoleUpdateStatusDto.getRoleId());
+//        checkSysRoleByRoleId(sysRoleUpdateStatusDto.getRoleId());
 
         SysRole sysRole = SysRoleConvert.INSTANT.updateStatus(sysRoleUpdateStatusDto);
         sysRoleService.updateById(sysRole);
@@ -95,11 +117,10 @@ public class SysRoleBiz {
 
     public void assign(SysRoleAssignDto sysRoleAssignDto) {
         // menuIdList 为空，说明取消了所有权限
-        if (sysRoleAssignDto.getMenuIdList().isEmpty()) {
-            sysRoleMenuService.remove(new LambdaQueryWrapperX<SysRoleMenu>()
-                    .eq(SysRoleMenu::getRoleId, sysRoleAssignDto.getRoleId()));
-            return;
-        }
+
+        sysRoleMenuService.remove(new LambdaQueryWrapperX<SysRoleMenu>()
+                .eq(SysRoleMenu::getRoleId, sysRoleAssignDto.getRoleId()));
+
 
         List<SysRoleMenu> sysRoleMenuList = new ArrayList<>();
         sysRoleAssignDto.getMenuIdList().forEach(menuId -> {

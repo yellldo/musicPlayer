@@ -40,6 +40,8 @@ create table sys_user(
     login_name varchar(10) not null comment '登录账号',
     nick_name varchar(20) null comment '昵称',
     password varchar(50) not null comment '密码',
+    email varchar(50) not null comment '邮箱',
+    phone varchar(11) not null comment '手机号',
     user_status char(1) default '0' comment '状态0、正常1、禁用',
     remark varchar(100) null comment '用户备注',
     error_count int null comment '错误次数',

@@ -69,7 +69,7 @@ public class SysUserCtrl {
      * delete user
      */
     @PostMapping("deleteUser")
-    public R<?> deleteUser(@Valid @RequestBody SysUserDeleteUserDto sysUserDeleteUserDto) {
+    public R<Void> deleteUser(@Valid @RequestBody SysUserDeleteUserDto sysUserDeleteUserDto) {
         sysUserBiz.deleteUser(sysUserDeleteUserDto);
         return R.ok();
     }
@@ -88,6 +88,12 @@ public class SysUserCtrl {
     @PostMapping("update")
     public R<Void> update(@Valid @RequestBody SysUserUpdateDto sysUserUpdateDto) {
         sysUserBiz.update(sysUserUpdateDto);
+        return R.ok();
+    }
+
+    @PostMapping("batchDeleteUser")
+    public R<Void> batchDeleteUser(@Valid @RequestBody SysUserBatchDeleteUserDto sysUserBatchDeleteUserDto) {
+        sysUserBiz.batchDeleteUser(sysUserBatchDeleteUserDto);
         return R.ok();
     }
 

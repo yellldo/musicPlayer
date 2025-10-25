@@ -33,6 +33,8 @@ public class SysMenuCreateDto {
 
     private Integer sort;
 
+    private Integer level;
+
     private String icon;
 
     private String permission;

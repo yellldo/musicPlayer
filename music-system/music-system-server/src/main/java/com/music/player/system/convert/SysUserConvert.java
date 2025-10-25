@@ -7,6 +7,8 @@ import com.music.player.system.dto.SysUserUpdateDto;
 import com.music.player.system.entity.SysUser;
 import com.music.player.system.vo.SysUserVo;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -29,6 +31,7 @@ public interface SysUserConvert {
 
     SysUser resetPwd(SysUserResetPwdDto sysUserResetPwdDto);
 
+    @Mappings({@Mapping(source = "createTime", target = "createTime", dateFormat = "yyyy-MM-dd HH:mm:ss")})
     SysUserVo copy(SysUser sysUser);
 }
 

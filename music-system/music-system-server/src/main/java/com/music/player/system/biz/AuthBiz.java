@@ -48,10 +48,10 @@ public class AuthBiz {
 
         LoginVo loginVo = new LoginVo();
 
-        if (CommonConstants.STATUS_RESET.equals(sysUser.getIsReset())) {
-            loginVo.setIsReset(sysUser.getIsReset());
-            return loginVo;
-        }
+//        if (CommonConstants.STATUS_RESET.equals(sysUser.getIsReset())) {
+//            loginVo.setIsReset(sysUser.getIsReset());
+//            return loginVo;
+//        }
 
         String userStatus = sysUser.getUserStatus();
 

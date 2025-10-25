@@ -13,6 +13,7 @@ import com.music.player.system.dto.SysMenuUpdateDto;
 import com.music.player.system.entity.SysMenu;
 import com.music.player.system.service.SysMenuService;
 import com.music.player.system.vo.SysMenuVo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -90,6 +91,15 @@ public class SysMenuBiz {
             } else {
                 SysMenuVo parent = menuMap.get(parentId);
                 if (parent != null) {
+                    String[] parentIdList = parent.getParentIdList();
+                    String[] currentParentIdList = new String[menu.getLevel()];
+                    if (parentIdList != null) {
+                        currentParentIdList[0] = parentIdList[0];
+                        currentParentIdList[1] = String.valueOf(parent.getMenuId());
+                    } else {
+                        currentParentIdList[0] = String.valueOf(parent.getMenuId());
+                    }
+                    menu.setParentIdList(currentParentIdList);
                     List<SysMenuVo> children = parent.getChildren();
                     if (children == null) {
                         children = new ArrayList<>();

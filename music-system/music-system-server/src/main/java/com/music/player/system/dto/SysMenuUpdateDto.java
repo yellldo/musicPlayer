@@ -32,7 +32,11 @@ public class SysMenuUpdateDto extends SysMenuIdDto {
 
     private String permission;
 
+    private Integer level;
+
     private String icon;
+
+    private String menuRemark;
 
 
 }

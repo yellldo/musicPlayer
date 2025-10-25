@@ -1,6 +1,7 @@
 package com.music.player.system.rest;
 
 import cn.dev33.satoken.stp.StpUtil;
+import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.base.R;
 import com.music.player.system.biz.SysMenuBiz;
 import com.music.player.system.dto.SysMenuCreateDto;
@@ -30,16 +31,15 @@ public class SysMenuCtrl {
 
 
     @PostMapping("create")
-    public R<?> create(@RequestBody SysMenuCreateDto sysMenuCreateDto) {
+    public R<Void> create(@RequestBody SysMenuCreateDto sysMenuCreateDto) {
         sysMenuBiz.create(sysMenuCreateDto);
         return R.ok();
     }
 
     @GetMapping("page")
-    public R<?> page(SysMenuPageDto sysMenuPageDto) {
+    public R<PageResult<SysMenuVo>> page(SysMenuPageDto sysMenuPageDto) {
         return R.ok(sysMenuBiz.page(sysMenuPageDto));
     }
-
 
     @GetMapping("build")
     public R<List<SysMenuVo>> buildMenus() {
@@ -47,19 +47,19 @@ public class SysMenuCtrl {
     }
 
     @PostMapping("update")
-    public R update(@Valid @RequestBody SysMenuUpdateDto sysMenuUpdateDto) {
+    public R<Void> update(@Valid @RequestBody SysMenuUpdateDto sysMenuUpdateDto) {
         sysMenuBiz.update(sysMenuUpdateDto);
         return R.ok();
     }
 
     @PostMapping("delete")
-    public R<?> delete(@Valid @RequestBody SysMenuIdDto sysMenuIdDto) {
+    public R<Void> delete(@Valid @RequestBody SysMenuIdDto sysMenuIdDto) {
         sysMenuBiz.delete(sysMenuIdDto);
         return R.ok();
     }
 
     @GetMapping("tree")
-    public R<?> tree() {
+    public R<List<SysMenuVo>> tree() {
         return R.ok(sysMenuBiz.tree());
     }
 }
