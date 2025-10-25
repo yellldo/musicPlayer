@@ -2,9 +2,6 @@ package com.music.player.system.biz;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.dynamic.datasource.annotation.DS;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.base.SortingField;
 import com.music.player.framework.common.constants.CommonConstants;
@@ -15,7 +12,6 @@ import com.music.player.system.dto.*;
 import com.music.player.system.enmus.ErrorCodeConstants;
 import com.music.player.system.entity.SysRole;
 import com.music.player.system.entity.SysRoleMenu;
-import com.music.player.system.entity.SysUser;
 import com.music.player.system.service.SysRoleMenuService;
 import com.music.player.system.service.SysRoleService;
 import com.music.player.system.vo.SysRoleVo;
