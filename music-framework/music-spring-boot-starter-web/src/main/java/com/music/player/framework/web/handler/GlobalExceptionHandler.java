@@ -65,6 +65,7 @@ public class GlobalExceptionHandler {
         return R.failed(ex.getErrorCode(), ex.getErrorMessage());
     }
 
+
     @ExceptionHandler(value = Exception.class)
     public R<?> defaultExceptionHandler(HttpServletRequest request, Throwable ex) {
 

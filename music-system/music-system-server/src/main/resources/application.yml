@@ -25,7 +25,7 @@ server:
   port: 9018
 mybatis-plus:
   # 实体类扫描路径
-  type-aliases-package: com.music.player.*.entity
+  type-aliases-package: com.music.player.system.entity
   # xml 扫描路径
   mapper-locations: classpath:mapper/*/*.xml
   configuration:

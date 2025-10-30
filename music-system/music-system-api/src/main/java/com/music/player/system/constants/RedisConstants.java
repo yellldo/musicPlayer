@@ -15,6 +15,7 @@ public class RedisConstants {
 
     public static final String USER = "user:";
     public static final String INFO = USER + "info:";
+    public static final String TOKEN = USER + "token:";
 
 
     public static final Long ONE_DAY = 86400L;

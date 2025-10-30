@@ -9,6 +9,7 @@ import com.music.player.system.constants.RedisConstants;
 import com.music.player.system.dto.LoginDto;
 import com.music.player.system.vo.LoginVo;
 import com.music.player.system.vo.SysUserVo;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class AuthCtrl {
 
 
     @GetMapping("info")
-    public R<SysUserVo> info() {
+    public R<SysUserVo> info(HttpServletRequest request) {
         return R.ok(redisOps.get(RedisConstants.INFO + StpUtil.getLoginIdAsLong(), false));
     }
 }

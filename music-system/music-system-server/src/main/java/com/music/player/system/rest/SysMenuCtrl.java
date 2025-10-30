@@ -3,6 +3,7 @@ package com.music.player.system.rest;
 import cn.dev33.satoken.stp.StpUtil;
 import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.base.R;
+import com.music.player.framework.redis.domain.RedisOps;
 import com.music.player.system.biz.SysMenuBiz;
 import com.music.player.system.dto.SysMenuCreateDto;
 import com.music.player.system.dto.SysMenuIdDto;
@@ -28,6 +29,8 @@ public class SysMenuCtrl {
 
     @Autowired
     private SysMenuBiz sysMenuBiz;
+    @Autowired
+    private RedisOps redisOps;
 
 
     @PostMapping("create")

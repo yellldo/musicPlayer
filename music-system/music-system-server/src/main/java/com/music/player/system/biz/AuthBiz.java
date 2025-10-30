@@ -75,18 +75,10 @@ public class AuthBiz {
 
         loginVo.setToken(StpUtil.getTokenValue());
 
-//        SysUserVo sysUserVo = new SysUserVo()
-//                .setUserId(sysUser.getUserId())
-//                .setUserStatus(sysUser.getUserStatus())
-//                .setLoginName(sysUser.getLoginName())
-//                .setRemark(sysUser.getRemark())
-//                .setCreateTime();
-
         SysUserVo sysUserVo = SysUserConvert.INSTANT.copy(sysUser);
-//        redisTemplate.opsForValue().set(RedisConstants.INFO + sysUser.getUserId(), sysUserVo);
 
         log.info("存入的对象类型: {}", (sysUserVo != null ? sysUserVo.getClass() : "null"));
-        redisOps.set(RedisConstants.INFO + sysUser.getUserId(), sysUserVo, false);
+        redisOps.setEx(RedisConstants.INFO + sysUser.getUserId(), sysUserVo, RedisConstants.ONE_DAY);
 
         return loginVo;
     }

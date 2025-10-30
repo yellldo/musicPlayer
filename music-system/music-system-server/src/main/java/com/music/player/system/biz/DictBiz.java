@@ -1,6 +1,5 @@
 package com.music.player.system.biz;
 
-import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.music.player.framework.common.base.PageResult;
@@ -67,7 +66,7 @@ public class DictBiz {
         }
 
         DictInfo dictInfo = DictConvert.INSTANT.createDictCode(dictCodeCreateDto);
-        dictInfo.setCreateBy(StpUtil.getLoginIdAsLong());
+//        dictInfo.setCreateBy(StpUtil.getLoginIdAsLong());
         dictInfoService.save(dictInfo);
     }
 
@@ -122,7 +121,7 @@ public class DictBiz {
         }
 
         DictDetail dict = DictConvert.INSTANT.createDict(dictCreateDto);
-        dict.setCreateBy(StpUtil.getLoginIdAsLong());
+//        dict.setCreateBy(StpUtil.getLoginIdAsLong());
         dictDetailService.save(dict);
     }
 

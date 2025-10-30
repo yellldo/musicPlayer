@@ -10,12 +10,11 @@
     <modules>
         <module>music-dependencies</module>
         <module>music-framework</module>
-        <module>music-infra</module>
         <module>music-system</module>
-        <module>music-gateway</module>
         <module>music-user</module>
         <module>music-recommend</module>
         <module>music-content</module>
+        <module>music-adm-gateway</module>
     </modules>
 
     <properties>
