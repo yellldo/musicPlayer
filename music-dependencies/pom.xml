@@ -35,6 +35,7 @@
         <knife4j.version>4.4.0</knife4j.version>
         <fastjson2.version>2.0.59</fastjson2.version>
         <transmittable.version>2.14.5</transmittable.version>
+        <rocket.version>2.2.3</rocket.version>
     </properties>
 
 
@@ -212,7 +213,11 @@
                 <artifactId>sa-token-redisson-spring-boot-starter</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-core</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
@@ -227,6 +232,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>transmittable-thread-local</artifactId>
                 <version>${transmittable.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>2.3.4</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

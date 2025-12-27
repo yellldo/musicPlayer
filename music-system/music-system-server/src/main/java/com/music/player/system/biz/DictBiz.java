@@ -48,11 +48,15 @@ public class DictBiz {
         dictInfoService.save(DictConvert.INSTANT.create(createDictDto));
     }
 
-    public R<PageResult<DictCodeVo>> dictCodePage(DictCodePageDto dictCodePageDto) {
+    public PageResult<DictCodeVo> dictCodePage(DictCodePageDto dictCodePageDto) {
         PageResult<DictInfo> result = dictInfoService.selectPage(dictCodePageDto, new LambdaQueryWrapperX<DictInfo>()
                 .eqIfPresent(DictInfo::getDictType, dictCodePageDto.getDictType())
                 .eq(DictInfo::getIsDelete, CommonConstants.STATUS_NOT_DEL));
-        return R.ok(DictConvert.INSTANT.convertDictTypePage(result));
+        return DictConvert.INSTANT.convertDictTypePage(result);
+    }
+
+    public List<DictDetailVo> queryListByDictCode(DictCodeDto dictCodeDto) {
+        return dictDetailService.queryDictByDictCode(dictCodeDto);
     }
 
     public void createDictCode(DictCodeCreateDto dictCodeCreateDto) {

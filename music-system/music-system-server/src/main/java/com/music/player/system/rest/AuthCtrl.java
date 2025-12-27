@@ -4,6 +4,8 @@ import cn.dev33.satoken.annotation.SaIgnore;
 import cn.dev33.satoken.stp.StpUtil;
 import com.music.player.framework.common.base.R;
 import com.music.player.framework.redis.domain.RedisOps;
+import com.music.player.framework.web.annotation.LogPrint;
+import com.music.player.framework.web.constant.LogOperationConstant;
 import com.music.player.system.biz.AuthBiz;
 import com.music.player.system.constants.RedisConstants;
 import com.music.player.system.dto.LoginDto;
@@ -33,12 +35,13 @@ public class AuthCtrl {
     private RedisOps redisOps;
 
     @SaIgnore
+    @LogPrint(operation = "登陆", module = LogOperationConstant.MODULE_SYSTEM)
     @PostMapping("login")
     public R<LoginVo> login(@Valid @RequestBody LoginDto loginDto) {
         return R.ok(authBiz.login(loginDto));
     }
 
-
+    @LogPrint(operation = "获取个人信息", module = LogOperationConstant.MODULE_SYSTEM)
     @GetMapping("info")
     public R<SysUserVo> info(HttpServletRequest request) {
         return R.ok(redisOps.get(RedisConstants.INFO + StpUtil.getLoginIdAsLong(), false));

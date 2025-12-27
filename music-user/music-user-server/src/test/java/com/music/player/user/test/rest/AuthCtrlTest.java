@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.music.player.user.dto.LoginDto;
 import com.music.player.user.dto.LoginGetCodeDto;
+import com.music.player.user.dto.RegisterUserDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -33,8 +34,7 @@ public class AuthCtrlTest {
     @Test
     public void login() throws Exception {
         LoginGetCodeDto loginGetCodeDto = new LoginGetCodeDto();
-        loginGetCodeDto.setPhone("17600907053");
-        loginGetCodeDto.setType("3");
+        loginGetCodeDto.setPhone("17600907051");
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
                         .post("/auth/getCode")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -53,5 +53,21 @@ public class AuthCtrlTest {
                         .content(JSON.toJSONBytes(loginDto))
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print());
+    }
+
+    @Test
+    public void register() throws Exception {
+        RegisterUserDto registerUserDto = new RegisterUserDto();
+        registerUserDto.setPhone("17600907051");
+        registerUserDto.setNickName("谁啊");
+        registerUserDto.setGender("1");
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders
+                        .post("/auth/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(JSON.toJSONBytes(registerUserDto))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(print()).andReturn();
+
+
     }
 }

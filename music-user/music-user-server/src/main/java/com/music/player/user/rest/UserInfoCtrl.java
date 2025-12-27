@@ -1,11 +1,13 @@
 package com.music.player.user.rest;
 
 import cn.dev33.satoken.annotation.SaIgnore;
+import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.base.R;
 import com.music.player.user.biz.UserInfoBiz;
 import com.music.player.user.dto.CreateUserInfoDto;
 import com.music.player.user.dto.UpdateUserInfoDto;
 import com.music.player.user.dto.UserInfoPageDto;
+import com.music.player.user.vo.UserInfoVo;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,9 +34,9 @@ public class UserInfoCtrl {
         return R.ok();
     }
 
-    @GetMapping("page")
-    public R page(UserInfoPageDto userInfoPageDto) {
-        return userInfoBiz.page(userInfoPageDto);
+    @PostMapping("page")
+    public R<PageResult<UserInfoVo>> page(@RequestBody UserInfoPageDto userInfoPageDto) {
+        return R.ok(userInfoBiz.page(userInfoPageDto));
     }
 
 

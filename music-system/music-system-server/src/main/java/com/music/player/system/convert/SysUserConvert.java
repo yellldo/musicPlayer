@@ -31,6 +31,7 @@ public interface SysUserConvert {
 
     SysUser resetPwd(SysUserResetPwdDto sysUserResetPwdDto);
 
+    // 用户列表时间格式转换
     @Mappings({@Mapping(source = "createTime", target = "createTime", dateFormat = "yyyy-MM-dd HH:mm:ss")})
     SysUserVo copy(SysUser sysUser);
 }

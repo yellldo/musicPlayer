@@ -1,10 +1,11 @@
 package com.music.player.framework.web.aop;
 
+import com.music.player.framework.web.annotation.LogPrint;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
@@ -14,8 +15,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.util.Arrays;
 
 /**
- * ClassName : ControllerLoggingAspect<br>
- * Description : ControllerLoggingAspect<br>
+ * ClassName : LogPrintAspect<br>
+ * Description : LogPrintAspect<br>
  *
  * @author : sj
  * @date : 10/30/25
@@ -23,55 +24,45 @@ import java.util.Arrays;
 @Slf4j
 @Aspect
 @Component
-public class ControllerLoggingAspect {
+public class LogPrintAspect {
 
+    @Pointcut("@annotation(com.music.player.framework.web.annotation.LogPrint)")
+    public void logPrint() {
+
+    }
 
     /**
      * 切入点：拦截所有 Controller 包下的 public 方法
      * 你可以根据需要调整切入点表达式
      */
-    @Around("execution(public * com.music.player..*.*(..))")
-    public Object logControllerMethod(ProceedingJoinPoint joinPoint) throws Throwable {
-        long startTime = System.currentTimeMillis();
+    @Before("logPrint()")
+    public void logControllerMethod(JoinPoint joinPoint) {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        LogPrint logPrint = signature.getMethod().getAnnotation(LogPrint.class);
+        if (!logPrint.enable()) {
+            return;
+        }
 
         // 获取当前请求对象（如果有）
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes != null ? attributes.getRequest() : null;
 
         // 获取方法签名信息
-        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        String className = joinPoint.getTarget().getClass().getSimpleName();
-        String methodName = signature.getMethod().getName();
         String[] parameterNames = signature.getParameterNames();
         Object[] args = joinPoint.getArgs();
 
-        // 打印请求信息
-        log.info("======= Controller 方法调用开始 =======");
+        // 打印方法调用开始日志
+        log.info("======= LogPrint 方法调用开始 =======");
         if (request != null) {
-            log.info("请求 URL        : {}", request.getRequestURL());
-            log.info("请求方法        : {}", request.getMethod());
-            log.info("请求 IP         : {}", request.getRemoteAddr());
+            log.info("请求 URL: {},请求 IP: {}", request.getRequestURL(), request.getRemoteAddr());
         }
-        log.info("类名            : {}", className);
-        log.info("方法名          : {}", methodName);
-        log.info("方法参数名和值  : {}", getParamString(parameterNames, args));
-
-        // 执行目标方法，并获取返回值
-        Object result;
-        try {
-            result = joinPoint.proceed(); // 执行原方法
-        } catch (Throwable e) {
-            log.error("方法执行异常    : {}", e.getMessage(), e);
-            throw e; // 继续抛出异常
+        if (!logPrint.module().isEmpty()) {
+            log.info("模块: {}", logPrint.module());
         }
-
-        // 打印返回结果和方法耗时
-        long endTime = System.currentTimeMillis();
-        log.info("方法返回值      : {}", result);
-        log.info("方法耗时        : {} ms", (endTime - startTime));
-        log.info("======= Controller 方法调用结束 =======\n");
-
-        return result;
+        if (!logPrint.operation().isEmpty()) {
+            log.info("操作: {}", logPrint.operation());
+        }
+        log.info("方法参数: {}", getParamString(parameterNames, args));
     }
 
     /**

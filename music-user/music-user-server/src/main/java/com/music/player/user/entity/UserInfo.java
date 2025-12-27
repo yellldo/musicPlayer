@@ -41,9 +41,6 @@ public class UserInfo extends BaseEntity {
     @TableField("phone")
     private String phone;
 
-    @TableField("email")
-    private String email;
-
     @TableField("nick_name")
     private String nickName;
 
@@ -61,6 +58,21 @@ public class UserInfo extends BaseEntity {
 
     @TableField("city")
     private String city;
+
+    @TableField("grade")
+    private Integer grade;
+
+    @TableField("membership_level")
+    private Integer membershipLevel;
+
+    @TableField("follower_count")
+    private Integer followerCount;
+
+    @TableField("following_count")
+    private Integer followingCount;
+
+    @TableField("is_authentication")
+    private String isAuthentication;
 
 
 }

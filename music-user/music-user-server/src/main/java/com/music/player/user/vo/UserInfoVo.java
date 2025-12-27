@@ -1,5 +1,6 @@
 package com.music.player.user.vo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.StringSerializer;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -34,13 +35,23 @@ public class UserInfoVo {
 
     private String phone;
 
-    private String email;
-
     private String profile;
 
     private String avatar;
 
     private String gender;
+
+    private String birthday;
+
+    private int grade;
+
+    private Integer followerCount;
+
+    private Integer followingCount;
+
+    private Integer membershipLevel;
+
+    private String isAuthentication;
 
     private String city;
 
@@ -48,5 +59,5 @@ public class UserInfoVo {
 
     private String isDelete;
 
-    private LocalDateTime createTime;
+    private String createTime;
 }

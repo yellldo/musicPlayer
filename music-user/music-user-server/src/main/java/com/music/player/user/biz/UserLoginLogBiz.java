@@ -5,7 +5,7 @@ import com.music.player.user.convert.UserLoginLogConvert;
 import com.music.player.user.dto.CreateUserLoginLogDto;
 import com.music.player.user.service.UserLoginLogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * ClassName : UserLoginLogBiz<br>
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @author : sj
  * @date : 2025/10/11
  */
-@Service
+@Component
 public class UserLoginLogBiz {
 
     @Autowired

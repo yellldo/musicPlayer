@@ -2,7 +2,6 @@ package com.music.player.user.biz;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.music.player.framework.common.base.PageResult;
-import com.music.player.framework.common.base.R;
 import com.music.player.framework.common.constants.CommonConstants;
 import com.music.player.framework.common.exception.base.BusinessException;
 import com.music.player.framework.id.utils.IdUtils;
@@ -17,7 +16,7 @@ import com.music.player.user.entity.UserInfo;
 import com.music.player.user.service.UserInfoService;
 import com.music.player.user.vo.UserInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * ClassName : UserInfoBiz<br>
@@ -26,7 +25,7 @@ import org.springframework.stereotype.Service;
  * @author : sj
  * @date : 10/8/25
  */
-@Service
+@Component
 public class UserInfoBiz {
 
     @Autowired
@@ -50,11 +49,13 @@ public class UserInfoBiz {
         userInfoService.save(userInfo);
     }
 
-    public R<PageResult<UserInfoVo>> page(UserInfoPageDto userInfoPageDto) {
+    public PageResult<UserInfoVo> page(UserInfoPageDto userInfoPageDto) {
         PageResult<UserInfo> result = userInfoService.selectPage(userInfoPageDto, new LambdaQueryWrapperX<UserInfo>()
                 .eqIfPresent(UserInfo::getUserStatus, userInfoPageDto.getUserStatus())
-                .eqIfPresent(UserInfo::getUserType, userInfoPageDto.getUserType()));
-        return R.ok(UserInfoConvert.INSTANT.convertPage(result));
+                .eqIfPresent(UserInfo::getUserType, userInfoPageDto.getUserType())
+                .eqIfPresent(UserInfo::getIsDelete, CommonConstants.STATUS_NOT_DEL)
+                .likeIfPresent(UserInfo::getNickName, userInfoPageDto.getNickName()));
+        return UserInfoConvert.INSTANT.convertPage(result);
     }
 
     public void update(UpdateUserInfoDto updateUserInfoDto) {

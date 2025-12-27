@@ -6,26 +6,41 @@ drop table if exists user_info;
 create table user_info(
 	user_id bigint primary key not null comment '主键',
 	user_type char(2) default '0' comment '用户类型 0、普通用户 1、VIP用户',
+	membership_level int default 0 comment '会员等级',
 	user_status char(2) default '0' comment '用户状态0、正常1、禁用2、删除',
 	nick_name varchar(50) not null comment '昵称',
 	profile varchar(500) null comment '简介',
 	phone varchar(15) null comment '手机号',
-	email varchar(50) null comment '邮箱',
 	avatar varchar(100) null comment '头像',
-	gender char(1) default '0' comment '性别0、未知1、男2、女',
+	gender char(1) default '2' comment '性别0、男 1、女 2、未知',
 	birthday varchar(10) null comment '生日',
 	province varchar(20) null comment '省份',
 	city varchar(10) null comment '城市',
-	grade int comment '等级',
+	grade int default 0 comment '等级',
 	follower_count bigint default 0 comment '粉丝数',
 	following_count bigint default 0 comment '关注数',
-	is_authentication char(1) comment '是否实名认证 0、否 1、是',
+	is_authentication char(1) default '0' comment '是否实名认证 0、否 1、是',
 	is_delete char(1) null comment '是否删除0、未删除1、已删除',
 	create_time datetime null comment '创建时间',
 	update_time datetime null comment '更新时间',
   	create_by bigint comment '创建人',
   	update_by bigint comment '更新人'
 ) comment '用户表' charset = utf8mb4;
+
+drop table if exists user_message;
+create table user_message(
+	message_id bigint primary key not null comment '主键',
+	message_title varchar(200) comment '消息标题',
+	message_type char(2) comment '消息类型',
+	message_content text comment '消息内容',
+	is_read char(1) default '0' comment '是否已读，0、否 1、是',
+	send_id bigint not null comment '发送方',
+	receive_id bigint not null comment '接收方',
+	create_time datetime null comment '创建时间',
+	update_time datetime null comment '更新时间',
+    create_by bigint comment '创建人',
+    update_by bigint comment '更新人'
+) comment '用户消息' charset = utf8mb4;
 
 drop table if exists user_points;
 create table points(

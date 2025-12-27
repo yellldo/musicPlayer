@@ -2,7 +2,6 @@ package com.music.player.user.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -20,10 +19,6 @@ public class RegisterUserDto {
 
     @NotNull(message = "手机号不能为空")
     private String phone;
-
-    private String code;
-
-    private String email;
 
     private String profile;
 

@@ -1,6 +1,7 @@
 package com.music.player.system.biz;
 
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.dynamic.datasource.annotation.DS;
@@ -177,6 +178,7 @@ public class SysUserBiz {
                 .setPassword(SecureUtil.md5(sysUserUpdatePwdDto.getPassword()))
                 .setUserId(sysUserUpdatePwdDto.getUserId())
                 .setIsReset(CommonConstants.STATUS_NOT_RESET);
+        sysUser.setUpdateBy(StpUtil.getLoginIdAsLong());
         sysUserService.updateById(sysUser);
     }
 

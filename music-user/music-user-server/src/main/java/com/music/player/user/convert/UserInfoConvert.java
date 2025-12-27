@@ -7,6 +7,8 @@ import com.music.player.user.dto.UpdateUserInfoDto;
 import com.music.player.user.entity.UserInfo;
 import com.music.player.user.vo.UserInfoVo;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -29,4 +31,7 @@ public interface UserInfoConvert {
     UserInfo update(UpdateUserInfoDto updateUserInfoDto);
 
     CreateUserInfoDto doCreate(RegisterUserDto registerUserDto);
+
+    @Mappings({@Mapping(source = "createTime", target = "createTime", dateFormat = "yyyy-MM-dd HH:mm:ss")})
+    UserInfoVo copy(UserInfo sysUser);
 }

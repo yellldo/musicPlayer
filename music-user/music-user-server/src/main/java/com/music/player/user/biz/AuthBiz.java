@@ -6,7 +6,6 @@ import cn.hutool.core.bean.BeanUtil;
 import com.music.player.framework.common.constants.CommonConstants;
 import com.music.player.framework.common.exception.base.BusinessException;
 import com.music.player.framework.common.utils.IpUtils;
-import com.music.player.framework.common.utils.SpringContextUtil;
 import com.music.player.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.music.player.user.constants.UserConstants;
 import com.music.player.user.convert.UserInfoConvert;
@@ -16,13 +15,12 @@ import com.music.player.user.dto.LoginDto;
 import com.music.player.user.dto.RegisterUserDto;
 import com.music.player.user.enmus.ErrorCodeConstants;
 import com.music.player.user.entity.UserInfo;
-import com.music.player.user.event.UserLoginLogEvent;
 import com.music.player.user.service.UserInfoService;
 import com.music.player.user.utils.LogUtils;
 import com.music.player.user.vo.UserInfoVo;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * ClassName : AuthBiz<br>
@@ -31,7 +29,7 @@ import org.springframework.stereotype.Service;
  * @author : sj
  * @date : 10/10/25
  */
-@Service
+@Component
 public class AuthBiz {
 
     @Autowired

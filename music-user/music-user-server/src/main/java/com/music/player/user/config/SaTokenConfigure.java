@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author : sj
  * @date : 10/10/25
  */
-@Configuration
+//@Configuration
 public class SaTokenConfigure implements WebMvcConfigurer {
 
     // 注册 Sa-Token 拦截器，打开注解式鉴权功能

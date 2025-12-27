@@ -31,10 +31,11 @@ public interface DictConvert {
 
     PageResult<DictCodeVo> convertDictTypePage(PageResult<DictInfo> pageResult);
 
+    List<DictCodeVo> convertDictTypeList(List<DictInfo> list);
+
     List<DictInfoVo> converList(List<DictInfo> dictInfos);
 
     List<DictDetailVo> converDetailList(List<DictDetail> dictInfos);
-
 
     DictInfo update(UpdateDictDto updateDictDto);
 

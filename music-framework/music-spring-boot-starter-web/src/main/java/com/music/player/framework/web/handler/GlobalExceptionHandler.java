@@ -1,5 +1,6 @@
 package com.music.player.framework.web.handler;
 
+import cn.dev33.satoken.exception.NotLoginException;
 import cn.hutool.core.exceptions.ExceptionUtil;
 import com.music.player.framework.common.base.HttpCode;
 import com.music.player.framework.common.base.R;
@@ -58,7 +59,14 @@ public class GlobalExceptionHandler {
         return R.failed(ex.getErrorCode(), ex.getErrorMessage());
     }
 
-    @ExceptionHandler(value = RuntimeException.class)
+    @ExceptionHandler(value = NotLoginException.class)
+    public R<?> notLoginException(HttpServletResponse response, NotLoginException ex) {
+        log.error(ex.getMessage(), ex);
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        return R.failed(ex.getCode(), ex.getMessage());
+    }
+
+    //    @ExceptionHandler(value = RuntimeException.class)
     public R<?> runtimeException(HttpServletResponse response, BaseException ex) {
         log.error(ex.getErrorMessage(), ex);
         response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());

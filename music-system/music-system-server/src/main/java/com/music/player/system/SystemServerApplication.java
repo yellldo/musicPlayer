@@ -4,6 +4,8 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
@@ -15,6 +17,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @EnableDiscoveryClient
 @EnableAspectJAutoProxy
+@ComponentScan(basePackages = {"com.music.player", "com.music.player.framework.web"})
 @MapperScan(value = {"com.music.player.system.mapper"})
 @SpringBootApplication
 public class SystemServerApplication {
