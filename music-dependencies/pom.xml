@@ -172,6 +172,11 @@
                 <artifactId>music-recommend-api</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-content-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.mapstruct</groupId>

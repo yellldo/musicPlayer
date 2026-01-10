@@ -6,15 +6,12 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.yulichang.base.MPJBaseMapper;
 import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.base.QueryRequest;
 import com.music.player.framework.common.base.QueryRequestParam;
 import com.music.player.framework.common.base.SortingField;
-import com.music.player.framework.common.constants.CommonConstants;
 import com.music.player.framework.mybatis.constants.EntityConstant;
-import com.music.player.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.music.player.framework.mybatis.core.utils.MyBatisUtils;
 import org.apache.ibatis.annotations.Param;
 

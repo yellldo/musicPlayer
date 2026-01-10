@@ -7,6 +7,7 @@ import cn.dev33.satoken.router.SaHttpMethod;
 import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.util.SaResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author : sj
  * @date : 10/28/25
  */
+@Slf4j
 @Component
 public class SaTokenConfigure implements WebMvcConfigurer {
 
@@ -53,7 +55,7 @@ public class SaTokenConfigure implements WebMvcConfigurer {
 
                     // 如果是预检请求，则立即返回到前端
                     SaRouter.match(SaHttpMethod.OPTIONS)
-                            .free(r -> System.out.println("--------OPTIONS预检请求，不做处理"))
+                            .free(r -> log.info("--------OPTIONS预检请求，不做处理"))
                             .back();
                 });
     }

@@ -5,11 +5,9 @@ import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.base.R;
 import com.music.player.framework.redis.domain.RedisOps;
 import com.music.player.system.biz.SysMenuBiz;
-import com.music.player.system.dto.SysMenuCreateDto;
-import com.music.player.system.dto.SysMenuIdDto;
-import com.music.player.system.dto.SysMenuPageDto;
-import com.music.player.system.dto.SysMenuUpdateDto;
+import com.music.player.system.dto.*;
 import com.music.player.system.vo.SysMenuVo;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -47,6 +45,11 @@ public class SysMenuCtrl {
     @GetMapping("build")
     public R<List<SysMenuVo>> buildMenus() {
         return R.ok(sysMenuBiz.buildMenus(StpUtil.getLoginIdAsLong()));
+    }
+
+    @PostMapping("getRoleMenuList")
+    public R getRoleMenuList(@RequestBody GetRoleMenuListDto getRoleMenuListDto) {
+        return R.ok(sysMenuBiz.getRoleMenuList(getRoleMenuListDto.getRoleId()));
     }
 
     @PostMapping("update")

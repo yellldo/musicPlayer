@@ -49,6 +49,11 @@ public class UserInfoBiz {
         userInfoService.save(userInfo);
     }
 
+    public UserInfoVo findById(Long userId) {
+        UserInfo userInfo = userInfoService.getById(userId);
+        return UserInfoConvert.INSTANT.copy(userInfo);
+    }
+
     public PageResult<UserInfoVo> page(UserInfoPageDto userInfoPageDto) {
         PageResult<UserInfo> result = userInfoService.selectPage(userInfoPageDto, new LambdaQueryWrapperX<UserInfo>()
                 .eqIfPresent(UserInfo::getUserStatus, userInfoPageDto.getUserStatus())

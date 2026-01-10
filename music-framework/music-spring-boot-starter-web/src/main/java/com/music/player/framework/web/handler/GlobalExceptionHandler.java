@@ -59,13 +59,6 @@ public class GlobalExceptionHandler {
         return R.failed(ex.getErrorCode(), ex.getErrorMessage());
     }
 
-    @ExceptionHandler(value = NotLoginException.class)
-    public R<?> notLoginException(HttpServletResponse response, NotLoginException ex) {
-        log.error(ex.getMessage(), ex);
-        response.setStatus(HttpStatus.UNAUTHORIZED.value());
-        return R.failed(ex.getCode(), ex.getMessage());
-    }
-
     //    @ExceptionHandler(value = RuntimeException.class)
     public R<?> runtimeException(HttpServletResponse response, BaseException ex) {
         log.error(ex.getErrorMessage(), ex);

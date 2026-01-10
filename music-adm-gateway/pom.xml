@@ -31,6 +31,12 @@
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-spring-boot3-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>cn.dev33</groupId>
@@ -39,7 +45,7 @@
         <!-- Spring Cloud Gateway -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <artifactId>spring-cloud-starter-gateway-server-webflux</artifactId>
         </dependency>
 
         <dependency>
@@ -54,7 +60,6 @@
             <groupId>com.music.player</groupId>
             <artifactId>music-spring-boot-starter-log</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.music.player</groupId>
             <artifactId>music-common</artifactId>

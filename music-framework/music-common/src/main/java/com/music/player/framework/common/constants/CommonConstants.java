@@ -74,6 +74,8 @@ public class CommonConstants {
 
     public static final String AUTHORIZATION = "Authorization";
 
+    public static final String ADM_USER_ID = "adm-userId";
+
     /**
      * 请求开始时间
      */

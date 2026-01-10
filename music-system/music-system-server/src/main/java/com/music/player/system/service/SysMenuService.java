@@ -18,4 +18,7 @@ import java.util.List;
 public interface SysMenuService extends IBaseService<SysMenu> {
 
     List<SysMenuVo> queryMenusByUserId(Long userId);
+
+
+    List<String> getRoleMenuList(Long roleId);
 }

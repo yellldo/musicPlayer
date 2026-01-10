@@ -24,4 +24,11 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
     public List<SysMenuVo> queryMenusByUserId(Long userId) {
         return baseMapper.queryMenusByUserId(userId);
     }
+
+    @Override
+    public List<String> getRoleMenuList(Long roleId) {
+        return baseMapper.getRoleMenuList(roleId);
+    }
+
+
 }

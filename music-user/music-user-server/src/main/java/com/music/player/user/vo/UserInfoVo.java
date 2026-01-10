@@ -51,6 +51,8 @@ public class UserInfoVo {
 
     private Integer membershipLevel;
 
+    private String isArtist;
+
     private String isAuthentication;
 
     private String city;

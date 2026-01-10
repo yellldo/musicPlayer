@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author : sj
  * @date : 12/21/25
  */
-@FeignClient(value = FeignConstants.MUSIC_SYSTEM, path = FeignConstants.MUSIC_SYSTEM_URL)
+@FeignClient(value = FeignConstants.MUSIC_USER, path = FeignConstants.MUSIC_USER_URL)
 public interface UserMessageApi {
 
     /**

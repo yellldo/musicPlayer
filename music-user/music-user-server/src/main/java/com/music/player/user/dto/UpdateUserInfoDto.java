@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 /**
  * ClassName : UpdateUserInfoDto<br>
@@ -15,6 +16,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
+@Accessors(chain = true)
 public class UpdateUserInfoDto {
 
     @NotNull(message = "用户id不能为空")
@@ -31,4 +33,6 @@ public class UpdateUserInfoDto {
     private String province;
 
     private String city;
+
+    private String isArtist;
 }

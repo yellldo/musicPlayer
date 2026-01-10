@@ -78,7 +78,7 @@ public class AuthBiz {
         SysUserVo sysUserVo = SysUserConvert.INSTANT.copy(sysUser);
 
         log.info("存入的对象类型: {}", (sysUserVo != null ? sysUserVo.getClass() : "null"));
-        redisOps.setEx(RedisConstants.INFO + sysUser.getUserId(), sysUserVo, RedisConstants.ONE_DAY);
+        redisOps.setEx(RedisConstants.INFO + sysUser.getUserId(), sysUserVo, RedisConstants.THIRTY_DAY);
 
         return loginVo;
     }

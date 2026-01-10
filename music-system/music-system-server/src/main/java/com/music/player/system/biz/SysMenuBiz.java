@@ -69,10 +69,13 @@ public class SysMenuBiz {
         return buildMenuTree(sysMenuVos);
     }
 
+    public List<String> getRoleMenuList(Long roleId) {
+        return sysMenuService.getRoleMenuList(roleId);
+    }
+
 
     public List<SysMenuVo> buildMenus(Long userId) {
         List<SysMenuVo> sysMenuVos = sysMenuService.queryMenusByUserId(userId);
-
         return buildMenuTree(sysMenuVos);
     }
 

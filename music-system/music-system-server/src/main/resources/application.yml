@@ -35,4 +35,7 @@ mybatis-plus:
     banner: false
 
 logging:
-  config: classpath:logback-spring.xml
+  file:
+    path: /Users/shenjia/logs/music/music-system
+    name: ${spring.application.name}
+  config: classpath:log4j2-spring.xml

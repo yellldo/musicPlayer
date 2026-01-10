@@ -1,5 +1,6 @@
 package com.music.player.user.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -23,8 +24,8 @@ import java.io.Serializable;
 @TableName("user_message")
 public class UserMessage extends BaseEntity implements Serializable {
 
-    @TableId
-    private Long messageId;
+    @TableId(type = IdType.INPUT)
+    private Long id;
 
     @TableField("message_title")
     private String messageTitle;

@@ -71,6 +71,9 @@ public class UserInfo extends BaseEntity {
     @TableField("following_count")
     private Integer followingCount;
 
+    @TableField("is_artist")
+    private String isArtist;
+
     @TableField("is_authentication")
     private String isAuthentication;
 

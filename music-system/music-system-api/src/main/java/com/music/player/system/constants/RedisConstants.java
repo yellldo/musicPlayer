@@ -19,4 +19,5 @@ public class RedisConstants {
 
 
     public static final Long ONE_DAY = 86400L;
+    public static final Long THIRTY_DAY = 864000000L;
 }

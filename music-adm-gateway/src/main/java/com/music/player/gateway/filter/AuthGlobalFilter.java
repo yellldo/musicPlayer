@@ -1,6 +1,7 @@
 package com.music.player.gateway.filter;
 
 import cn.dev33.satoken.stp.StpUtil;
+import com.music.player.framework.common.constants.CommonConstants;
 import com.music.player.framework.redis.domain.RedisOps;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -40,7 +41,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         }
 
         // 2. 简单 Token 校验（从 Header 中获取）
-        List<String> tokenList = exchange.getRequest().getHeaders().get("Authorization");
+        List<String> tokenList = exchange.getRequest().getHeaders().get(CommonConstants.AUTHORIZATION);
         if (tokenList == null || tokenList.isEmpty() || !tokenList.get(0).startsWith("Bearer ")) {
             log.info("【拦截】未携带合法 Token");
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
@@ -51,7 +52,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         Long userId = redisOps.get("satoken:login:token:" + token, false);
 
         exchange.getRequest().mutate()
-                .header("userId", String.valueOf(userId))
+                .header(CommonConstants.ADM_USER_ID, String.valueOf(userId))
                 .build();
 
         // 3. 如果校验通过，继续执行后续过滤器或路由
