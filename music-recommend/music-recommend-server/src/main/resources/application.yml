@@ -33,3 +33,10 @@ mybatis-plus:
   global-config:
     # 关闭 mybatis-plus的 banner
     banner: false
+
+
+logging:
+  file:
+    path: /Users/shenjia/logs/music/music-recommend
+    name: ${spring.application.name}
+  config: classpath:log4j2-spring.xml
