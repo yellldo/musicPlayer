@@ -61,8 +61,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>17</source> <!-- 指定源代码的JDK版本 -->
-                        <target>17</target> <!-- 指定编译后的目标JDK版本 -->
+                        <source>${java.version}</source> <!-- 指定源代码的JDK版本 -->
+                        <target>${java.version}</target> <!-- 指定编译后的目标JDK版本 -->
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.springframework.boot</groupId>

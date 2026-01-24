@@ -57,6 +57,10 @@
             <artifactId>music-spring-boot-starter-log</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-spring-boot-starter-prometheus</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
         </dependency>

@@ -3,7 +3,9 @@ package com.music.player.content.rest;
 import com.music.player.content.biz.ArtistsAuditBiz;
 import com.music.player.content.dto.ArtistsAuditAuditDto;
 import com.music.player.content.dto.ArtistsAuditPageDto;
+import com.music.player.content.dto.CreateArtistsAuditDto;
 import com.music.player.framework.common.base.R;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +34,13 @@ public class ArtistsAuditCtrl {
 
     @PostMapping("audit")
     public R audit(@RequestBody ArtistsAuditAuditDto artistsAuditAuditDto) {
+        artistsAuditBiz.audit(artistsAuditAuditDto);
         return R.ok();
     }
 
+    @PostMapping("create")
+    public R create(@Valid @RequestBody CreateArtistsAuditDto createArtistsAuditDto) {
+        artistsAuditBiz.create(createArtistsAuditDto);
+        return R.ok();
+    }
 }

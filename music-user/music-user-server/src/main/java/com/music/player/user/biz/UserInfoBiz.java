@@ -49,6 +49,8 @@ public class UserInfoBiz {
         userInfoService.save(userInfo);
     }
 
+
+    // TODO 待实现缓存
     public UserInfoVo findById(Long userId) {
         UserInfo userInfo = userInfoService.getById(userId);
         return UserInfoConvert.INSTANT.copy(userInfo);

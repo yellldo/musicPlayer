@@ -23,4 +23,9 @@ public class HttpContextUtil {
     public static HttpServletRequest getHttpServletRequest() {
         return ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
     }
+
+    public static String getHeaderByName(String name) {
+        HttpServletRequest httpServletRequest = getHttpServletRequest();
+        return httpServletRequest.getHeader(name);
+    }
 }

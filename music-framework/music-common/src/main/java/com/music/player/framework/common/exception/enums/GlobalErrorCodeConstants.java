@@ -12,6 +12,7 @@ import com.music.player.framework.common.exception.IErrorCode;
 public enum GlobalErrorCodeConstants implements IErrorCode {
 
     PARAM_ERROR(1_000_000_001, "参数异常"),
+    SERVER_NOT_AVAILABLE(1_000_000_002,"服务暂时不可用"),
 
 
     ;

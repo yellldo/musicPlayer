@@ -21,7 +21,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ArtistsBiz {
 
-
     @Autowired
     private ArtistsService artistsService;
 

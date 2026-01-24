@@ -3,6 +3,7 @@ package com.music.player.user.dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -16,6 +17,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString
+@Accessors(chain = true)
 public class UpdateUserArtistFlagDto implements Serializable {
 
     private Long userId;

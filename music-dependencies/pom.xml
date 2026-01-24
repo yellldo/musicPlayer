@@ -62,7 +62,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
@@ -150,10 +149,19 @@
                 <artifactId>music-spring-boot-starter-log</artifactId>
                 <version>${revision}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.music.player</groupId>
-                <artifactId>music-infra-api</artifactId>
+                <artifactId>music-spring-boot-starter-trace</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-spring-boot-starter-feign</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.music.player</groupId>
+                <artifactId>music-spring-boot-starter-prometheus</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>

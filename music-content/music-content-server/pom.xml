@@ -57,7 +57,15 @@
         </dependency>
         <dependency>
             <groupId>com.music.player</groupId>
+            <artifactId>music-spring-boot-starter-prometheus</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.music.player</groupId>
             <artifactId>music-content-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.music.player</groupId>
+            <artifactId>music-user-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>

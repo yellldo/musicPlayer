@@ -17,4 +17,7 @@ public class ArtistsAuditConstants {
     public static final String ARTISTS_AUDITS_STATUS_PASS = "2";
     public static final String ARTISTS_AUDITS_STATUS_REJECT = "3";
     public static final String ARTISTS_AUDITS_STATUS_CANCEL = "4";
+
+    public static final String ARTISTS_TYPE_CREATE = "1";
+    public static final String ARTISTS_TYPE_UPDATE = "2";
 }

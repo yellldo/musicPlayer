@@ -1,6 +1,5 @@
 package com.music.player.framework.web.handler;
 
-import cn.dev33.satoken.exception.NotLoginException;
 import cn.hutool.core.exceptions.ExceptionUtil;
 import com.music.player.framework.common.base.HttpCode;
 import com.music.player.framework.common.base.R;

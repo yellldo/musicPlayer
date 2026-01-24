@@ -6,6 +6,7 @@ import com.music.player.system.dto.DictInfoListDto;
 import com.music.player.system.vo.DictInfoVo;
 import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public interface DictInfoApi {
      * @param dictInfoListDto
      * @return 字典列表
      */
+    @PostMapping(FeignConstants.MUSIC_SYSTEM_URL + "/api/dictInfoList")
     R<List<DictInfoVo>> dictInfoList(@Valid @RequestBody DictInfoListDto dictInfoListDto);
 
 }

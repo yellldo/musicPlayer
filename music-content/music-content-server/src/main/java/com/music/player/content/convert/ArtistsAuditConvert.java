@@ -27,5 +27,4 @@ public interface ArtistsAuditConvert {
 
     ArtistsAudit audit(ArtistsAuditAuditDto artistsAuditAuditDto);
 
-
 }

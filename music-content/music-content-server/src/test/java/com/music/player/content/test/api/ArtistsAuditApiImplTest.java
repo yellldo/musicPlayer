@@ -32,7 +32,7 @@ public class ArtistsAuditApiImplTest {
         jsonObject.put("33", "33");
         jsonObject.put("44", "44");
         CreateArtistsAuditDto createArtistsAuditDto = new CreateArtistsAuditDto()
-                .setAuditType("1").setUserId(111L)
+                .setUserId(111L)
                 .setSubmittedData(jsonObject.toJSONString());
         artistsAuditApi.createArtists(createArtistsAuditDto);
     }

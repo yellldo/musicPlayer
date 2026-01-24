@@ -5,8 +5,7 @@
         <!-- 定义日志格式 -->
         <!--        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>-->
         <!--                <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss} | [%X{requestId} | (%-5level) | (%thread) | (%logger) | %msg%n</Property>-->
-        <Property name="LOG_PATTERN">%style{%d{yyyy-MM-dd HH:mm:ss}}{bright,green}
-            %highlight{%-5level}[%style{%t}{bright,blue}] %style{%C{}}{bright,yellow}: %msg%n%style{%throwable}{red}
+        <Property name="LOG_PATTERN">%style{%d{yyyy-MM-dd HH:mm:ss}} %X{traceId} {bright,green} %highlight{%-5level}[%style{%t}{bright,blue}] %style{%C{}}{bright,yellow}: %msg%n%style{%throwable}{red}
         </Property>
 
         <!-- 定义日志文件路径 -->

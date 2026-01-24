@@ -1,6 +1,5 @@
 package com.music.player.user.rest;
 
-import cn.dev33.satoken.annotation.SaIgnore;
 import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.base.R;
 import com.music.player.user.biz.UserInfoBiz;
