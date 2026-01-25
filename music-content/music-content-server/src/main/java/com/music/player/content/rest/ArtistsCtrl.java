@@ -1,10 +1,12 @@
 package com.music.player.content.rest;
 
 import com.music.player.content.biz.ArtistsBiz;
+import com.music.player.content.dto.ArtistsDisassociateDto;
 import com.music.player.content.dto.ArtistsPageDto;
 import com.music.player.framework.common.base.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,11 +26,15 @@ public class ArtistsCtrl {
 
 
     @PostMapping("page")
-    public R page(ArtistsPageDto artistsPageDto) {
+    public R page(@RequestBody ArtistsPageDto artistsPageDto) {
         return R.ok(artistsBiz.page(artistsPageDto));
     }
 
 
-
+    @PostMapping("disassociate")
+    public R disassociate(@RequestBody ArtistsDisassociateDto artistsDisassociateDto) {
+        artistsBiz.disassociate(artistsDisassociateDto);
+        return R.ok();
+    }
 
 }

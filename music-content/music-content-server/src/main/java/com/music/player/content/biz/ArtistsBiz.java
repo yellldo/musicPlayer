@@ -1,6 +1,7 @@
 package com.music.player.content.biz;
 
 import com.music.player.content.convert.ArtistsConvert;
+import com.music.player.content.dto.ArtistsDisassociateDto;
 import com.music.player.content.dto.ArtistsPageDto;
 import com.music.player.content.entity.Artists;
 import com.music.player.content.service.ArtistsService;
@@ -30,5 +31,9 @@ public class ArtistsBiz {
         return ArtistsConvert.INSTANT.page(artistsPageResult);
     }
 
+
+    public void disassociate(ArtistsDisassociateDto artistsDisassociateDto) {
+
+    }
 
 }

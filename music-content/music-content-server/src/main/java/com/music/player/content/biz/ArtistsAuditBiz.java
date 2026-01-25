@@ -1,5 +1,6 @@
 package com.music.player.content.biz;
 
+import com.alibaba.fastjson2.JSONObject;
 import com.music.player.content.constant.ArtistsAuditConstants;
 import com.music.player.content.convert.ArtistsAuditConvert;
 import com.music.player.content.convert.ArtistsConvert;
@@ -16,8 +17,10 @@ import com.music.player.framework.common.base.PageResult;
 import com.music.player.framework.common.base.R;
 import com.music.player.framework.common.constants.CommonConstants;
 import com.music.player.framework.common.exception.base.BusinessException;
+import com.music.player.framework.common.utils.JsonAnalysisUtils;
 import com.music.player.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.music.player.user.api.UserInfoApi;
+import com.music.player.user.constants.ArtistsConstants;
 import com.music.player.user.dto.QueryUserDto;
 import com.music.player.user.dto.UpdateUserArtistFlagDto;
 import com.music.player.user.vo.UserInfoVo;
@@ -61,6 +64,8 @@ public class ArtistsAuditBiz {
             UserInfoVo userInfoVo = userInfoVoMapR.getData().get(String.valueOf(artistsAuditVo.getUserId()));
             if (userInfoVo != null) {
                 artistsAuditVo.setUserName(userInfoVo.getNickName());
+            } else {
+                artistsAuditVo.setUserName("未知用户");
             }
         });
         return artistsAuditVoPageResult;
@@ -82,13 +87,33 @@ public class ArtistsAuditBiz {
         if (ArtistsAuditConstants.ARTISTS_AUDITS_STATUS_PASS.equals(artistsAuditAuditDto.getAuditStatus())) {
             Artists artists = ArtistsConvert.INSTANT.create(origin);
 
-            artistsService.save(artists);
+            // 根据 submittedData 反解析成字段
+            JsonAnalysisUtils.updateObject(artists, origin.getSubmittedData(), "art_name", "alias", "description", "cover_url", "avatar_url");
+
+            boolean flag = checkArtist(origin.getUserId());
+
+            if (!flag) {
+                artistsService.save(artists);
+            }
             UpdateUserArtistFlagDto updateUserArtistFlagDto = new UpdateUserArtistFlagDto()
-                    .setIsArtist("")
+                    .setIsArtist(ArtistsConstants.ARTISTS_YES)
+                    .setArtId(artists.getArtId())
                     .setUserId(artists.getUserId());
+            userInfoApi.updateUserArtistFlag(updateUserArtistFlagDto);
+        } else {
+            UpdateUserArtistFlagDto updateUserArtistFlagDto = new UpdateUserArtistFlagDto()
+                    .setIsArtist(ArtistsConstants.ARTISTS_YES)
+                    .setUserId(origin.getUserId());
             userInfoApi.updateUserArtistFlag(updateUserArtistFlagDto);
         }
     }
+
+    private boolean checkArtist(Long userId) {
+        long count = artistsService.selectCount(new LambdaQueryWrapperX<Artists>()
+                .eq(Artists::getUserId, userId));
+        return count > 0;
+    }
+
 
     public void create(CreateArtistsAuditDto createArtistsAuditDto) {
         long count = artistsAuditService.selectCount(new LambdaQueryWrapperX<ArtistsAudit>()

@@ -1,7 +1,9 @@
 package com.music.player.user.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.music.player.framework.web.serializer.FlexibleListDeserializer;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -23,6 +25,6 @@ import java.util.List;
 @Accessors(chain = true)
 public class QueryUserDto implements Serializable {
 
-    @JsonSerialize(using = ToStringSerializer.class)
+    @JsonDeserialize(using = FlexibleListDeserializer.class)
     private List<Long> userIdList;
 }

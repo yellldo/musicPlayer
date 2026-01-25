@@ -1,5 +1,7 @@
 package com.music.player.system.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +20,7 @@ import lombok.ToString;
 public class DictCreateDto {
 
     @NotNull(message = "参数异常")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long parentId;
 
     private String dictLabel;

@@ -24,7 +24,7 @@ import java.io.Serializable;
 @TableName("user_message")
 public class UserMessage extends BaseEntity implements Serializable {
 
-    @TableId(type = IdType.INPUT)
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     @TableField("message_title")

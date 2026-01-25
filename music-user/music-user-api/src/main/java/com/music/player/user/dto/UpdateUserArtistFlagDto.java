@@ -23,4 +23,6 @@ public class UpdateUserArtistFlagDto implements Serializable {
     private Long userId;
 
     private String isArtist;
+
+    private Long artId;
 }

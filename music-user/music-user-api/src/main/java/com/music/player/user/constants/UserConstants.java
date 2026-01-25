@@ -26,4 +26,5 @@ public class UserConstants {
     public static final String LOGIN_SUCCESS = "0";
     public static final String LOGIN_ERROR = "1";
 
+
 }

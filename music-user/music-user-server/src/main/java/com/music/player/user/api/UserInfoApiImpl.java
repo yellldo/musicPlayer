@@ -36,6 +36,7 @@ public class UserInfoApiImpl implements UserInfoApi {
             throw new BusinessException(ErrorCodeConstants.USER_NOT_EXISTS);
         }
         UpdateUserInfoDto updateUserInfoDto = new UpdateUserInfoDto().setUserId(updateUserArtistFlagDto.getUserId())
+                .setArtId(updateUserArtistFlagDto.getArtId())
                 .setIsArtist(updateUserArtistFlagDto.getIsArtist());
         userInfoBiz.update(updateUserInfoDto);
     }

@@ -10,4 +10,6 @@ package com.music.player.framework.web.constant;
 public class LogOperationConstant {
 
     public static final String MODULE_SYSTEM = "系统模块";
+
+    public static final String MODULE_USER = "用户模块";
 }

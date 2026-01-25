@@ -8,6 +8,8 @@ import cn.hutool.core.util.RandomUtil;
 import com.music.player.framework.common.base.R;
 import com.music.player.framework.common.exception.base.BusinessException;
 import com.music.player.framework.redis.domain.RedisOps;
+import com.music.player.framework.web.annotation.LogPrint;
+import com.music.player.framework.web.constant.LogOperationConstant;
 import com.music.player.user.biz.AuthBiz;
 import com.music.player.user.constants.RedisConstants;
 import com.music.player.user.dto.LoginDto;
@@ -42,6 +44,7 @@ public class AuthCtrl {
     @Autowired
     private AuthBiz authBiz;
 
+    @LogPrint(operation = "登陆", module = LogOperationConstant.MODULE_USER)
     @PostMapping("login")
     public R<LoginVo> login(@Valid @RequestBody LoginDto loginDto, HttpServletRequest request) {
         String key = RedisConstants.LOGIN_PHONE_CODE + loginDto.getPhone();
@@ -69,6 +72,7 @@ public class AuthCtrl {
         return R.ok(loginVo);
     }
 
+    @LogPrint(operation = "注册", module = LogOperationConstant.MODULE_USER)
     @SaIgnore
     @PostMapping("register")
     public R<?> register(@RequestBody RegisterUserDto registerUserDto) {
@@ -99,6 +103,7 @@ public class AuthCtrl {
         return R.ok(value);
     }
 
+    @LogPrint(operation = "退出", module = LogOperationConstant.MODULE_USER)
     @PostMapping("logout")
     public R<?> logout(HttpServletRequest request) {
         StpUtil.logout();

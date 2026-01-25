@@ -20,7 +20,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class DictDetail extends BaseEntity {
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     /**

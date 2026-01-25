@@ -9,6 +9,7 @@ create table user_info(
 	membership_level int default 0 comment '会员等级',
 	user_status char(2) default '0' comment '用户状态0、正常1、禁用2、删除',
 	nick_name varchar(50) not null comment '昵称',
+    art_id bigint  null comment '作者id',
 	profile varchar(500) null comment '简介',
 	phone varchar(15) null comment '手机号',
 	avatar varchar(100) null comment '头像',

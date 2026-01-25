@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @TableName("infra_api_error_log")
 public class ApiErrorLog {
 
-    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     @TableField(value = "user_id")

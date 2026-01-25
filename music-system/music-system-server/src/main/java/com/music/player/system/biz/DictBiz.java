@@ -51,6 +51,9 @@ public class DictBiz {
     public PageResult<DictCodeVo> dictCodePage(DictCodePageDto dictCodePageDto) {
         PageResult<DictInfo> result = dictInfoService.selectPage(dictCodePageDto, new LambdaQueryWrapperX<DictInfo>()
                 .eqIfPresent(DictInfo::getDictType, dictCodePageDto.getDictType())
+                .eqIfPresent(DictInfo::getDictStatus, dictCodePageDto.getDictStatus())
+                .likeIfPresent(DictInfo::getDictCode, dictCodePageDto.getDictCode())
+                .likeIfPresent(DictInfo::getDictName, dictCodePageDto.getDictName())
                 .eq(DictInfo::getIsDelete, CommonConstants.STATUS_NOT_DEL));
         return DictConvert.INSTANT.convertDictTypePage(result);
     }

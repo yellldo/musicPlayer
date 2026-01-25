@@ -18,6 +18,7 @@ create table dict_info (
   update_by bigint default null comment '更新人'
 )
 comment '字典表' charset = utf8mb4;
+
 drop table if exists dict_detail;
 create table dict_detail(
 	id bigint primary key auto_increment not null comment '主键',
@@ -25,7 +26,7 @@ create table dict_detail(
 	dict_label varchar(50) comment '',
 	dict_value varchar(10) comment '',
 	dict_remark varchar(100) comment '',
-	dict_status char(1) comment '',
+	dict_status char(1) default '0' comment '字典状态 0、启动 1、禁用',
 	sort int comment '排序',
   	is_delete char(1) default '0' comment '删除标志位0、未删除1、已删除',
 	create_time datetime comment '创建时间',
@@ -42,7 +43,7 @@ create table sys_user(
     password varchar(50) not null comment '密码',
     email varchar(50) not null comment '邮箱',
     phone varchar(11) not null comment '手机号',
-    user_status char(1) default '0' comment '状态0、正常1、禁用',
+    user_status char(1) default '0' comment '状态 0、正常 1、禁用',
     remark varchar(100) null comment '用户备注',
     error_count int null comment '错误次数',
     is_reset char(1) default '0' comment '是否要重置密码 0、否 1、是 ',

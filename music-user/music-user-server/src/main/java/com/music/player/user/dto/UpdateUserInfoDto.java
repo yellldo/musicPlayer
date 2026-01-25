@@ -22,6 +22,8 @@ public class UpdateUserInfoDto {
     @NotNull(message = "用户id不能为空")
     private Long userId;
 
+    private Long artId;
+
     private String nickName;
 
     private String profile;

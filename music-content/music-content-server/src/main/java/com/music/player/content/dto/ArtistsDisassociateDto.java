@@ -6,25 +6,20 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
- * ClassName : ArtistsAuditAuditDto<br>
- * Description : ArtistsAuditAuditDto<br>
+ * ClassName : ArtistsDisassociateDto<br>
+ * Description : ArtistsDisassociateDto<br>
  *
  * @author : sj
- * @date : 12/27/25
+ * @date : 1/25/26
  */
 @Setter
 @Getter
 @ToString
-public class ArtistsAuditAuditDto {
+public class ArtistsDisassociateDto implements Serializable {
 
     @JsonSerialize(using = ToStringSerializer.class)
-    private Long id;
-
-    private String auditStatus;
-
-    private String rejectReason;
-
-
+    private Long userId;
 }
-

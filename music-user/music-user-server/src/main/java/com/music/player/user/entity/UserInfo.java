@@ -26,7 +26,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 public class UserInfo extends BaseEntity {
 
-    @TableId(type = IdType.INPUT)
+    @TableId(type = IdType.ASSIGN_ID)
     private Long userId;
 
     @TableField("user_status")
@@ -34,6 +34,9 @@ public class UserInfo extends BaseEntity {
 
     @TableField("user_type")
     private String userType;
+
+    @TableField("art_id")
+    private Long artId;
 
     @TableField("profile")
     private String profile;

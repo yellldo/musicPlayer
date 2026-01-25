@@ -1,5 +1,6 @@
 package com.music.player.content.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * ClassName : ArtistsVo<br>
@@ -30,6 +32,8 @@ public class ArtistsVo implements Serializable {
 
     private String artName;
 
+    private String artStatus;
+
     private String alias;
 
     private Integer musicSize;
@@ -37,5 +41,8 @@ public class ArtistsVo implements Serializable {
     private Integer albumSize;
 
     private String description;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createTime;
 
 }
