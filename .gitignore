@@ -26,4 +26,5 @@ replay_pid*
 */.flattened-pom.xml
 */*.iml
 
+.idea
 */target/*

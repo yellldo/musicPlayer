@@ -16,6 +16,9 @@ spring:
       config:
         server-addr: 127.0.0.1:8848
         namespace: music
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 
 server:
   servlet:

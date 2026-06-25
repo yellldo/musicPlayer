@@ -42,6 +42,9 @@ public class SysMenu extends BaseEntity {
     @TableField("level")
     private int level;
 
+    @TableField("sort")
+    private int sort;
+
     @TableField("menu_type")
     private String menuType;
 

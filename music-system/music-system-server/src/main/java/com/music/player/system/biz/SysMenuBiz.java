@@ -1,7 +1,9 @@
 package com.music.player.system.biz;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.mybatisplus.core.enums.SqlKeyword;
 import com.music.player.framework.common.base.PageResult;
+import com.music.player.framework.common.base.SortingField;
 import com.music.player.framework.common.constants.CommonConstants;
 import com.music.player.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.music.player.framework.redis.domain.RedisOps;
@@ -17,9 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static com.music.player.framework.common.base.SortingField.ORDER_ASC;
+import static com.music.player.framework.common.base.SortingField.ORDER_DESC;
 
 /**
  * ClassName : SysMenuBiz<br>
@@ -55,13 +61,22 @@ public class SysMenuBiz {
     }
 
     public void delete(SysMenuIdDto sysMenuIdDto) {
-        SysMenu sysMenu = new SysMenu().setMenuId(sysMenuIdDto.getMenuId());
+        SysMenu sysMenu = sysMenuService.getById(sysMenuIdDto.getMenuId());
+        // 判断被删除的菜单是否有子菜单
+        List<SysMenu> childSysMenuList = sysMenuService.selectList(new LambdaQueryWrapperX<SysMenu>().eq(SysMenu::getParentId, sysMenuIdDto.getMenuId()));
+
+        if (!childSysMenuList.isEmpty()) {
+
+        }
+
+        sysMenu = new SysMenu().setMenuId(sysMenuIdDto.getMenuId());
         sysMenu.setIsDelete(CommonConstants.STATUS_DEL);
         sysMenuService.updateById(sysMenu);
     }
 
     public List<SysMenuVo> tree() {
-        List<SysMenu> sysMenus = sysMenuService.selectList(new LambdaQueryWrapperX<SysMenu>()
+        List<SortingField> sortingFieldList = Arrays.asList(new SortingField("sort", SqlKeyword.ASC.getSqlSegment()));
+        List<SysMenu> sysMenus = sysMenuService.selectList(sortingFieldList, new LambdaQueryWrapperX<SysMenu>()
                 .eq(SysMenu::getIsDelete, CommonConstants.STATUS_NOT_DEL));
 
         List<SysMenuVo> sysMenuVos = SysMenuConvert.INSTANT.convertList(sysMenus);

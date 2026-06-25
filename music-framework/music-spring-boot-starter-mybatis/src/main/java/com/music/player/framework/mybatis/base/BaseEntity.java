@@ -2,6 +2,8 @@ package com.music.player.framework.mybatis.base;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +21,7 @@ import java.time.LocalDateTime;
 @Getter
 public class BaseEntity implements Serializable {
 
+    @TableLogic(value = "0", delval = "1")
     @TableField(fill = FieldFill.INSERT)
     private String isDelete;
 
@@ -31,6 +34,7 @@ public class BaseEntity implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
@@ -43,6 +47,7 @@ public class BaseEntity implements Serializable {
     /**
      * 更新时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 

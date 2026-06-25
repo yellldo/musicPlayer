@@ -83,6 +83,7 @@ create table sys_menu(
     menu_name varchar(10) comment '菜单名称',
     icon varchar(10) comment '菜单图标',
     level int comment '菜单级别',
+    sort int comment '菜单顺序',
     permission varchar(20) comment '权限',
     menu_type char(10) comment '菜单类型',
     menu_path varchar(20) comment '菜单路径',

@@ -20,6 +20,18 @@ public enum ErrorCodeConstants implements IErrorCode {
     PHONE_CODE_NOT_MATCH(1_003_000_004, "手机验证不匹配"),
     USER_STATUS_ERROR(1_003_000_005, "用户状态异常，请联系管理员"),
     USER_EXISTS(1_003_000_001, "用户已存在"),
+
+    // ========== 会员管理 ==========
+    MEMBER_NOT_FOUND(1_003_000_007, "会员不存在"),
+
+    // ========== 会员等级 ==========
+    MEMBER_LEVEL_NOT_FOUND(1_003_000_011, "会员等级不存在"),
+
+    // ========== 会员标签 ==========
+    MEMBER_TAG_NOT_FOUND(1_003_000_015, "会员标签不存在"),
+
+    // ========== 会员分组 ==========
+    MEMBER_GROUP_NOT_FOUND(1_003_000_019, "会员分组不存在"),
     ;
 
     private final Integer code;

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.music.player.framework.mybatis.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -49,9 +50,11 @@ public class ArtistsAudit extends BaseEntity implements Serializable {
     @TableField("audit_notes")
     private String auditNotes;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @TableField("audited_time")
     private LocalDateTime auditedTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @TableField("withdrawn_time")
     private LocalDateTime withdrawnTime;
 }

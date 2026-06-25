@@ -21,7 +21,8 @@ public interface SysMenuMapper extends CommonMapper<SysMenu> {
     @Select(" select distinct sm.* from sys_user_role sur  " +
             " inner join sys_role_menu srm on sur.role_id  = srm.role_id " +
             " inner join sys_menu sm on sm.menu_id  = srm.menu_id " +
-            " where sur.user_id = #{userId} ")
+            " where sur.user_id = #{userId} and is_delete = '0'" +
+            " order by sort asc")
     List<SysMenuVo> queryMenusByUserId(@Param("userId") Long userId);
 
     @Select(" select distinct menu_id  from sys_role_menu where role_id = #{roleId} ")

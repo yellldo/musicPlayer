@@ -54,7 +54,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = BusinessException.class)
     public R<?> businessExceptionHandler(HttpServletResponse response, BusinessException ex) {
         log.error(ex.getErrorMessage(), ex);
-        response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+//        response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         return R.failed(ex.getErrorCode(), ex.getErrorMessage());
     }
 

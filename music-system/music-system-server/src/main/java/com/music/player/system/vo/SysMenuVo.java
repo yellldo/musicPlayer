@@ -34,6 +34,10 @@ public class SysMenuVo {
 
     private String menuPath;
 
+    private String menuStatus;
+
+    private Integer sort;
+
     public String componentPath;
 
     private String[] parentIdList;
